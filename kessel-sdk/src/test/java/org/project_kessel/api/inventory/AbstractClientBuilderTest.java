@@ -26,7 +26,7 @@ class AbstractClientBuilderTest {
 
     // Test implementation of AbstractClientBuilder
     static class TestClientBuilder extends AbstractClientBuilder<TestStub, TestAsyncStub> {
-        
+
         TestClientBuilder(String target) {
             super(target);
         }
@@ -92,16 +92,8 @@ class AbstractClientBuilderTest {
     @Test
     void testOAuth2ClientAuthenticatedWithNullCredentials() {
         // Test that null OAuth2 credentials are rejected
-        assertThrows(NullPointerException.class, () -> 
+        assertThrows(NullPointerException.class, () ->
             builder.oauth2ClientAuthenticated(null)
-        );
-    }
-
-    @Test
-    void testCreateChannelBuilderWithNullFunction() {
-        // Test that null channel builder function is rejected
-        assertThrows(NullPointerException.class, () -> 
-            builder.createChannelBuilder(null)
         );
     }
 
@@ -131,7 +123,7 @@ class AbstractClientBuilderTest {
             Class.forName("com.nimbusds.oauth2.sdk.TokenRequest");
             ClientConfigAuth config = new ClientConfigAuth("test", "secret", "https://example.com/token");
             OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(config);
-            
+
             AbstractClientBuilder<TestStub, TestAsyncStub> result = builder.oauth2ClientAuthenticated(oauthClient);
             assertSame(builder, result);
         } catch (ClassNotFoundException e) {
@@ -147,12 +139,12 @@ class AbstractClientBuilderTest {
     void testBuildCreatesStub() {
         builder.insecure();
         Pair<TestStub, ManagedChannel> result = builder.build();
-        
+
         assertNotNull(result.getLeft());
         assertNotNull(result.getRight());
         assertTrue(result.getLeft() instanceof TestStub);
         assertTrue(result.getRight() instanceof ManagedChannel);
-        
+
         // Clean up
         result.getRight().shutdown();
     }
@@ -161,12 +153,12 @@ class AbstractClientBuilderTest {
     void testBuildAsyncCreatesAsyncStub() {
         builder.insecure();
         Pair<TestAsyncStub, ManagedChannel> result = builder.buildAsync();
-        
+
         assertNotNull(result.getLeft());
         assertNotNull(result.getRight());
         assertTrue(result.getLeft() instanceof TestAsyncStub);
         assertTrue(result.getRight() instanceof ManagedChannel);
-        
+
         // Clean up
         result.getRight().shutdown();
     }
@@ -175,12 +167,12 @@ class AbstractClientBuilderTest {
     void testCredentialConfigurationMethods() {
         // Test that credential configuration methods work without throwing exceptions
         CallCredentials mockCallCredentials = mock(CallCredentials.class);
-        
+
         // Test various credential configurations
         assertDoesNotThrow(() -> builder.insecure());
         assertDoesNotThrow(() -> builder.unauthenticated());
         assertDoesNotThrow(() -> builder.authenticated());
-        
+
         // Note: Testing insecure + authentication might be implementation dependent
         // so we just verify the methods don't crash
     }

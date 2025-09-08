@@ -15,8 +15,6 @@ public abstract class AbstractClientBuilder<BT extends AbstractStub<BT>, AT exte
     private final String target;
     private ChannelCredentials channelCredentials;
     private CallCredentials callCredentials;
-    private BiFunction<String, ChannelCredentials, ManagedChannelBuilder<?>> createChannelBuilder;
-
 
 
     public AbstractClientBuilder(String target) {
@@ -69,12 +67,6 @@ public abstract class AbstractClientBuilder<BT extends AbstractStub<BT>, AT exte
         return this;
     }
 
-    public AbstractClientBuilder<BT, AT> createChannelBuilder(BiFunction<String, ChannelCredentials, ManagedChannelBuilder<?>> createChannelBuilder) {
-        Objects.requireNonNull(createChannelBuilder, "createChannelBuilder must not be null");
-        this.createChannelBuilder = createChannelBuilder;
-        return this;
-    }
-
     public Pair<BT, ManagedChannel> build() {
         ManagedChannel channel = this.buildChannel();
         return Pair.of(this.newStub(channel), channel);
@@ -95,13 +87,7 @@ public abstract class AbstractClientBuilder<BT extends AbstractStub<BT>, AT exte
             channelCredentials = CompositeChannelCredentials.create(channelCredentials, this.callCredentials);
         }
 
-        ManagedChannelBuilder<?> channelBuilder;
-        if (this.createChannelBuilder == null) {
-            channelBuilder = Grpc.newChannelBuilder(target, channelCredentials);
-        } else {
-            channelBuilder = this.createChannelBuilder.apply(target, channelCredentials);
-        }
-
+        ManagedChannelBuilder<?> channelBuilder = Grpc.newChannelBuilder(target, channelCredentials);
         return channelBuilder.build();
     }
 
