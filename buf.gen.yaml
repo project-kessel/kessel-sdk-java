@@ -1,0 +1,12 @@
+version: v2
+inputs:
+  # buf.build/bufbuild/protovalidate:v0.7.1 is already a dependency on inventory-api
+  # It is already included. Using a different version will cause a compile-time errors
+  - module: buf.build/project-kessel/inventory-api
+plugins:
+  - remote: buf.build/protocolbuffers/java:v32.0
+    out: kessel-sdk/src/main/java
+    include_imports: true
+  - remote: buf.build/grpc/java:v1.75.0
+    out: kessel-sdk/src/main/java
+    include_imports: true
