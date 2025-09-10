@@ -21,7 +21,7 @@ public class OAuth2ClientCredentials {
     private static final long DEFAULT_EXPIRE_IN_SECONDS = Duration.ofHours(1).toSeconds();
 
     private final ClientConfigAuth auth;
-    private volatile OAuthToken tokenCache;
+    private volatile RefreshTokenResponse tokenCache;
     private final ReentrantLock refreshLock = new ReentrantLock();
 
     public OAuth2ClientCredentials(ClientConfigAuth auth) throws OAuth2Exception {
@@ -39,18 +39,18 @@ public class OAuth2ClientCredentials {
     }
 
     public boolean isCacheValid() {
-        OAuthToken token = this.tokenCache;
+        RefreshTokenResponse token = this.tokenCache;
         if (token == null) {
             return false;
         }
         return token.expiresAt().isAfter(LocalDateTime.now().plus(EXPIRATION_WINDOW));
     }
 
-    public OAuthToken getToken() throws OAuth2Exception {
+    public RefreshTokenResponse getToken() throws OAuth2Exception {
         return getToken(false);
     }
 
-    public OAuthToken getToken(boolean forceRefresh) throws OAuth2Exception {
+    public RefreshTokenResponse getToken(boolean forceRefresh) throws OAuth2Exception {
         if (!forceRefresh && isCacheValid()) {
             return tokenCache;
         }
@@ -69,7 +69,7 @@ public class OAuth2ClientCredentials {
         }
     }
 
-    private OAuthToken refresh() throws OAuth2Exception {
+    private RefreshTokenResponse refresh() throws OAuth2Exception {
         try {
             URI tokenEndpoint = URI.create(auth.tokenEndpoint());
             ClientID clientId = new ClientID(auth.clientId());
@@ -101,7 +101,7 @@ public class OAuth2ClientCredentials {
 
             LocalDateTime expiresAt = LocalDateTime.now().plusSeconds(expiresIn);
 
-            return new OAuthToken(accessToken.getValue(), expiresAt);
+            return new RefreshTokenResponse(accessToken.getValue(), expiresAt);
 
         } catch (ParseException | IOException e) {
             throw new OAuth2Exception("Failed to refresh OAuth token", e);
