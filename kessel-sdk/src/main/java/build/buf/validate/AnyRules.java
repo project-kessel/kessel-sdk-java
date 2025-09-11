@@ -7,7 +7,7 @@ package build.buf.validate;
 
 /**
  * <pre>
- * AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
+ * AnyRules describe rules applied exclusively to the `google.protobuf.Any` well-known type.
  * </pre>
  *
  * Protobuf type {@code buf.validate.AnyRules}
@@ -64,7 +64,9 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -85,7 +87,9 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -105,7 +109,9 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -126,7 +132,9 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -150,8 +158,10 @@ private static final long serialVersionUID = 0L;
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -169,8 +179,10 @@ private static final long serialVersionUID = 0L;
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -187,8 +199,10 @@ private static final long serialVersionUID = 0L;
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -206,8 +220,10 @@ private static final long serialVersionUID = 0L;
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -403,7 +419,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
+   * AnyRules describe rules applied exclusively to the `google.protobuf.Any` well-known type.
    * </pre>
    *
    * Protobuf type {@code buf.validate.AnyRules}
@@ -545,15 +561,15 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              com.google.protobuf.ByteString bs = input.readBytes();
               ensureInIsMutable();
-              in_.add(s);
+              in_.add(bs);
               break;
             } // case 18
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+              com.google.protobuf.ByteString bs = input.readBytes();
               ensureNotInIsMutable();
-              notIn_.add(s);
+              notIn_.add(bs);
               break;
             } // case 26
             default: {
@@ -590,7 +606,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -612,7 +630,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -632,7 +652,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -653,7 +675,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -675,7 +699,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -703,7 +729,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -730,7 +758,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -757,7 +787,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -781,7 +813,9 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MyAny {
      * //  The `value` field must have a `type_url` equal to one of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -793,7 +827,6 @@ private static final long serialVersionUID = 0L;
     public Builder addInBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
       ensureInIsMutable();
       in_.add(value);
       bitField0_ |= 0x00000001;
@@ -815,8 +848,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -835,8 +870,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -853,8 +890,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -872,8 +911,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -892,8 +933,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -918,8 +961,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -943,8 +988,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -968,8 +1015,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -990,8 +1039,10 @@ private static final long serialVersionUID = 0L;
      *
      * ```proto
      * message MyAny {
-     * // The field `value` must not have a `type_url` equal to any of the specified values.
-     * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+     * //  The `value` field must not have a `type_url` equal to any of the specified values.
+     * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+     * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+     * }];
      * }
      * ```
      * </pre>
@@ -1003,7 +1054,6 @@ private static final long serialVersionUID = 0L;
     public Builder addNotInBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
       ensureNotInIsMutable();
       notIn_.add(value);
       bitField0_ |= 0x00000002;

@@ -6,15 +6,15 @@
 package build.buf.validate;
 
 @com.google.protobuf.Generated
-public interface FieldConstraintsOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:buf.validate.FieldConstraints)
+public interface FieldRulesOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:buf.validate.FieldRules)
     com.google.protobuf.MessageOrBuilder {
 
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -28,15 +28,15 @@ public interface FieldConstraintsOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
-  java.util.List<build.buf.validate.Constraint> 
+  java.util.List<build.buf.validate.Rule> 
       getCelList();
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -50,14 +50,14 @@ public interface FieldConstraintsOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
-  build.buf.validate.Constraint getCel(int index);
+  build.buf.validate.Rule getCel(int index);
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -71,14 +71,14 @@ public interface FieldConstraintsOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   int getCelCount();
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -92,15 +92,15 @@ public interface FieldConstraintsOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
-  java.util.List<? extends build.buf.validate.ConstraintOrBuilder> 
+  java.util.List<? extends build.buf.validate.RuleOrBuilder> 
       getCelOrBuilderList();
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -114,76 +114,165 @@ public interface FieldConstraintsOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
-  build.buf.validate.ConstraintOrBuilder getCelOrBuilder(
+  build.buf.validate.RuleOrBuilder getCelOrBuilder(
       int index);
 
   /**
    * <pre>
-   * If `required` is true, the field must be populated. A populated field can be
-   * described as "serialized in the wire format," which includes:
-   *
-   * - the following "nullable" fields must be explicitly set to be considered populated:
-   * - singular message fields (whose fields may be unpopulated/default values)
-   * - member fields of a oneof (may be their default value)
-   * - proto3 optional fields (may be their default value)
-   * - proto2 scalar fields (both optional and required)
-   * - proto3 scalar fields must be non-zero to be considered populated
-   * - repeated and map fields must be non-empty to be considered populated
+   * If `required` is true, the field must be set. A validation error is returned
+   * if the field is not set.
    *
    * ```proto
-   * message MyMessage {
-   * // The field `value` must be set to a non-null value.
-   * optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+   * syntax="proto3";
+   *
+   * message FieldsWithPresence {
+   * // Requires any string to be set, including the empty string.
+   * optional string link = 1 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires true or false to be set.
+   * optional bool disabled = 2 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires a message to be set, including the empty message.
+   * SomeMessage msg = 4 [
+   * (buf.validate.field).required = true
+   * ];
    * }
    * ```
+   *
+   * All fields in the example above track presence. By default, Protovalidate
+   * ignores rules on those fields if no value is set. `required` ensures that
+   * the fields are set and valid.
+   *
+   * Fields that don't track presence are always validated by Protovalidate,
+   * whether they are set or not. It is not necessary to add `required`:
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithoutPresence {
+   * // `string.email` always applies, even to an empty string.
+   * string link = 1 [
+   * (buf.validate.field).string.email = true
+   * ];
+   * // `repeated.min_items` always applies, even to an empty list.
+   * repeated string labels = 4 [
+   * (buf.validate.field).repeated.min_items = 1
+   * ];
+   * }
+   * ```
+   *
+   * To learn which fields track presence, see the
+   * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+   *
+   * Note: While field rules can be applied to repeated items, map keys, and map
+   * values, the elements are always considered to be set. Consequently,
+   * specifying `repeated.items.required` is redundant.
    * </pre>
    *
-   * <code>bool required = 25 [json_name = "required"];</code>
+   * <code>optional bool required = 25 [json_name = "required"];</code>
+   * @return Whether the required field is set.
+   */
+  boolean hasRequired();
+  /**
+   * <pre>
+   * If `required` is true, the field must be set. A validation error is returned
+   * if the field is not set.
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithPresence {
+   * // Requires any string to be set, including the empty string.
+   * optional string link = 1 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires true or false to be set.
+   * optional bool disabled = 2 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires a message to be set, including the empty message.
+   * SomeMessage msg = 4 [
+   * (buf.validate.field).required = true
+   * ];
+   * }
+   * ```
+   *
+   * All fields in the example above track presence. By default, Protovalidate
+   * ignores rules on those fields if no value is set. `required` ensures that
+   * the fields are set and valid.
+   *
+   * Fields that don't track presence are always validated by Protovalidate,
+   * whether they are set or not. It is not necessary to add `required`:
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithoutPresence {
+   * // `string.email` always applies, even to an empty string.
+   * string link = 1 [
+   * (buf.validate.field).string.email = true
+   * ];
+   * // `repeated.min_items` always applies, even to an empty list.
+   * repeated string labels = 4 [
+   * (buf.validate.field).repeated.min_items = 1
+   * ];
+   * }
+   * ```
+   *
+   * To learn which fields track presence, see the
+   * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+   *
+   * Note: While field rules can be applied to repeated items, map keys, and map
+   * values, the elements are always considered to be set. Consequently,
+   * specifying `repeated.items.required` is redundant.
+   * </pre>
+   *
+   * <code>optional bool required = 25 [json_name = "required"];</code>
    * @return The required.
    */
   boolean getRequired();
 
   /**
    * <pre>
-   * Skip validation on the field if its value matches the specified criteria.
-   * See Ignore enum for details.
+   * Ignore validation rules on the field if its value matches the specified
+   * criteria. See the `Ignore` enum for details.
    *
    * ```proto
    * message UpdateRequest {
-   * // The uri rule only applies if the field is populated and not an empty
-   * // string.
-   * optional string url = 1 [
-   * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-   * (buf.validate.field).string.uri = true,
+   * // The uri rule only applies if the field is not an empty string.
+   * string url = 1 [
+   * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+   * (buf.validate.field).string.uri = true
    * ];
    * }
    * ```
    * </pre>
    *
-   * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
-   * @return The enum numeric value on the wire for ignore.
+   * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+   * @return Whether the ignore field is set.
    */
-  int getIgnoreValue();
+  boolean hasIgnore();
   /**
    * <pre>
-   * Skip validation on the field if its value matches the specified criteria.
-   * See Ignore enum for details.
+   * Ignore validation rules on the field if its value matches the specified
+   * criteria. See the `Ignore` enum for details.
    *
    * ```proto
    * message UpdateRequest {
-   * // The uri rule only applies if the field is populated and not an empty
-   * // string.
-   * optional string url = 1 [
-   * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-   * (buf.validate.field).string.uri = true,
+   * // The uri rule only applies if the field is not an empty string.
+   * string url = 1 [
+   * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+   * (buf.validate.field).string.uri = true
    * ];
    * }
    * ```
    * </pre>
    *
-   * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+   * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
    * @return The ignore.
    */
   build.buf.validate.Ignore getIgnore();
@@ -539,29 +628,5 @@ public interface FieldConstraintsOrBuilder extends
    */
   build.buf.validate.TimestampRulesOrBuilder getTimestampOrBuilder();
 
-  /**
-   * <pre>
-   * DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-   * </pre>
-   *
-   * <code>bool skipped = 24 [json_name = "skipped", deprecated = true];</code>
-   * @deprecated buf.validate.FieldConstraints.skipped is deprecated.
-   *     See buf/validate/validate.proto;l=196
-   * @return The skipped.
-   */
-  @java.lang.Deprecated boolean getSkipped();
-
-  /**
-   * <pre>
-   * DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-   * </pre>
-   *
-   * <code>bool ignore_empty = 26 [json_name = "ignoreEmpty", deprecated = true];</code>
-   * @deprecated buf.validate.FieldConstraints.ignore_empty is deprecated.
-   *     See buf/validate/validate.proto;l=198
-   * @return The ignoreEmpty.
-   */
-  @java.lang.Deprecated boolean getIgnoreEmpty();
-
-  build.buf.validate.FieldConstraints.TypeCase getTypeCase();
+  build.buf.validate.FieldRules.TypeCase getTypeCase();
 }

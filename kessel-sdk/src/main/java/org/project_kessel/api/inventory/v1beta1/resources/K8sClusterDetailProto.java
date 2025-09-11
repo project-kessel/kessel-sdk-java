@@ -45,45 +45,45 @@ public final class K8sClusterDetailProto {
       "v1beta1.resources\032Gkessel/inventory/v1be" +
       "ta1/resources/k8s_cluster_detail_nodes_i" +
       "nner.proto\032\033buf/validate/validate.proto\"" +
-      "\321\n\n\020K8sClusterDetail\022<\n\023external_cluster" +
+      "\316\n\n\020K8sClusterDetail\022<\n\023external_cluster" +
       "_id\030\215\313\331h \001(\tB\007\272H\004r\002\020\001R\023external_cluster_" +
-      "id\022{\n\016cluster_status\030\330\333\215\356\001 \001(\0162B.kessel." +
+      "id\022z\n\016cluster_status\030\330\333\215\356\001 \001(\0162B.kessel." +
       "inventory.v1beta1.resources.K8sClusterDe" +
-      "tail.ClusterStatusB\013\272H\010\202\001\005\020\001\"\001\000R\016cluster" +
-      "_status\022e\n\016cluster_reason\030\331\333\215\356\001 \001(\tB4\272H1" +
-      "r/\020\001\030\200\0102(^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-" +
-      "z0-9_])?$H\000R\016cluster_reason\210\001\001\022&\n\014kube_v" +
-      "ersion\030\272\244\341\274\001 \001(\tR\014kube_version\022q\n\013kube_v" +
-      "endor\030\232\375\374} \001(\0162?.kessel.inventory.v1beta" +
-      "1.resources.K8sClusterDetail.KubeVendorB" +
-      "\013\272H\010\202\001\005\020\001\"\001\000R\013kube_vendor\0222\n\016vendor_vers" +
-      "ion\030\343\301\266\013 \001(\tB\007\272H\004r\002\020\001R\016vendor_version\022{\n" +
-      "\016cloud_platform\030\276\316\253\343\001 \001(\0162B.kessel.inven" +
-      "tory.v1beta1.resources.K8sClusterDetail." +
-      "CloudPlatformB\013\272H\010\202\001\005\020\001\"\001\000R\016cloud_platfo" +
-      "rm\022W\n\005nodes\030\221\305\374# \003(\0132>.kessel.inventory." +
-      "v1beta1.resources.K8sClusterDetailNodesI" +
-      "nnerR\005nodes\"m\n\rClusterStatus\022\036\n\032CLUSTER_" +
-      "STATUS_UNSPECIFIED\020\000\022\030\n\024CLUSTER_STATUS_O" +
-      "THER\020\001\022\t\n\005READY\020\002\022\n\n\006FAILED\020\003\022\013\n\007OFFLINE" +
-      "\020\004\"s\n\nKubeVendor\022\033\n\027KUBE_VENDOR_UNSPECIF" +
-      "IED\020\000\022\025\n\021KUBE_VENDOR_OTHER\020\001\022\007\n\003AKS\020\002\022\007\n" +
-      "\003EKS\020\003\022\007\n\003IKS\020\004\022\r\n\tOPENSHIFT\020\005\022\007\n\003GKE\020\006\"" +
-      "\376\002\n\rCloudPlatform\022\036\n\032CLOUD_PLATFORM_UNSP" +
-      "ECIFIED\020\000\022\030\n\024CLOUD_PLATFORM_OTHER\020\001\022\014\n\010N" +
-      "ONE_UPI\020\002\022\021\n\rBAREMETAL_IPI\020\003\022\021\n\rBAREMETA" +
-      "L_UPI\020\004\022\013\n\007AWS_IPI\020\005\022\013\n\007AWS_UPI\020\006\022\r\n\tAZU" +
-      "RE_IPI\020\007\022\r\n\tAZURE_UPI\020\010\022\020\n\014IBMCLOUD_IPI\020" +
-      "\t\022\020\n\014IBMCLOUD_UPI\020\n\022\020\n\014KUBEVIRT_IPI\020\013\022\021\n" +
-      "\rOPENSTACK_IPI\020\014\022\021\n\rOPENSTACK_UPI\020\r\022\013\n\007G" +
-      "CP_IPI\020\016\022\013\n\007GCP_UPI\020\017\022\017\n\013NUTANIX_IPI\020\020\022\017" +
-      "\n\013NUTANIX_UPI\020\021\022\017\n\013VSPHERE_IPI\020\022\022\017\n\013VSPH" +
-      "ERE_UPI\020\023\022\r\n\tOVIRT_IPI\020\024B\021\n\017_cluster_rea" +
-      "sonB\235\001\n2org.project_kessel.api.inventory" +
-      ".v1beta1.resourcesB\025K8sClusterDetailProt" +
-      "oP\001ZNgithub.com/project-kessel/inventory" +
-      "-api/api/kessel/inventory/v1beta1/resour" +
-      "cesb\006proto3"
+      "tail.ClusterStatusB\n\272H\007\202\001\004\020\001 \000R\016cluster_" +
+      "status\022e\n\016cluster_reason\030\331\333\215\356\001 \001(\tB4\272H1r" +
+      "/\020\001\030\200\0102(^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z" +
+      "0-9_])?$H\000R\016cluster_reason\210\001\001\022&\n\014kube_ve" +
+      "rsion\030\272\244\341\274\001 \001(\tR\014kube_version\022p\n\013kube_ve" +
+      "ndor\030\232\375\374} \001(\0162?.kessel.inventory.v1beta1" +
+      ".resources.K8sClusterDetail.KubeVendorB\n" +
+      "\272H\007\202\001\004\020\001 \000R\013kube_vendor\0222\n\016vendor_versio" +
+      "n\030\343\301\266\013 \001(\tB\007\272H\004r\002\020\001R\016vendor_version\022z\n\016c" +
+      "loud_platform\030\276\316\253\343\001 \001(\0162B.kessel.invento" +
+      "ry.v1beta1.resources.K8sClusterDetail.Cl" +
+      "oudPlatformB\n\272H\007\202\001\004\020\001 \000R\016cloud_platform\022" +
+      "W\n\005nodes\030\221\305\374# \003(\0132>.kessel.inventory.v1b" +
+      "eta1.resources.K8sClusterDetailNodesInne" +
+      "rR\005nodes\"m\n\rClusterStatus\022\036\n\032CLUSTER_STA" +
+      "TUS_UNSPECIFIED\020\000\022\030\n\024CLUSTER_STATUS_OTHE" +
+      "R\020\001\022\t\n\005READY\020\002\022\n\n\006FAILED\020\003\022\013\n\007OFFLINE\020\004\"" +
+      "s\n\nKubeVendor\022\033\n\027KUBE_VENDOR_UNSPECIFIED" +
+      "\020\000\022\025\n\021KUBE_VENDOR_OTHER\020\001\022\007\n\003AKS\020\002\022\007\n\003EK" +
+      "S\020\003\022\007\n\003IKS\020\004\022\r\n\tOPENSHIFT\020\005\022\007\n\003GKE\020\006\"\376\002\n" +
+      "\rCloudPlatform\022\036\n\032CLOUD_PLATFORM_UNSPECI" +
+      "FIED\020\000\022\030\n\024CLOUD_PLATFORM_OTHER\020\001\022\014\n\010NONE" +
+      "_UPI\020\002\022\021\n\rBAREMETAL_IPI\020\003\022\021\n\rBAREMETAL_U" +
+      "PI\020\004\022\013\n\007AWS_IPI\020\005\022\013\n\007AWS_UPI\020\006\022\r\n\tAZURE_" +
+      "IPI\020\007\022\r\n\tAZURE_UPI\020\010\022\020\n\014IBMCLOUD_IPI\020\t\022\020" +
+      "\n\014IBMCLOUD_UPI\020\n\022\020\n\014KUBEVIRT_IPI\020\013\022\021\n\rOP" +
+      "ENSTACK_IPI\020\014\022\021\n\rOPENSTACK_UPI\020\r\022\013\n\007GCP_" +
+      "IPI\020\016\022\013\n\007GCP_UPI\020\017\022\017\n\013NUTANIX_IPI\020\020\022\017\n\013N" +
+      "UTANIX_UPI\020\021\022\017\n\013VSPHERE_IPI\020\022\022\017\n\013VSPHERE" +
+      "_UPI\020\023\022\r\n\tOVIRT_IPI\020\024B\021\n\017_cluster_reason" +
+      "B\235\001\n2org.project_kessel.api.inventory.v1" +
+      "beta1.resourcesB\025K8sClusterDetailProtoP\001" +
+      "ZNgithub.com/project-kessel/inventory-ap" +
+      "i/api/kessel/inventory/v1beta1/resources" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

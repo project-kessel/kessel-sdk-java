@@ -7,17 +7,17 @@ package build.buf.validate;
 
 /**
  * <pre>
- * The `OneofConstraints` message type enables you to manage constraints for
+ * The `OneofRules` message type enables you to manage rules for
  * oneof fields in your protobuf messages.
  * </pre>
  *
- * Protobuf type {@code buf.validate.OneofConstraints}
+ * Protobuf type {@code buf.validate.OneofRules}
  */
 @com.google.protobuf.Generated
-public final class OneofConstraints extends
+public final class OneofRules extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:buf.validate.OneofConstraints)
-    OneofConstraintsOrBuilder {
+    // @@protoc_insertion_point(message_implements:buf.validate.OneofRules)
+    OneofRulesOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -26,26 +26,26 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 32,
       /* patch= */ 0,
       /* suffix= */ "",
-      OneofConstraints.class.getName());
+      OneofRules.class.getName());
   }
-  // Use OneofConstraints.newBuilder() to construct.
-  private OneofConstraints(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use OneofRules.newBuilder() to construct.
+  private OneofRules(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private OneofConstraints() {
+  private OneofRules() {
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofConstraints_descriptor;
+    return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofRules_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofConstraints_fieldAccessorTable
+    return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofRules_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            build.buf.validate.OneofConstraints.class, build.buf.validate.OneofConstraints.Builder.class);
+            build.buf.validate.OneofRules.class, build.buf.validate.OneofRules.Builder.class);
   }
 
   private int bitField0_;
@@ -53,9 +53,8 @@ private static final long serialVersionUID = 0L;
   private boolean required_ = false;
   /**
    * <pre>
-   * If `required` is true, exactly one field of the oneof must be present. A
-   * validation error is returned if no fields in the oneof are present. The
-   * field itself may still be a default value; further constraints
+   * If `required` is true, exactly one field of the oneof must be set. A
+   * validation error is returned if no fields in the oneof are set. Further rules
    * should be placed on the fields themselves to ensure they are valid values,
    * such as `min_len` or `gt`.
    *
@@ -81,9 +80,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * If `required` is true, exactly one field of the oneof must be present. A
-   * validation error is returned if no fields in the oneof are present. The
-   * field itself may still be a default value; further constraints
+   * If `required` is true, exactly one field of the oneof must be set. A
+   * validation error is returned if no fields in the oneof are set. Further rules
    * should be placed on the fields themselves to ensure they are valid values,
    * such as `min_len` or `gt`.
    *
@@ -148,10 +146,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof build.buf.validate.OneofConstraints)) {
+    if (!(obj instanceof build.buf.validate.OneofRules)) {
       return super.equals(obj);
     }
-    build.buf.validate.OneofConstraints other = (build.buf.validate.OneofConstraints) obj;
+    build.buf.validate.OneofRules other = (build.buf.validate.OneofRules) obj;
 
     if (hasRequired() != other.hasRequired()) return false;
     if (hasRequired()) {
@@ -179,44 +177,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(byte[] data)
+  public static build.buf.validate.OneofRules parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(java.io.InputStream input)
+  public static build.buf.validate.OneofRules parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -224,26 +222,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static build.buf.validate.OneofConstraints parseDelimitedFrom(java.io.InputStream input)
+  public static build.buf.validate.OneofRules parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static build.buf.validate.OneofConstraints parseDelimitedFrom(
+  public static build.buf.validate.OneofRules parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static build.buf.validate.OneofConstraints parseFrom(
+  public static build.buf.validate.OneofRules parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -256,7 +254,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(build.buf.validate.OneofConstraints prototype) {
+  public static Builder newBuilder(build.buf.validate.OneofRules prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -273,30 +271,30 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The `OneofConstraints` message type enables you to manage constraints for
+   * The `OneofRules` message type enables you to manage rules for
    * oneof fields in your protobuf messages.
    * </pre>
    *
-   * Protobuf type {@code buf.validate.OneofConstraints}
+   * Protobuf type {@code buf.validate.OneofRules}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:buf.validate.OneofConstraints)
-      build.buf.validate.OneofConstraintsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:buf.validate.OneofRules)
+      build.buf.validate.OneofRulesOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofConstraints_descriptor;
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofRules_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofConstraints_fieldAccessorTable
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofRules_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              build.buf.validate.OneofConstraints.class, build.buf.validate.OneofConstraints.Builder.class);
+              build.buf.validate.OneofRules.class, build.buf.validate.OneofRules.Builder.class);
     }
 
-    // Construct using build.buf.validate.OneofConstraints.newBuilder()
+    // Construct using build.buf.validate.OneofRules.newBuilder()
     private Builder() {
 
     }
@@ -317,17 +315,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofConstraints_descriptor;
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_OneofRules_descriptor;
     }
 
     @java.lang.Override
-    public build.buf.validate.OneofConstraints getDefaultInstanceForType() {
-      return build.buf.validate.OneofConstraints.getDefaultInstance();
+    public build.buf.validate.OneofRules getDefaultInstanceForType() {
+      return build.buf.validate.OneofRules.getDefaultInstance();
     }
 
     @java.lang.Override
-    public build.buf.validate.OneofConstraints build() {
-      build.buf.validate.OneofConstraints result = buildPartial();
+    public build.buf.validate.OneofRules build() {
+      build.buf.validate.OneofRules result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -335,14 +333,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public build.buf.validate.OneofConstraints buildPartial() {
-      build.buf.validate.OneofConstraints result = new build.buf.validate.OneofConstraints(this);
+    public build.buf.validate.OneofRules buildPartial() {
+      build.buf.validate.OneofRules result = new build.buf.validate.OneofRules(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(build.buf.validate.OneofConstraints result) {
+    private void buildPartial0(build.buf.validate.OneofRules result) {
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -354,16 +352,16 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof build.buf.validate.OneofConstraints) {
-        return mergeFrom((build.buf.validate.OneofConstraints)other);
+      if (other instanceof build.buf.validate.OneofRules) {
+        return mergeFrom((build.buf.validate.OneofRules)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(build.buf.validate.OneofConstraints other) {
-      if (other == build.buf.validate.OneofConstraints.getDefaultInstance()) return this;
+    public Builder mergeFrom(build.buf.validate.OneofRules other) {
+      if (other == build.buf.validate.OneofRules.getDefaultInstance()) return this;
       if (other.hasRequired()) {
         setRequired(other.getRequired());
       }
@@ -418,9 +416,8 @@ private static final long serialVersionUID = 0L;
     private boolean required_ ;
     /**
      * <pre>
-     * If `required` is true, exactly one field of the oneof must be present. A
-     * validation error is returned if no fields in the oneof are present. The
-     * field itself may still be a default value; further constraints
+     * If `required` is true, exactly one field of the oneof must be set. A
+     * validation error is returned if no fields in the oneof are set. Further rules
      * should be placed on the fields themselves to ensure they are valid values,
      * such as `min_len` or `gt`.
      *
@@ -446,9 +443,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If `required` is true, exactly one field of the oneof must be present. A
-     * validation error is returned if no fields in the oneof are present. The
-     * field itself may still be a default value; further constraints
+     * If `required` is true, exactly one field of the oneof must be set. A
+     * validation error is returned if no fields in the oneof are set. Further rules
      * should be placed on the fields themselves to ensure they are valid values,
      * such as `min_len` or `gt`.
      *
@@ -474,9 +470,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If `required` is true, exactly one field of the oneof must be present. A
-     * validation error is returned if no fields in the oneof are present. The
-     * field itself may still be a default value; further constraints
+     * If `required` is true, exactly one field of the oneof must be set. A
+     * validation error is returned if no fields in the oneof are set. Further rules
      * should be placed on the fields themselves to ensure they are valid values,
      * such as `min_len` or `gt`.
      *
@@ -506,9 +501,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If `required` is true, exactly one field of the oneof must be present. A
-     * validation error is returned if no fields in the oneof are present. The
-     * field itself may still be a default value; further constraints
+     * If `required` is true, exactly one field of the oneof must be set. A
+     * validation error is returned if no fields in the oneof are set. Further rules
      * should be placed on the fields themselves to ensure they are valid values,
      * such as `min_len` or `gt`.
      *
@@ -535,23 +529,23 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:buf.validate.OneofConstraints)
+    // @@protoc_insertion_point(builder_scope:buf.validate.OneofRules)
   }
 
-  // @@protoc_insertion_point(class_scope:buf.validate.OneofConstraints)
-  private static final build.buf.validate.OneofConstraints DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:buf.validate.OneofRules)
+  private static final build.buf.validate.OneofRules DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new build.buf.validate.OneofConstraints();
+    DEFAULT_INSTANCE = new build.buf.validate.OneofRules();
   }
 
-  public static build.buf.validate.OneofConstraints getDefaultInstance() {
+  public static build.buf.validate.OneofRules getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<OneofConstraints>
-      PARSER = new com.google.protobuf.AbstractParser<OneofConstraints>() {
+  private static final com.google.protobuf.Parser<OneofRules>
+      PARSER = new com.google.protobuf.AbstractParser<OneofRules>() {
     @java.lang.Override
-    public OneofConstraints parsePartialFrom(
+    public OneofRules parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -570,17 +564,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<OneofConstraints> parser() {
+  public static com.google.protobuf.Parser<OneofRules> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<OneofConstraints> getParserForType() {
+  public com.google.protobuf.Parser<OneofRules> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public build.buf.validate.OneofConstraints getDefaultInstanceForType() {
+  public build.buf.validate.OneofRules getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

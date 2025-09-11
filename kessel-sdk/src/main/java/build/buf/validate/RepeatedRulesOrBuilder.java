@@ -8,7 +8,8 @@ package build.buf.validate;
 @com.google.protobuf.Generated
 public interface RepeatedRulesOrBuilder extends
     // @@protoc_insertion_point(interface_extends:buf.validate.RepeatedRules)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.GeneratedMessage.
+        ExtendableMessageOrBuilder<RepeatedRules> {
 
   /**
    * <pre>
@@ -25,7 +26,7 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_items = 1 [json_name = "minItems", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_items = 1 [json_name = "minItems", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the minItems field is set.
    */
   boolean hasMinItems();
@@ -44,7 +45,7 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_items = 1 [json_name = "minItems", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_items = 1 [json_name = "minItems", (.buf.validate.predefined) = { ... }</code>
    * @return The minItems.
    */
   long getMinItems();
@@ -64,7 +65,7 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_items = 2 [json_name = "maxItems", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_items = 2 [json_name = "maxItems", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the maxItems field is set.
    */
   boolean hasMaxItems();
@@ -83,7 +84,7 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_items = 2 [json_name = "maxItems", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_items = 2 [json_name = "maxItems", (.buf.validate.predefined) = { ... }</code>
    * @return The maxItems.
    */
   long getMaxItems();
@@ -91,7 +92,7 @@ public interface RepeatedRulesOrBuilder extends
   /**
    * <pre>
    * `unique` indicates that all elements in this field must
-   * be unique. This constraint is strictly applicable to scalar and enum
+   * be unique. This rule is strictly applicable to scalar and enum
    * types, with message types not being supported.
    *
    * ```proto
@@ -102,14 +103,14 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional bool unique = 3 [json_name = "unique", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bool unique = 3 [json_name = "unique", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the unique field is set.
    */
   boolean hasUnique();
   /**
    * <pre>
    * `unique` indicates that all elements in this field must
-   * be unique. This constraint is strictly applicable to scalar and enum
+   * be unique. This rule is strictly applicable to scalar and enum
    * types, with message types not being supported.
    *
    * ```proto
@@ -120,20 +121,20 @@ public interface RepeatedRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional bool unique = 3 [json_name = "unique", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bool unique = 3 [json_name = "unique", (.buf.validate.predefined) = { ... }</code>
    * @return The unique.
    */
   boolean getUnique();
 
   /**
    * <pre>
-   * `items` details the constraints to be applied to each item
+   * `items` details the rules to be applied to each item
    * in the field. Even for repeated message fields, validation is executed
-   * against each item unless skip is explicitly specified.
+   * against each item unless `ignore` is specified.
    *
    * ```proto
    * message MyRepeated {
-   * // The items in the field `value` must follow the specified constraints.
+   * // The items in the field `value` must follow the specified rules.
    * repeated string value = 1 [(buf.validate.field).repeated.items = {
    * string: {
    * min_len: 3
@@ -142,21 +143,24 @@ public interface RepeatedRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Repeated items
+   * cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints items = 4 [json_name = "items"];</code>
+   * <code>optional .buf.validate.FieldRules items = 4 [json_name = "items"];</code>
    * @return Whether the items field is set.
    */
   boolean hasItems();
   /**
    * <pre>
-   * `items` details the constraints to be applied to each item
+   * `items` details the rules to be applied to each item
    * in the field. Even for repeated message fields, validation is executed
-   * against each item unless skip is explicitly specified.
+   * against each item unless `ignore` is specified.
    *
    * ```proto
    * message MyRepeated {
-   * // The items in the field `value` must follow the specified constraints.
+   * // The items in the field `value` must follow the specified rules.
    * repeated string value = 1 [(buf.validate.field).repeated.items = {
    * string: {
    * min_len: 3
@@ -165,21 +169,24 @@ public interface RepeatedRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Repeated items
+   * cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints items = 4 [json_name = "items"];</code>
+   * <code>optional .buf.validate.FieldRules items = 4 [json_name = "items"];</code>
    * @return The items.
    */
-  build.buf.validate.FieldConstraints getItems();
+  build.buf.validate.FieldRules getItems();
   /**
    * <pre>
-   * `items` details the constraints to be applied to each item
+   * `items` details the rules to be applied to each item
    * in the field. Even for repeated message fields, validation is executed
-   * against each item unless skip is explicitly specified.
+   * against each item unless `ignore` is specified.
    *
    * ```proto
    * message MyRepeated {
-   * // The items in the field `value` must follow the specified constraints.
+   * // The items in the field `value` must follow the specified rules.
    * repeated string value = 1 [(buf.validate.field).repeated.items = {
    * string: {
    * min_len: 3
@@ -188,9 +195,12 @@ public interface RepeatedRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Repeated items
+   * cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints items = 4 [json_name = "items"];</code>
+   * <code>optional .buf.validate.FieldRules items = 4 [json_name = "items"];</code>
    */
-  build.buf.validate.FieldConstraintsOrBuilder getItemsOrBuilder();
+  build.buf.validate.FieldRulesOrBuilder getItemsOrBuilder();
 }

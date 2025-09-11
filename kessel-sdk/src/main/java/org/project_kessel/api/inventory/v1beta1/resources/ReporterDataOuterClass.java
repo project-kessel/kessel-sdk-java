@@ -43,23 +43,23 @@ public final class ReporterDataOuterClass {
       "\n6kessel/inventory/v1beta1/resources/rep" +
       "orter_data.proto\022\"kessel.inventory.v1bet" +
       "a1.resources\032\037google/api/field_behavior." +
-      "proto\032\033buf/validate/validate.proto\"\347\003\n\014R" +
-      "eporterData\022s\n\rreporter_type\030\330\217\231u \001(\0162=." +
+      "proto\032\033buf/validate/validate.proto\"\346\003\n\014R" +
+      "eporterData\022r\n\rreporter_type\030\330\217\231u \001(\0162=." +
       "kessel.inventory.v1beta1.resources.Repor" +
-      "terData.ReporterTypeB\013\272H\010\202\001\005\020\001\"\001\000R\rrepor" +
-      "ter_type\022:\n\024reporter_instance_id\030\270\325\372r \001(" +
-      "\tB\003\340A\003R\024reporter_instance_id\022%\n\014console_" +
-      "href\030\224\242\306E \001(\tR\014console_href\022\036\n\010api_href\030" +
-      "\261\374\221\315\001 \001(\tR\010api_href\0229\n\021local_resource_id" +
-      "\030\275\270\331\362\001 \001(\tB\007\272H\004r\002\020\001R\021local_resource_id\022." +
-      "\n\020reporter_version\030\372\356\310\200\001 \001(\tR\020reporter_v" +
-      "ersion\"t\n\014ReporterType\022\035\n\031REPORTER_TYPE_" +
-      "UNSPECIFIED\020\000\022\027\n\023REPORTER_TYPE_OTHER\020\001\022\007" +
-      "\n\003ACM\020\002\022\007\n\003HBI\020\003\022\007\n\003OCM\020\004\022\021\n\rNOTIFICATIO" +
-      "NS\020\005B\206\001\n2org.project_kessel.api.inventor" +
-      "y.v1beta1.resourcesP\001ZNgithub.com/projec" +
-      "t-kessel/inventory-api/api/kessel/invent" +
-      "ory/v1beta1/resourcesb\006proto3"
+      "terData.ReporterTypeB\n\272H\007\202\001\004\020\001 \000R\rreport" +
+      "er_type\022:\n\024reporter_instance_id\030\270\325\372r \001(\t" +
+      "B\003\340A\003R\024reporter_instance_id\022%\n\014console_h" +
+      "ref\030\224\242\306E \001(\tR\014console_href\022\036\n\010api_href\030\261" +
+      "\374\221\315\001 \001(\tR\010api_href\0229\n\021local_resource_id\030" +
+      "\275\270\331\362\001 \001(\tB\007\272H\004r\002\020\001R\021local_resource_id\022.\n" +
+      "\020reporter_version\030\372\356\310\200\001 \001(\tR\020reporter_ve" +
+      "rsion\"t\n\014ReporterType\022\035\n\031REPORTER_TYPE_U" +
+      "NSPECIFIED\020\000\022\027\n\023REPORTER_TYPE_OTHER\020\001\022\007\n" +
+      "\003ACM\020\002\022\007\n\003HBI\020\003\022\007\n\003OCM\020\004\022\021\n\rNOTIFICATION" +
+      "S\020\005B\206\001\n2org.project_kessel.api.inventory" +
+      ".v1beta1.resourcesP\001ZNgithub.com/project" +
+      "-kessel/inventory-api/api/kessel/invento" +
+      "ry/v1beta1/resourcesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

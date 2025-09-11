@@ -8,7 +8,8 @@ package build.buf.validate;
 @com.google.protobuf.Generated
 public interface StringRulesOrBuilder extends
     // @@protoc_insertion_point(interface_extends:buf.validate.StringRules)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.GeneratedMessage.
+        ExtendableMessageOrBuilder<StringRules> {
 
   /**
    * <pre>
@@ -23,7 +24,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the const field is set.
    */
   boolean hasConst();
@@ -40,7 +41,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return The const.
    */
   java.lang.String getConst();
@@ -57,7 +58,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for const.
    */
   com.google.protobuf.ByteString
@@ -78,7 +79,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 len = 19 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len = 19 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the len field is set.
    */
   boolean hasLen();
@@ -97,7 +98,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 len = 19 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len = 19 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
    * @return The len.
    */
   long getLen();
@@ -117,7 +118,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the minLen field is set.
    */
   boolean hasMinLen();
@@ -136,7 +137,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
    * @return The minLen.
    */
   long getMinLen();
@@ -156,7 +157,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the maxLen field is set.
    */
   boolean hasMaxLen();
@@ -175,7 +176,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
    * @return The maxLen.
    */
   long getMaxLen();
@@ -194,7 +195,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 len_bytes = 20 [json_name = "lenBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len_bytes = 20 [json_name = "lenBytes", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the lenBytes field is set.
    */
   boolean hasLenBytes();
@@ -212,7 +213,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 len_bytes = 20 [json_name = "lenBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len_bytes = 20 [json_name = "lenBytes", (.buf.validate.predefined) = { ... }</code>
    * @return The lenBytes.
    */
   long getLenBytes();
@@ -232,7 +233,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_bytes = 4 [json_name = "minBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_bytes = 4 [json_name = "minBytes", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the minBytes field is set.
    */
   boolean hasMinBytes();
@@ -251,7 +252,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_bytes = 4 [json_name = "minBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_bytes = 4 [json_name = "minBytes", (.buf.validate.predefined) = { ... }</code>
    * @return The minBytes.
    */
   long getMinBytes();
@@ -270,7 +271,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_bytes = 5 [json_name = "maxBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_bytes = 5 [json_name = "maxBytes", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the maxBytes field is set.
    */
   boolean hasMaxBytes();
@@ -288,7 +289,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_bytes = 5 [json_name = "maxBytes", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_bytes = 5 [json_name = "maxBytes", (.buf.validate.predefined) = { ... }</code>
    * @return The maxBytes.
    */
   long getMaxBytes();
@@ -308,7 +309,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the pattern field is set.
    */
   boolean hasPattern();
@@ -327,7 +328,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return The pattern.
    */
   java.lang.String getPattern();
@@ -346,7 +347,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 6 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for pattern.
    */
   com.google.protobuf.ByteString
@@ -367,7 +368,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the prefix field is set.
    */
   boolean hasPrefix();
@@ -386,7 +387,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
    * @return The prefix.
    */
   java.lang.String getPrefix();
@@ -405,7 +406,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string prefix = 7 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for prefix.
    */
   com.google.protobuf.ByteString
@@ -425,7 +426,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the suffix field is set.
    */
   boolean hasSuffix();
@@ -443,7 +444,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
    * @return The suffix.
    */
   java.lang.String getSuffix();
@@ -461,7 +462,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string suffix = 8 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for suffix.
    */
   com.google.protobuf.ByteString
@@ -481,7 +482,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the contains field is set.
    */
   boolean hasContains();
@@ -499,7 +500,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
    * @return The contains.
    */
   java.lang.String getContains();
@@ -517,7 +518,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string contains = 9 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for contains.
    */
   com.google.protobuf.ByteString
@@ -537,7 +538,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the notContains field is set.
    */
   boolean hasNotContains();
@@ -555,7 +556,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.predefined) = { ... }</code>
    * @return The notContains.
    */
   java.lang.String getNotContains();
@@ -573,7 +574,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string not_contains = 23 [json_name = "notContains", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for notContains.
    */
   com.google.protobuf.ByteString
@@ -588,12 +589,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must be in list ["apple", "banana"]
-   * repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+   * string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the in.
    */
   java.util.List<java.lang.String>
@@ -607,12 +608,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must be in list ["apple", "banana"]
-   * repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+   * string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return The count of in.
    */
   int getInCount();
@@ -625,12 +626,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must be in list ["apple", "banana"]
-   * repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+   * string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The in at the given index.
    */
@@ -644,12 +645,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must be in list ["apple", "banana"]
-   * repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+   * string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string in = 10 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the value to return.
    * @return The bytes of the in at the given index.
    */
@@ -664,12 +665,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must not be in list ["orange", "grape"]
-   * repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+   * string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the notIn.
    */
   java.util.List<java.lang.String>
@@ -682,12 +683,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must not be in list ["orange", "grape"]
-   * repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+   * string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return The count of notIn.
    */
   int getNotInCount();
@@ -699,12 +700,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must not be in list ["orange", "grape"]
-   * repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+   * string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The notIn at the given index.
    */
@@ -717,12 +718,12 @@ public interface StringRulesOrBuilder extends
    * ```proto
    * message MyString {
    * // value must not be in list ["orange", "grape"]
-   * repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+   * string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated string not_in = 11 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the value to return.
    * @return The bytes of the notIn at the given index.
    */
@@ -731,8 +732,14 @@ public interface StringRulesOrBuilder extends
 
   /**
    * <pre>
-   * `email` specifies that the field value must be a valid email address
-   * (addr-spec only) as defined by [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.4.1).
+   * `email` specifies that the field value must be a valid email address, for
+   * example "foo&#64;example.com".
+   *
+   * Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
+   * Note that this standard willfully deviates from [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322),
+   * which allows many unexpected forms of email addresses and will easily match
+   * a typographical error.
+   *
    * If the field value isn't a valid email address, an error message will be generated.
    *
    * ```proto
@@ -743,14 +750,20 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool email = 12 [json_name = "email", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool email = 12 [json_name = "email", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the email field is set.
    */
   boolean hasEmail();
   /**
    * <pre>
-   * `email` specifies that the field value must be a valid email address
-   * (addr-spec only) as defined by [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.4.1).
+   * `email` specifies that the field value must be a valid email address, for
+   * example "foo&#64;example.com".
+   *
+   * Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
+   * Note that this standard willfully deviates from [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322),
+   * which allows many unexpected forms of email addresses and will easily match
+   * a typographical error.
+   *
    * If the field value isn't a valid email address, an error message will be generated.
    *
    * ```proto
@@ -761,17 +774,25 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool email = 12 [json_name = "email", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool email = 12 [json_name = "email", (.buf.validate.predefined) = { ... }</code>
    * @return The email.
    */
   boolean getEmail();
 
   /**
    * <pre>
-   * `hostname` specifies that the field value must be a valid
-   * hostname as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5). This constraint doesn't support
-   * internationalized domain names (IDNs). If the field value isn't a
-   * valid hostname, an error message will be generated.
+   * `hostname` specifies that the field value must be a valid hostname, for
+   * example "foo.example.com".
+   *
+   * A valid hostname follows the rules below:
+   * - The name consists of one or more labels, separated by a dot (".").
+   * - Each label can be 1 to 63 alphanumeric characters.
+   * - A label can contain hyphens ("-"), but must not start or end with a hyphen.
+   * - The right-most label must not be digits only.
+   * - The name can have a trailing dot—for example, "foo.example.com.".
+   * - The name can be 253 characters at most, excluding the optional trailing dot.
+   *
+   * If the field value isn't a valid hostname, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -781,16 +802,24 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool hostname = 13 [json_name = "hostname", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool hostname = 13 [json_name = "hostname", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the hostname field is set.
    */
   boolean hasHostname();
   /**
    * <pre>
-   * `hostname` specifies that the field value must be a valid
-   * hostname as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5). This constraint doesn't support
-   * internationalized domain names (IDNs). If the field value isn't a
-   * valid hostname, an error message will be generated.
+   * `hostname` specifies that the field value must be a valid hostname, for
+   * example "foo.example.com".
+   *
+   * A valid hostname follows the rules below:
+   * - The name consists of one or more labels, separated by a dot (".").
+   * - Each label can be 1 to 63 alphanumeric characters.
+   * - A label can contain hyphens ("-"), but must not start or end with a hyphen.
+   * - The right-most label must not be digits only.
+   * - The name can have a trailing dot—for example, "foo.example.com.".
+   * - The name can be 253 characters at most, excluding the optional trailing dot.
+   *
+   * If the field value isn't a valid hostname, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -800,15 +829,22 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool hostname = 13 [json_name = "hostname", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool hostname = 13 [json_name = "hostname", (.buf.validate.predefined) = { ... }</code>
    * @return The hostname.
    */
   boolean getHostname();
 
   /**
    * <pre>
-   * `ip` specifies that the field value must be a valid IP
-   * (v4 or v6) address, without surrounding square brackets for IPv6 addresses.
+   * `ip` specifies that the field value must be a valid IP (v4 or v6) address.
+   *
+   * IPv4 addresses are expected in the dotted decimal format—for example, "192.168.5.21".
+   * IPv6 addresses are expected in their text representation—for example, "::1",
+   * or "2001:0DB8:ABCD:0012::0".
+   *
+   * Both formats are well-defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+   * Zone identifiers for IPv6 addresses (for example, "fe80::a%en1") are supported.
+   *
    * If the field value isn't a valid IP address, an error message will be
    * generated.
    *
@@ -820,14 +856,21 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip = 14 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip = 14 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ip field is set.
    */
   boolean hasIp();
   /**
    * <pre>
-   * `ip` specifies that the field value must be a valid IP
-   * (v4 or v6) address, without surrounding square brackets for IPv6 addresses.
+   * `ip` specifies that the field value must be a valid IP (v4 or v6) address.
+   *
+   * IPv4 addresses are expected in the dotted decimal format—for example, "192.168.5.21".
+   * IPv6 addresses are expected in their text representation—for example, "::1",
+   * or "2001:0DB8:ABCD:0012::0".
+   *
+   * Both formats are well-defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+   * Zone identifiers for IPv6 addresses (for example, "fe80::a%en1") are supported.
+   *
    * If the field value isn't a valid IP address, an error message will be
    * generated.
    *
@@ -839,16 +882,16 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip = 14 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip = 14 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
    * @return The ip.
    */
   boolean getIp();
 
   /**
    * <pre>
-   * `ipv4` specifies that the field value must be a valid IPv4
-   * address. If the field value isn't a valid IPv4 address, an error message
-   * will be generated.
+   * `ipv4` specifies that the field value must be a valid IPv4 address—for
+   * example "192.168.5.21". If the field value isn't a valid IPv4 address, an
+   * error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -858,15 +901,15 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4 = 15 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4 = 15 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv4 field is set.
    */
   boolean hasIpv4();
   /**
    * <pre>
-   * `ipv4` specifies that the field value must be a valid IPv4
-   * address. If the field value isn't a valid IPv4 address, an error message
-   * will be generated.
+   * `ipv4` specifies that the field value must be a valid IPv4 address—for
+   * example "192.168.5.21". If the field value isn't a valid IPv4 address, an
+   * error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -876,16 +919,16 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4 = 15 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4 = 15 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv4.
    */
   boolean getIpv4();
 
   /**
    * <pre>
-   * `ipv6` specifies that the field value must be a valid
-   * IPv6 address, without surrounding square brackets. If the field value is
-   * not a valid IPv6 address, an error message will be generated.
+   * `ipv6` specifies that the field value must be a valid IPv6 address—for
+   * example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
+   * value is not a valid IPv6 address, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -895,15 +938,15 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6 = 16 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6 = 16 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv6 field is set.
    */
   boolean hasIpv6();
   /**
    * <pre>
-   * `ipv6` specifies that the field value must be a valid
-   * IPv6 address, without surrounding square brackets. If the field value is
-   * not a valid IPv6 address, an error message will be generated.
+   * `ipv6` specifies that the field value must be a valid IPv6 address—for
+   * example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
+   * value is not a valid IPv6 address, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -913,16 +956,20 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6 = 16 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6 = 16 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv6.
    */
   boolean getIpv6();
 
   /**
    * <pre>
-   * `uri` specifies that the field value must be a valid,
-   * absolute URI as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3). If the field value isn't a valid,
-   * absolute URI, an error message will be generated.
+   * `uri` specifies that the field value must be a valid URI, for example
+   * "https://example.com/foo/bar?baz=quux#frag".
+   *
+   * URI is defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+   * Zone Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
+   *
+   * If the field value isn't a valid URI, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -932,15 +979,19 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool uri = 17 [json_name = "uri", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uri = 17 [json_name = "uri", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the uri field is set.
    */
   boolean hasUri();
   /**
    * <pre>
-   * `uri` specifies that the field value must be a valid,
-   * absolute URI as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3). If the field value isn't a valid,
-   * absolute URI, an error message will be generated.
+   * `uri` specifies that the field value must be a valid URI, for example
+   * "https://example.com/foo/bar?baz=quux#frag".
+   *
+   * URI is defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+   * Zone Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
+   *
+   * If the field value isn't a valid URI, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -950,44 +1001,58 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool uri = 17 [json_name = "uri", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uri = 17 [json_name = "uri", (.buf.validate.predefined) = { ... }</code>
    * @return The uri.
    */
   boolean getUri();
 
   /**
    * <pre>
-   * `uri_ref` specifies that the field value must be a valid URI
-   * as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) and may be either relative or absolute. If the
-   * field value isn't a valid URI, an error message will be generated.
+   * `uri_ref` specifies that the field value must be a valid URI Reference—either
+   * a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
+   * Reference such as "./foo/bar?query".
+   *
+   * URI, URI Reference, and Relative Reference are defined in the internet
+   * standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986). Zone
+   * Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
+   *
+   * If the field value isn't a valid URI Reference, an error message will be
+   * generated.
    *
    * ```proto
    * message MyString {
-   * // value must be a valid URI
+   * // value must be a valid URI Reference
    * string value = 1 [(buf.validate.field).string.uri_ref = true];
    * }
    * ```
    * </pre>
    *
-   * <code>bool uri_ref = 18 [json_name = "uriRef", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uri_ref = 18 [json_name = "uriRef", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the uriRef field is set.
    */
   boolean hasUriRef();
   /**
    * <pre>
-   * `uri_ref` specifies that the field value must be a valid URI
-   * as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) and may be either relative or absolute. If the
-   * field value isn't a valid URI, an error message will be generated.
+   * `uri_ref` specifies that the field value must be a valid URI Reference—either
+   * a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
+   * Reference such as "./foo/bar?query".
+   *
+   * URI, URI Reference, and Relative Reference are defined in the internet
+   * standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986). Zone
+   * Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
+   *
+   * If the field value isn't a valid URI Reference, an error message will be
+   * generated.
    *
    * ```proto
    * message MyString {
-   * // value must be a valid URI
+   * // value must be a valid URI Reference
    * string value = 1 [(buf.validate.field).string.uri_ref = true];
    * }
    * ```
    * </pre>
    *
-   * <code>bool uri_ref = 18 [json_name = "uriRef", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uri_ref = 18 [json_name = "uriRef", (.buf.validate.predefined) = { ... }</code>
    * @return The uriRef.
    */
   boolean getUriRef();
@@ -995,10 +1060,9 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `address` specifies that the field value must be either a valid hostname
-   * as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5)
-   * (which doesn't support internationalized domain names or IDNs) or a valid
-   * IP (v4 or v6). If the field value isn't a valid hostname or IP, an error
-   * message will be generated.
+   * (for example, "example.com"), or a valid IP (v4 or v6) address (for example,
+   * "192.168.0.1", or "::1"). If the field value isn't a valid hostname or IP,
+   * an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1008,17 +1072,16 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool address = 21 [json_name = "address", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool address = 21 [json_name = "address", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the address field is set.
    */
   boolean hasAddress();
   /**
    * <pre>
    * `address` specifies that the field value must be either a valid hostname
-   * as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5)
-   * (which doesn't support internationalized domain names or IDNs) or a valid
-   * IP (v4 or v6). If the field value isn't a valid hostname or IP, an error
-   * message will be generated.
+   * (for example, "example.com"), or a valid IP (v4 or v6) address (for example,
+   * "192.168.0.1", or "::1"). If the field value isn't a valid hostname or IP,
+   * an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1028,7 +1091,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool address = 21 [json_name = "address", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool address = 21 [json_name = "address", (.buf.validate.predefined) = { ... }</code>
    * @return The address.
    */
   boolean getAddress();
@@ -1036,7 +1099,7 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `uuid` specifies that the field value must be a valid UUID as defined by
-   * [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2). If the
+   * [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2). If the
    * field value isn't a valid UUID, an error message will be generated.
    *
    * ```proto
@@ -1047,14 +1110,14 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool uuid = 22 [json_name = "uuid", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uuid = 22 [json_name = "uuid", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the uuid field is set.
    */
   boolean hasUuid();
   /**
    * <pre>
    * `uuid` specifies that the field value must be a valid UUID as defined by
-   * [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2). If the
+   * [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2). If the
    * field value isn't a valid UUID, an error message will be generated.
    *
    * ```proto
@@ -1065,7 +1128,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool uuid = 22 [json_name = "uuid", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool uuid = 22 [json_name = "uuid", (.buf.validate.predefined) = { ... }</code>
    * @return The uuid.
    */
   boolean getUuid();
@@ -1073,7 +1136,7 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `tuuid` (trimmed UUID) specifies that the field value must be a valid UUID as
-   * defined by [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2) with all dashes
+   * defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2) with all dashes
    * omitted. If the field value isn't a valid UUID without dashes, an error message
    * will be generated.
    *
@@ -1085,14 +1148,14 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool tuuid = 33 [json_name = "tuuid", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool tuuid = 33 [json_name = "tuuid", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the tuuid field is set.
    */
   boolean hasTuuid();
   /**
    * <pre>
    * `tuuid` (trimmed UUID) specifies that the field value must be a valid UUID as
-   * defined by [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2) with all dashes
+   * defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2) with all dashes
    * omitted. If the field value isn't a valid UUID without dashes, an error message
    * will be generated.
    *
@@ -1104,17 +1167,17 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool tuuid = 33 [json_name = "tuuid", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool tuuid = 33 [json_name = "tuuid", (.buf.validate.predefined) = { ... }</code>
    * @return The tuuid.
    */
   boolean getTuuid();
 
   /**
    * <pre>
-   * `ip_with_prefixlen` specifies that the field value must be a valid IP (v4 or v6)
-   * address with prefix length. If the field value isn't a valid IP with prefix
-   * length, an error message will be generated.
-   *
+   * `ip_with_prefixlen` specifies that the field value must be a valid IP
+   * (v4 or v6) address with prefix length—for example, "192.168.5.21/16" or
+   * "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
+   * prefix length, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1124,16 +1187,16 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip_with_prefixlen = 26 [json_name = "ipWithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip_with_prefixlen = 26 [json_name = "ipWithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipWithPrefixlen field is set.
    */
   boolean hasIpWithPrefixlen();
   /**
    * <pre>
-   * `ip_with_prefixlen` specifies that the field value must be a valid IP (v4 or v6)
-   * address with prefix length. If the field value isn't a valid IP with prefix
-   * length, an error message will be generated.
-   *
+   * `ip_with_prefixlen` specifies that the field value must be a valid IP
+   * (v4 or v6) address with prefix length—for example, "192.168.5.21/16" or
+   * "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
+   * prefix length, an error message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1143,7 +1206,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip_with_prefixlen = 26 [json_name = "ipWithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip_with_prefixlen = 26 [json_name = "ipWithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return The ipWithPrefixlen.
    */
   boolean getIpWithPrefixlen();
@@ -1151,9 +1214,9 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `ipv4_with_prefixlen` specifies that the field value must be a valid
-   * IPv4 address with prefix.
-   * If the field value isn't a valid IPv4 address with prefix length,
-   * an error message will be generated.
+   * IPv4 address with prefix length—for example, "192.168.5.21/16". If the
+   * field value isn't a valid IPv4 address with prefix length, an error
+   * message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1163,16 +1226,16 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4_with_prefixlen = 27 [json_name = "ipv4WithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4_with_prefixlen = 27 [json_name = "ipv4WithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv4WithPrefixlen field is set.
    */
   boolean hasIpv4WithPrefixlen();
   /**
    * <pre>
    * `ipv4_with_prefixlen` specifies that the field value must be a valid
-   * IPv4 address with prefix.
-   * If the field value isn't a valid IPv4 address with prefix length,
-   * an error message will be generated.
+   * IPv4 address with prefix length—for example, "192.168.5.21/16". If the
+   * field value isn't a valid IPv4 address with prefix length, an error
+   * message will be generated.
    *
    * ```proto
    * message MyString {
@@ -1182,7 +1245,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4_with_prefixlen = 27 [json_name = "ipv4WithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4_with_prefixlen = 27 [json_name = "ipv4WithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv4WithPrefixlen.
    */
   boolean getIpv4WithPrefixlen();
@@ -1190,7 +1253,7 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `ipv6_with_prefixlen` specifies that the field value must be a valid
-   * IPv6 address with prefix length.
+   * IPv6 address with prefix length—for example, "2001:0DB8:ABCD:0012::F1/64".
    * If the field value is not a valid IPv6 address with prefix length,
    * an error message will be generated.
    *
@@ -1202,14 +1265,14 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6_with_prefixlen = 28 [json_name = "ipv6WithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6_with_prefixlen = 28 [json_name = "ipv6WithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv6WithPrefixlen field is set.
    */
   boolean hasIpv6WithPrefixlen();
   /**
    * <pre>
    * `ipv6_with_prefixlen` specifies that the field value must be a valid
-   * IPv6 address with prefix length.
+   * IPv6 address with prefix length—for example, "2001:0DB8:ABCD:0012::F1/64".
    * If the field value is not a valid IPv6 address with prefix length,
    * an error message will be generated.
    *
@@ -1221,17 +1284,22 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6_with_prefixlen = 28 [json_name = "ipv6WithPrefixlen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6_with_prefixlen = 28 [json_name = "ipv6WithPrefixlen", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv6WithPrefixlen.
    */
   boolean getIpv6WithPrefixlen();
 
   /**
    * <pre>
-   * `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
+   * `ip_prefix` specifies that the field value must be a valid IP (v4 or v6)
+   * prefix—for example, "192.168.0.0/16" or "2001:0DB8:ABCD:0012::0/64".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+   * prefix, and the remaining 64 bits must be zero.
+   *
    * If the field value isn't a valid IP prefix, an error message will be
-   * generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
-   * `127.0.0.0/16`, not `127.0.0.1/16`).
+   * generated.
    *
    * ```proto
    * message MyString {
@@ -1241,16 +1309,21 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip_prefix = 29 [json_name = "ipPrefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip_prefix = 29 [json_name = "ipPrefix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipPrefix field is set.
    */
   boolean hasIpPrefix();
   /**
    * <pre>
-   * `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
+   * `ip_prefix` specifies that the field value must be a valid IP (v4 or v6)
+   * prefix—for example, "192.168.0.0/16" or "2001:0DB8:ABCD:0012::0/64".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+   * prefix, and the remaining 64 bits must be zero.
+   *
    * If the field value isn't a valid IP prefix, an error message will be
-   * generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
-   * `127.0.0.0/16`, not `127.0.0.1/16`).
+   * generated.
    *
    * ```proto
    * message MyString {
@@ -1260,7 +1333,7 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ip_prefix = 29 [json_name = "ipPrefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip_prefix = 29 [json_name = "ipPrefix", (.buf.validate.predefined) = { ... }</code>
    * @return The ipPrefix.
    */
   boolean getIpPrefix();
@@ -1268,9 +1341,14 @@ public interface StringRulesOrBuilder extends
   /**
    * <pre>
    * `ipv4_prefix` specifies that the field value must be a valid IPv4
-   * prefix. If the field value isn't a valid IPv4 prefix, an error message
-   * will be generated. The prefix must have all zeros for the masked bits of
-   * the prefix (e.g., `127.0.0.0/16`, not `127.0.0.1/16`).
+   * prefix, for example "192.168.0.0/16".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "192.168.0.0/16" designates the left-most 16 bits for the prefix,
+   * and the remaining 16 bits must be zero.
+   *
+   * If the field value isn't a valid IPv4 prefix, an error message
+   * will be generated.
    *
    * ```proto
    * message MyString {
@@ -1280,16 +1358,21 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4_prefix = 30 [json_name = "ipv4Prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4_prefix = 30 [json_name = "ipv4Prefix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv4Prefix field is set.
    */
   boolean hasIpv4Prefix();
   /**
    * <pre>
    * `ipv4_prefix` specifies that the field value must be a valid IPv4
-   * prefix. If the field value isn't a valid IPv4 prefix, an error message
-   * will be generated. The prefix must have all zeros for the masked bits of
-   * the prefix (e.g., `127.0.0.0/16`, not `127.0.0.1/16`).
+   * prefix, for example "192.168.0.0/16".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "192.168.0.0/16" designates the left-most 16 bits for the prefix,
+   * and the remaining 16 bits must be zero.
+   *
+   * If the field value isn't a valid IPv4 prefix, an error message
+   * will be generated.
    *
    * ```proto
    * message MyString {
@@ -1299,17 +1382,22 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv4_prefix = 30 [json_name = "ipv4Prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4_prefix = 30 [json_name = "ipv4Prefix", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv4Prefix.
    */
   boolean getIpv4Prefix();
 
   /**
    * <pre>
-   * `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
+   * `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix—for
+   * example, "2001:0DB8:ABCD:0012::0/64".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+   * prefix, and the remaining 64 bits must be zero.
+   *
    * If the field value is not a valid IPv6 prefix, an error message will be
-   * generated. The prefix must have all zeros for the masked bits of the prefix
-   * (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
+   * generated.
    *
    * ```proto
    * message MyString {
@@ -1319,16 +1407,21 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6_prefix = 31 [json_name = "ipv6Prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6_prefix = 31 [json_name = "ipv6Prefix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv6Prefix field is set.
    */
   boolean hasIpv6Prefix();
   /**
    * <pre>
-   * `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
+   * `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix—for
+   * example, "2001:0DB8:ABCD:0012::0/64".
+   *
+   * The prefix must have all zeros for the unmasked bits. For example,
+   * "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+   * prefix, and the remaining 64 bits must be zero.
+   *
    * If the field value is not a valid IPv6 prefix, an error message will be
-   * generated. The prefix must have all zeros for the masked bits of the prefix
-   * (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
+   * generated.
    *
    * ```proto
    * message MyString {
@@ -1338,32 +1431,44 @@ public interface StringRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool ipv6_prefix = 31 [json_name = "ipv6Prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6_prefix = 31 [json_name = "ipv6Prefix", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv6Prefix.
    */
   boolean getIpv6Prefix();
 
   /**
    * <pre>
-   * `host_and_port` specifies the field value must be a valid host and port
-   * pair. The host must be a valid hostname or IP address while the port
-   * must be in the range of 0-65535, inclusive. IPv6 addresses must be delimited
-   * with square brackets (e.g., `[::1]:1234`).
+   * `host_and_port` specifies that the field value must be valid host/port
+   * pair—for example, "example.com:8080".
+   *
+   * The host can be one of:
+   * - An IPv4 address in dotted decimal format—for example, "192.168.5.21".
+   * - An IPv6 address enclosed in square brackets—for example, "[2001:0DB8:ABCD:0012::F1]".
+   * - A hostname—for example, "example.com".
+   *
+   * The port is separated by a colon. It must be non-empty, with a decimal number
+   * in the range of 0-65535, inclusive.
    * </pre>
    *
-   * <code>bool host_and_port = 32 [json_name = "hostAndPort", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool host_and_port = 32 [json_name = "hostAndPort", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the hostAndPort field is set.
    */
   boolean hasHostAndPort();
   /**
    * <pre>
-   * `host_and_port` specifies the field value must be a valid host and port
-   * pair. The host must be a valid hostname or IP address while the port
-   * must be in the range of 0-65535, inclusive. IPv6 addresses must be delimited
-   * with square brackets (e.g., `[::1]:1234`).
+   * `host_and_port` specifies that the field value must be valid host/port
+   * pair—for example, "example.com:8080".
+   *
+   * The host can be one of:
+   * - An IPv4 address in dotted decimal format—for example, "192.168.5.21".
+   * - An IPv6 address enclosed in square brackets—for example, "[2001:0DB8:ABCD:0012::F1]".
+   * - A hostname—for example, "example.com".
+   *
+   * The port is separated by a colon. It must be non-empty, with a decimal number
+   * in the range of 0-65535, inclusive.
    * </pre>
    *
-   * <code>bool host_and_port = 32 [json_name = "hostAndPort", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool host_and_port = 32 [json_name = "hostAndPort", (.buf.validate.predefined) = { ... }</code>
    * @return The hostAndPort.
    */
   boolean getHostAndPort();
@@ -1388,11 +1493,11 @@ public interface StringRulesOrBuilder extends
    * | Name                          | Number | Description                               |
    * |-------------------------------|--------|-------------------------------------------|
    * | KNOWN_REGEX_UNSPECIFIED       | 0      |                                           |
-   * | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2)  |
-   * | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4) |
+   * | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2)  |
+   * | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4) |
    * </pre>
    *
-   * <code>.buf.validate.KnownRegex well_known_regex = 24 [json_name = "wellKnownRegex", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.buf.validate.KnownRegex well_known_regex = 24 [json_name = "wellKnownRegex", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the wellKnownRegex field is set.
    */
   boolean hasWellKnownRegex();
@@ -1416,39 +1521,11 @@ public interface StringRulesOrBuilder extends
    * | Name                          | Number | Description                               |
    * |-------------------------------|--------|-------------------------------------------|
    * | KNOWN_REGEX_UNSPECIFIED       | 0      |                                           |
-   * | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2)  |
-   * | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4) |
+   * | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2)  |
+   * | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4) |
    * </pre>
    *
-   * <code>.buf.validate.KnownRegex well_known_regex = 24 [json_name = "wellKnownRegex", (.buf.validate.priv.field) = { ... }</code>
-   * @return The enum numeric value on the wire for wellKnownRegex.
-   */
-  int getWellKnownRegexValue();
-  /**
-   * <pre>
-   * `well_known_regex` specifies a common well-known pattern
-   * defined as a regex. If the field value doesn't match the well-known
-   * regex, an error message will be generated.
-   *
-   * ```proto
-   * message MyString {
-   * // value must be a valid HTTP header value
-   * string value = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_VALUE];
-   * }
-   * ```
-   *
-   * #### KnownRegex
-   *
-   * `well_known_regex` contains some well-known patterns.
-   *
-   * | Name                          | Number | Description                               |
-   * |-------------------------------|--------|-------------------------------------------|
-   * | KNOWN_REGEX_UNSPECIFIED       | 0      |                                           |
-   * | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2)  |
-   * | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4) |
-   * </pre>
-   *
-   * <code>.buf.validate.KnownRegex well_known_regex = 24 [json_name = "wellKnownRegex", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.buf.validate.KnownRegex well_known_regex = 24 [json_name = "wellKnownRegex", (.buf.validate.predefined) = { ... }</code>
    * @return The wellKnownRegex.
    */
   build.buf.validate.KnownRegex getWellKnownRegex();
@@ -1457,7 +1534,7 @@ public interface StringRulesOrBuilder extends
    * <pre>
    * This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
    * enable strict header validation. By default, this is true, and HTTP header
-   * validations are [RFC-compliant](https://tools.ietf.org/html/rfc7230#section-3). Setting to false will enable looser
+   * validations are [RFC-compliant](https://datatracker.ietf.org/doc/html/rfc7230#section-3). Setting to false will enable looser
    * validations that only disallow `&#92;r&#92;n&#92;0` characters, which can be used to
    * bypass header matching rules.
    *
@@ -1477,7 +1554,7 @@ public interface StringRulesOrBuilder extends
    * <pre>
    * This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
    * enable strict header validation. By default, this is true, and HTTP header
-   * validations are [RFC-compliant](https://tools.ietf.org/html/rfc7230#section-3). Setting to false will enable looser
+   * validations are [RFC-compliant](https://datatracker.ietf.org/doc/html/rfc7230#section-3). Setting to false will enable looser
    * validations that only disallow `&#92;r&#92;n&#92;0` characters, which can be used to
    * bypass header matching rules.
    *
@@ -1493,6 +1570,91 @@ public interface StringRulesOrBuilder extends
    * @return The strict.
    */
   boolean getStrict();
+
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyString {
+   * string value = 1 [
+   * (buf.validate.field).string.example = "hello",
+   * (buf.validate.field).string.example = "world"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated string example = 34 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return A list containing the example.
+   */
+  java.util.List<java.lang.String>
+      getExampleList();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyString {
+   * string value = 1 [
+   * (buf.validate.field).string.example = "hello",
+   * (buf.validate.field).string.example = "world"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated string example = 34 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return The count of example.
+   */
+  int getExampleCount();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyString {
+   * string value = 1 [
+   * (buf.validate.field).string.example = "hello",
+   * (buf.validate.field).string.example = "world"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated string example = 34 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @param index The index of the element to return.
+   * @return The example at the given index.
+   */
+  java.lang.String getExample(int index);
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyString {
+   * string value = 1 [
+   * (buf.validate.field).string.example = "hello",
+   * (buf.validate.field).string.example = "world"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated string example = 34 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the example at the given index.
+   */
+  com.google.protobuf.ByteString
+      getExampleBytes(int index);
 
   build.buf.validate.StringRules.WellKnownCase getWellKnownCase();
 }

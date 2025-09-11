@@ -7,7 +7,7 @@ package build.buf.validate;
 
 /**
  * <pre>
- * BytesRules describe the constraints applied to `bytes` values. These rules
+ * BytesRules describe the rules applied to `bytes` values. These rules
  * may also be applied to the `google.protobuf.BytesValue` Well-Known-Type.
  * </pre>
  *
@@ -15,7 +15,8 @@ package build.buf.validate;
  */
 @com.google.protobuf.Generated
 public final class BytesRules extends
-    com.google.protobuf.GeneratedMessage implements
+    com.google.protobuf.GeneratedMessage.ExtendableMessage<
+      BytesRules> implements
     // @@protoc_insertion_point(message_implements:buf.validate.BytesRules)
     BytesRulesOrBuilder {
 private static final long serialVersionUID = 0L;
@@ -29,7 +30,7 @@ private static final long serialVersionUID = 0L;
       BytesRules.class.getName());
   }
   // Use BytesRules.newBuilder() to construct.
-  private BytesRules(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  private BytesRules(com.google.protobuf.GeneratedMessage.ExtendableBuilder<build.buf.validate.BytesRules, ?> builder) {
     super(builder);
   }
   private BytesRules() {
@@ -40,6 +41,7 @@ private static final long serialVersionUID = 0L;
     contains_ = com.google.protobuf.ByteString.EMPTY;
     in_ = emptyList(com.google.protobuf.ByteString.class);
     notIn_ = emptyList(com.google.protobuf.ByteString.class);
+    example_ = emptyList(com.google.protobuf.ByteString.class);
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -115,7 +117,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the const field is set.
    */
   @java.lang.Override
@@ -135,7 +137,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return The const.
    */
   @java.lang.Override
@@ -158,7 +160,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the len field is set.
    */
   @java.lang.Override
@@ -178,7 +180,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
    * @return The len.
    */
   @java.lang.Override
@@ -202,7 +204,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the minLen field is set.
    */
   @java.lang.Override
@@ -223,7 +225,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
    * @return The minLen.
    */
   @java.lang.Override
@@ -247,7 +249,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the maxLen field is set.
    */
   @java.lang.Override
@@ -268,7 +270,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
    * @return The maxLen.
    */
   @java.lang.Override
@@ -295,7 +297,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the pattern field is set.
    */
   @java.lang.Override
@@ -318,7 +320,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return The pattern.
    */
   @java.lang.Override
@@ -330,7 +332,9 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      pattern_ = s;
+      if (bs.isValidUtf8()) {
+        pattern_ = s;
+      }
       return s;
     }
   }
@@ -350,7 +354,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
    * @return The bytes for pattern.
    */
   @java.lang.Override
@@ -384,7 +388,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the prefix field is set.
    */
   @java.lang.Override
@@ -405,7 +409,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
    * @return The prefix.
    */
   @java.lang.Override
@@ -429,7 +433,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the suffix field is set.
    */
   @java.lang.Override
@@ -450,7 +454,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
    * @return The suffix.
    */
   @java.lang.Override
@@ -474,7 +478,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the contains field is set.
    */
   @java.lang.Override
@@ -495,7 +499,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
    * @return The contains.
    */
   @java.lang.Override
@@ -521,7 +525,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the in.
    */
   @java.lang.Override
@@ -543,7 +547,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return The count of in.
    */
   public int getInCount() {
@@ -563,7 +567,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The in at the given index.
    */
@@ -590,7 +594,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the notIn.
    */
   @java.lang.Override
@@ -613,7 +617,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return The count of notIn.
    */
   public int getNotInCount() {
@@ -634,7 +638,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The notIn at the given index.
    */
@@ -646,7 +650,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    *
    * ```proto
    * message MyBytes {
@@ -656,7 +660,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ip field is set.
    */
   @java.lang.Override
@@ -666,7 +670,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    *
    * ```proto
    * message MyBytes {
@@ -676,7 +680,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
    * @return The ip.
    */
   @java.lang.Override
@@ -691,7 +695,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    *
    * ```proto
    * message MyBytes {
@@ -701,7 +705,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv4 field is set.
    */
   @java.lang.Override
@@ -711,7 +715,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    *
    * ```proto
    * message MyBytes {
@@ -721,7 +725,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv4.
    */
   @java.lang.Override
@@ -736,7 +740,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    * ```proto
    * message MyBytes {
    * // value must be a valid IPv6 address
@@ -745,7 +749,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ipv6 field is set.
    */
   @java.lang.Override
@@ -755,7 +759,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-   * If the field value doesn't meet this constraint, an error message is generated.
+   * If the field value doesn't meet this rule, an error message is generated.
    * ```proto
    * message MyBytes {
    * // value must be a valid IPv6 address
@@ -764,7 +768,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
    * @return The ipv6.
    */
   @java.lang.Override
@@ -775,6 +779,80 @@ private static final long serialVersionUID = 0L;
     return false;
   }
 
+  public static final int EXAMPLE_FIELD_NUMBER = 14;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> example_ =
+      emptyList(com.google.protobuf.ByteString.class);
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyBytes {
+   * bytes value = 1 [
+   * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+   * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return A list containing the example.
+   */
+  @java.lang.Override
+  public java.util.List<com.google.protobuf.ByteString>
+      getExampleList() {
+    return example_;
+  }
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyBytes {
+   * bytes value = 1 [
+   * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+   * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return The count of example.
+   */
+  public int getExampleCount() {
+    return example_.size();
+  }
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyBytes {
+   * bytes value = 1 [
+   * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+   * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @param index The index of the element to return.
+   * @return The example at the given index.
+   */
+  public com.google.protobuf.ByteString getExample(int index) {
+    return example_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -782,6 +860,10 @@ private static final long serialVersionUID = 0L;
     if (isInitialized == 1) return true;
     if (isInitialized == 0) return false;
 
+    if (!extensionsAreInitialized()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
     memoizedIsInitialized = 1;
     return true;
   }
@@ -789,6 +871,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    com.google.protobuf.GeneratedMessage
+      .ExtendableMessage.ExtensionSerializer
+        extensionWriter = newExtensionSerializer();
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeBytes(1, const_);
     }
@@ -831,6 +916,10 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000002) != 0)) {
       output.writeUInt64(13, len_);
     }
+    for (int i = 0; i < example_.size(); i++) {
+      output.writeBytes(14, example_.get(i));
+    }
+    extensionWriter.writeUntil(536870912, output);
     getUnknownFields().writeTo(output);
   }
 
@@ -904,6 +993,16 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt64Size(13, len_);
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < example_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeBytesSizeNoTag(example_.get(i));
+      }
+      size += dataSize;
+      size += 1 * getExampleList().size();
+    }
+    size += extensionsSerializedSize();
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -963,6 +1062,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getInList())) return false;
     if (!getNotInList()
         .equals(other.getNotInList())) return false;
+    if (!getExampleList()
+        .equals(other.getExampleList())) return false;
     if (!getWellKnownCase().equals(other.getWellKnownCase())) return false;
     switch (wellKnownCase_) {
       case 10:
@@ -981,6 +1082,8 @@ private static final long serialVersionUID = 0L;
       default:
     }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+    if (!getExtensionFields().equals(other.getExtensionFields()))
+      return false;
     return true;
   }
 
@@ -1034,6 +1137,10 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + NOT_IN_FIELD_NUMBER;
       hash = (53 * hash) + getNotInList().hashCode();
     }
+    if (getExampleCount() > 0) {
+      hash = (37 * hash) + EXAMPLE_FIELD_NUMBER;
+      hash = (53 * hash) + getExampleList().hashCode();
+    }
     switch (wellKnownCase_) {
       case 10:
         hash = (37 * hash) + IP_FIELD_NUMBER;
@@ -1053,6 +1160,7 @@ private static final long serialVersionUID = 0L;
       case 0:
       default:
     }
+    hash = hashFields(hash, getExtensionFields());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1152,14 +1260,15 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * BytesRules describe the constraints applied to `bytes` values. These rules
+   * BytesRules describe the rules applied to `bytes` values. These rules
    * may also be applied to the `google.protobuf.BytesValue` Well-Known-Type.
    * </pre>
    *
    * Protobuf type {@code buf.validate.BytesRules}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+        build.buf.validate.BytesRules, Builder> implements
       // @@protoc_insertion_point(builder_implements:buf.validate.BytesRules)
       build.buf.validate.BytesRulesOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -1199,6 +1308,7 @@ private static final long serialVersionUID = 0L;
       contains_ = com.google.protobuf.ByteString.EMPTY;
       in_ = emptyList(com.google.protobuf.ByteString.class);
       notIn_ = emptyList(com.google.protobuf.ByteString.class);
+      example_ = emptyList(com.google.protobuf.ByteString.class);
       wellKnownCase_ = 0;
       wellKnown_ = null;
       return this;
@@ -1276,6 +1386,10 @@ private static final long serialVersionUID = 0L;
         notIn_.makeImmutable();
         result.notIn_ = notIn_;
       }
+      if (((from_bitField0_ & 0x00002000) != 0)) {
+        example_.makeImmutable();
+        result.example_ = example_;
+      }
       result.bitField0_ |= to_bitField0_;
     }
 
@@ -1344,6 +1458,17 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       }
+      if (!other.example_.isEmpty()) {
+        if (example_.isEmpty()) {
+          example_ = other.example_;
+          example_.makeImmutable();
+          bitField0_ |= 0x00002000;
+        } else {
+          ensureExampleIsMutable();
+          example_.addAll(other.example_);
+        }
+        onChanged();
+      }
       switch (other.getWellKnownCase()) {
         case IP: {
           setIp(other.getIp());
@@ -1361,6 +1486,7 @@ private static final long serialVersionUID = 0L;
           break;
         }
       }
+      this.mergeExtensionFields(other);
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -1368,6 +1494,9 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public final boolean isInitialized() {
+      if (!extensionsAreInitialized()) {
+        return false;
+      }
       return true;
     }
 
@@ -1403,7 +1532,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 24
             case 34: {
-              pattern_ = input.readStringRequireUtf8();
+              pattern_ = input.readBytes();
               bitField0_ |= 0x00000010;
               break;
             } // case 34
@@ -1454,6 +1583,12 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 104
+            case 114: {
+              com.google.protobuf.ByteString v = input.readBytes();
+              ensureExampleIsMutable();
+              example_.add(v);
+              break;
+            } // case 114
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1500,7 +1635,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the const field is set.
      */
     @java.lang.Override
@@ -1520,7 +1655,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return The const.
      */
     @java.lang.Override
@@ -1540,7 +1675,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @param value The const to set.
      * @return This builder for chaining.
      */
@@ -1564,7 +1699,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearConst() {
@@ -1588,7 +1723,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the len field is set.
      */
     @java.lang.Override
@@ -1608,7 +1743,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
      * @return The len.
      */
     @java.lang.Override
@@ -1628,7 +1763,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
      * @param value The len to set.
      * @return This builder for chaining.
      */
@@ -1652,7 +1787,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 len = 13 [json_name = "len", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearLen() {
@@ -1677,7 +1812,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the minLen field is set.
      */
     @java.lang.Override
@@ -1698,7 +1833,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
      * @return The minLen.
      */
     @java.lang.Override
@@ -1719,7 +1854,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
      * @param value The minLen to set.
      * @return This builder for chaining.
      */
@@ -1744,7 +1879,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 min_len = 2 [json_name = "minLen", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearMinLen() {
@@ -1769,7 +1904,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the maxLen field is set.
      */
     @java.lang.Override
@@ -1790,7 +1925,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
      * @return The maxLen.
      */
     @java.lang.Override
@@ -1811,7 +1946,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
      * @param value The maxLen to set.
      * @return This builder for chaining.
      */
@@ -1836,7 +1971,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional uint64 max_len = 3 [json_name = "maxLen", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearMaxLen() {
@@ -1863,7 +1998,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the pattern field is set.
      */
     public boolean hasPattern() {
@@ -1885,7 +2020,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @return The pattern.
      */
     public java.lang.String getPattern() {
@@ -1894,7 +2029,9 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        pattern_ = s;
+        if (bs.isValidUtf8()) {
+          pattern_ = s;
+        }
         return s;
       } else {
         return (java.lang.String) ref;
@@ -1916,7 +2053,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @return The bytes for pattern.
      */
     public com.google.protobuf.ByteString
@@ -1948,7 +2085,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @param value The pattern to set.
      * @return This builder for chaining.
      */
@@ -1976,7 +2113,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearPattern() {
@@ -2001,14 +2138,13 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional string pattern = 4 [json_name = "pattern", (.buf.validate.predefined) = { ... }</code>
      * @param value The bytes for pattern to set.
      * @return This builder for chaining.
      */
     public Builder setPatternBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
       pattern_ = value;
       bitField0_ |= 0x00000010;
       onChanged();
@@ -2030,7 +2166,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the prefix field is set.
      */
     @java.lang.Override
@@ -2051,7 +2187,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
      * @return The prefix.
      */
     @java.lang.Override
@@ -2072,7 +2208,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
      * @param value The prefix to set.
      * @return This builder for chaining.
      */
@@ -2097,7 +2233,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes prefix = 5 [json_name = "prefix", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearPrefix() {
@@ -2122,7 +2258,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the suffix field is set.
      */
     @java.lang.Override
@@ -2143,7 +2279,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
      * @return The suffix.
      */
     @java.lang.Override
@@ -2164,7 +2300,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
      * @param value The suffix to set.
      * @return This builder for chaining.
      */
@@ -2189,7 +2325,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes suffix = 6 [json_name = "suffix", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearSuffix() {
@@ -2214,7 +2350,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the contains field is set.
      */
     @java.lang.Override
@@ -2235,7 +2371,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
      * @return The contains.
      */
     @java.lang.Override
@@ -2256,7 +2392,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
      * @param value The contains to set.
      * @return This builder for chaining.
      */
@@ -2281,7 +2417,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional bytes contains = 7 [json_name = "contains", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearContains() {
@@ -2312,7 +2448,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return A list containing the in.
      */
     public java.util.List<com.google.protobuf.ByteString>
@@ -2334,7 +2470,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return The count of in.
      */
     public int getInCount() {
@@ -2354,7 +2490,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param index The index of the element to return.
      * @return The in at the given index.
      */
@@ -2375,7 +2511,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param index The index to set the value at.
      * @param value The in to set.
      * @return This builder for chaining.
@@ -2403,7 +2539,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param value The in to add.
      * @return This builder for chaining.
      */
@@ -2429,7 +2565,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param values The in to add.
      * @return This builder for chaining.
      */
@@ -2456,7 +2592,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes in = 8 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearIn() {
@@ -2488,7 +2624,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return A list containing the notIn.
      */
     public java.util.List<com.google.protobuf.ByteString>
@@ -2511,7 +2647,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return The count of notIn.
      */
     public int getNotInCount() {
@@ -2532,7 +2668,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param index The index of the element to return.
      * @return The notIn at the given index.
      */
@@ -2554,7 +2690,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param index The index to set the value at.
      * @param value The notIn to set.
      * @return This builder for chaining.
@@ -2583,7 +2719,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param value The notIn to add.
      * @return This builder for chaining.
      */
@@ -2610,7 +2746,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param values The notIn to add.
      * @return This builder for chaining.
      */
@@ -2638,7 +2774,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated bytes not_in = 9 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearNotIn() {
@@ -2651,7 +2787,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2661,7 +2797,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the ip field is set.
      */
     public boolean hasIp() {
@@ -2670,7 +2806,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2680,7 +2816,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
      * @return The ip.
      */
     public boolean getIp() {
@@ -2692,7 +2828,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2702,7 +2838,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
      * @param value The ip to set.
      * @return This builder for chaining.
      */
@@ -2716,7 +2852,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2726,7 +2862,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ip = 10 [json_name = "ip", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearIp() {
@@ -2741,7 +2877,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2751,7 +2887,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the ipv4 field is set.
      */
     public boolean hasIpv4() {
@@ -2760,7 +2896,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2770,7 +2906,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
      * @return The ipv4.
      */
     public boolean getIpv4() {
@@ -2782,7 +2918,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2792,7 +2928,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
      * @param value The ipv4 to set.
      * @return This builder for chaining.
      */
@@ -2806,7 +2942,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      *
      * ```proto
      * message MyBytes {
@@ -2816,7 +2952,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv4 = 11 [json_name = "ipv4", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearIpv4() {
@@ -2831,7 +2967,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      * ```proto
      * message MyBytes {
      * // value must be a valid IPv6 address
@@ -2840,7 +2976,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the ipv6 field is set.
      */
     public boolean hasIpv6() {
@@ -2849,7 +2985,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      * ```proto
      * message MyBytes {
      * // value must be a valid IPv6 address
@@ -2858,7 +2994,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
      * @return The ipv6.
      */
     public boolean getIpv6() {
@@ -2870,7 +3006,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      * ```proto
      * message MyBytes {
      * // value must be a valid IPv6 address
@@ -2879,7 +3015,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
      * @param value The ipv6 to set.
      * @return This builder for chaining.
      */
@@ -2893,7 +3029,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-     * If the field value doesn't meet this constraint, an error message is generated.
+     * If the field value doesn't meet this rule, an error message is generated.
      * ```proto
      * message MyBytes {
      * // value must be a valid IPv6 address
@@ -2902,7 +3038,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.priv.field) = { ... }</code>
+     * <code>bool ipv6 = 12 [json_name = "ipv6", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearIpv6() {
@@ -2911,6 +3047,195 @@ private static final long serialVersionUID = 0L;
         wellKnown_ = null;
         onChanged();
       }
+      return this;
+    }
+
+    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> example_ = emptyList(com.google.protobuf.ByteString.class);
+    private void ensureExampleIsMutable() {
+      if (!example_.isModifiable()) {
+        example_ = makeMutableCopy(example_);
+      }
+      bitField0_ |= 0x00002000;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return A list containing the example.
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getExampleList() {
+      example_.makeImmutable();
+      return example_;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return The count of example.
+     */
+    public int getExampleCount() {
+      return example_.size();
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The example at the given index.
+     */
+    public com.google.protobuf.ByteString getExample(int index) {
+      return example_.get(index);
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param index The index to set the value at.
+     * @param value The example to set.
+     * @return This builder for chaining.
+     */
+    public Builder setExample(
+        int index, com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureExampleIsMutable();
+      example_.set(index, value);
+      bitField0_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param value The example to add.
+     * @return This builder for chaining.
+     */
+    public Builder addExample(com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureExampleIsMutable();
+      example_.add(value);
+      bitField0_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param values The example to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllExample(
+        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+      ensureExampleIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, example_);
+      bitField0_ |= 0x00002000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MyBytes {
+     * bytes value = 1 [
+     * (buf.validate.field).bytes.example = "&#92;x01&#92;x02",
+     * (buf.validate.field).bytes.example = "&#92;x02&#92;x03"
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated bytes example = 14 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearExample() {
+      example_ = emptyList(com.google.protobuf.ByteString.class);
+      bitField0_ = (bitField0_ & ~0x00002000);
+      onChanged();
       return this;
     }
 

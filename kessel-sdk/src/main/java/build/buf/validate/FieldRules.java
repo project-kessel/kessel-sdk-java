@@ -7,17 +7,17 @@ package build.buf.validate;
 
 /**
  * <pre>
- * FieldConstraints encapsulates the rules for each type of field. Depending on
+ * FieldRules encapsulates the rules for each type of field. Depending on
  * the field, the correct set should be used to ensure proper validations.
  * </pre>
  *
- * Protobuf type {@code buf.validate.FieldConstraints}
+ * Protobuf type {@code buf.validate.FieldRules}
  */
 @com.google.protobuf.Generated
-public final class FieldConstraints extends
+public final class FieldRules extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:buf.validate.FieldConstraints)
-    FieldConstraintsOrBuilder {
+    // @@protoc_insertion_point(message_implements:buf.validate.FieldRules)
+    FieldRulesOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -26,30 +26,31 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 32,
       /* patch= */ 0,
       /* suffix= */ "",
-      FieldConstraints.class.getName());
+      FieldRules.class.getName());
   }
-  // Use FieldConstraints.newBuilder() to construct.
-  private FieldConstraints(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use FieldRules.newBuilder() to construct.
+  private FieldRules(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private FieldConstraints() {
+  private FieldRules() {
     cel_ = java.util.Collections.emptyList();
     ignore_ = 0;
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldConstraints_descriptor;
+    return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldRules_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldConstraints_fieldAccessorTable
+    return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldRules_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            build.buf.validate.FieldConstraints.class, build.buf.validate.FieldConstraints.Builder.class);
+            build.buf.validate.FieldRules.class, build.buf.validate.FieldRules.Builder.class);
   }
 
+  private int bitField0_;
   private int typeCase_ = 0;
   @SuppressWarnings("serial")
   private java.lang.Object type_;
@@ -132,12 +133,12 @@ private static final long serialVersionUID = 0L;
 
   public static final int CEL_FIELD_NUMBER = 23;
   @SuppressWarnings("serial")
-  private java.util.List<build.buf.validate.Constraint> cel_;
+  private java.util.List<build.buf.validate.Rule> cel_;
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -151,17 +152,17 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   @java.lang.Override
-  public java.util.List<build.buf.validate.Constraint> getCelList() {
+  public java.util.List<build.buf.validate.Rule> getCelList() {
     return cel_;
   }
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -175,18 +176,18 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   @java.lang.Override
-  public java.util.List<? extends build.buf.validate.ConstraintOrBuilder> 
+  public java.util.List<? extends build.buf.validate.RuleOrBuilder> 
       getCelOrBuilderList() {
     return cel_;
   }
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -200,7 +201,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   @java.lang.Override
   public int getCelCount() {
@@ -209,8 +210,8 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -224,17 +225,17 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   @java.lang.Override
-  public build.buf.validate.Constraint getCel(int index) {
+  public build.buf.validate.Rule getCel(int index) {
     return cel_.get(index);
   }
   /**
    * <pre>
    * `cel` is a repeated field used to represent a textual expression
-   * in the Common Expression Language (CEL) syntax. For more information on
-   * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+   * in the Common Expression Language (CEL) syntax. For more information,
+   * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
    *
    * ```proto
    * message MyMessage {
@@ -248,10 +249,10 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+   * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
    */
   @java.lang.Override
-  public build.buf.validate.ConstraintOrBuilder getCelOrBuilder(
+  public build.buf.validate.RuleOrBuilder getCelOrBuilder(
       int index) {
     return cel_.get(index);
   }
@@ -260,26 +261,120 @@ private static final long serialVersionUID = 0L;
   private boolean required_ = false;
   /**
    * <pre>
-   * If `required` is true, the field must be populated. A populated field can be
-   * described as "serialized in the wire format," which includes:
-   *
-   * - the following "nullable" fields must be explicitly set to be considered populated:
-   * - singular message fields (whose fields may be unpopulated/default values)
-   * - member fields of a oneof (may be their default value)
-   * - proto3 optional fields (may be their default value)
-   * - proto2 scalar fields (both optional and required)
-   * - proto3 scalar fields must be non-zero to be considered populated
-   * - repeated and map fields must be non-empty to be considered populated
+   * If `required` is true, the field must be set. A validation error is returned
+   * if the field is not set.
    *
    * ```proto
-   * message MyMessage {
-   * // The field `value` must be set to a non-null value.
-   * optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+   * syntax="proto3";
+   *
+   * message FieldsWithPresence {
+   * // Requires any string to be set, including the empty string.
+   * optional string link = 1 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires true or false to be set.
+   * optional bool disabled = 2 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires a message to be set, including the empty message.
+   * SomeMessage msg = 4 [
+   * (buf.validate.field).required = true
+   * ];
    * }
    * ```
+   *
+   * All fields in the example above track presence. By default, Protovalidate
+   * ignores rules on those fields if no value is set. `required` ensures that
+   * the fields are set and valid.
+   *
+   * Fields that don't track presence are always validated by Protovalidate,
+   * whether they are set or not. It is not necessary to add `required`:
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithoutPresence {
+   * // `string.email` always applies, even to an empty string.
+   * string link = 1 [
+   * (buf.validate.field).string.email = true
+   * ];
+   * // `repeated.min_items` always applies, even to an empty list.
+   * repeated string labels = 4 [
+   * (buf.validate.field).repeated.min_items = 1
+   * ];
+   * }
+   * ```
+   *
+   * To learn which fields track presence, see the
+   * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+   *
+   * Note: While field rules can be applied to repeated items, map keys, and map
+   * values, the elements are always considered to be set. Consequently,
+   * specifying `repeated.items.required` is redundant.
    * </pre>
    *
-   * <code>bool required = 25 [json_name = "required"];</code>
+   * <code>optional bool required = 25 [json_name = "required"];</code>
+   * @return Whether the required field is set.
+   */
+  @java.lang.Override
+  public boolean hasRequired() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <pre>
+   * If `required` is true, the field must be set. A validation error is returned
+   * if the field is not set.
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithPresence {
+   * // Requires any string to be set, including the empty string.
+   * optional string link = 1 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires true or false to be set.
+   * optional bool disabled = 2 [
+   * (buf.validate.field).required = true
+   * ];
+   * // Requires a message to be set, including the empty message.
+   * SomeMessage msg = 4 [
+   * (buf.validate.field).required = true
+   * ];
+   * }
+   * ```
+   *
+   * All fields in the example above track presence. By default, Protovalidate
+   * ignores rules on those fields if no value is set. `required` ensures that
+   * the fields are set and valid.
+   *
+   * Fields that don't track presence are always validated by Protovalidate,
+   * whether they are set or not. It is not necessary to add `required`:
+   *
+   * ```proto
+   * syntax="proto3";
+   *
+   * message FieldsWithoutPresence {
+   * // `string.email` always applies, even to an empty string.
+   * string link = 1 [
+   * (buf.validate.field).string.email = true
+   * ];
+   * // `repeated.min_items` always applies, even to an empty list.
+   * repeated string labels = 4 [
+   * (buf.validate.field).repeated.min_items = 1
+   * ];
+   * }
+   * ```
+   *
+   * To learn which fields track presence, see the
+   * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+   *
+   * Note: While field rules can be applied to repeated items, map keys, and map
+   * values, the elements are always considered to be set. Consequently,
+   * specifying `repeated.items.required` is redundant.
+   * </pre>
+   *
+   * <code>optional bool required = 25 [json_name = "required"];</code>
    * @return The required.
    */
   @java.lang.Override
@@ -291,50 +386,48 @@ private static final long serialVersionUID = 0L;
   private int ignore_ = 0;
   /**
    * <pre>
-   * Skip validation on the field if its value matches the specified criteria.
-   * See Ignore enum for details.
+   * Ignore validation rules on the field if its value matches the specified
+   * criteria. See the `Ignore` enum for details.
    *
    * ```proto
    * message UpdateRequest {
-   * // The uri rule only applies if the field is populated and not an empty
-   * // string.
-   * optional string url = 1 [
-   * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-   * (buf.validate.field).string.uri = true,
+   * // The uri rule only applies if the field is not an empty string.
+   * string url = 1 [
+   * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+   * (buf.validate.field).string.uri = true
    * ];
    * }
    * ```
    * </pre>
    *
-   * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
-   * @return The enum numeric value on the wire for ignore.
+   * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+   * @return Whether the ignore field is set.
    */
-  @java.lang.Override public int getIgnoreValue() {
-    return ignore_;
+  @java.lang.Override public boolean hasIgnore() {
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
    * <pre>
-   * Skip validation on the field if its value matches the specified criteria.
-   * See Ignore enum for details.
+   * Ignore validation rules on the field if its value matches the specified
+   * criteria. See the `Ignore` enum for details.
    *
    * ```proto
    * message UpdateRequest {
-   * // The uri rule only applies if the field is populated and not an empty
-   * // string.
-   * optional string url = 1 [
-   * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-   * (buf.validate.field).string.uri = true,
+   * // The uri rule only applies if the field is not an empty string.
+   * string url = 1 [
+   * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+   * (buf.validate.field).string.uri = true
    * ];
    * }
    * ```
    * </pre>
    *
-   * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+   * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
    * @return The ignore.
    */
   @java.lang.Override public build.buf.validate.Ignore getIgnore() {
     build.buf.validate.Ignore result = build.buf.validate.Ignore.forNumber(ignore_);
-    return result == null ? build.buf.validate.Ignore.UNRECOGNIZED : result;
+    return result == null ? build.buf.validate.Ignore.IGNORE_UNSPECIFIED : result;
   }
 
   public static final int FLOAT_FIELD_NUMBER = 1;
@@ -1024,40 +1117,6 @@ private static final long serialVersionUID = 0L;
     return build.buf.validate.TimestampRules.getDefaultInstance();
   }
 
-  public static final int SKIPPED_FIELD_NUMBER = 24;
-  private boolean skipped_ = false;
-  /**
-   * <pre>
-   * DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-   * </pre>
-   *
-   * <code>bool skipped = 24 [json_name = "skipped", deprecated = true];</code>
-   * @deprecated buf.validate.FieldConstraints.skipped is deprecated.
-   *     See buf/validate/validate.proto;l=196
-   * @return The skipped.
-   */
-  @java.lang.Override
-  @java.lang.Deprecated public boolean getSkipped() {
-    return skipped_;
-  }
-
-  public static final int IGNORE_EMPTY_FIELD_NUMBER = 26;
-  private boolean ignoreEmpty_ = false;
-  /**
-   * <pre>
-   * DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-   * </pre>
-   *
-   * <code>bool ignore_empty = 26 [json_name = "ignoreEmpty", deprecated = true];</code>
-   * @deprecated buf.validate.FieldConstraints.ignore_empty is deprecated.
-   *     See buf/validate/validate.proto;l=198
-   * @return The ignoreEmpty.
-   */
-  @java.lang.Override
-  @java.lang.Deprecated public boolean getIgnoreEmpty() {
-    return ignoreEmpty_;
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -1065,6 +1124,126 @@ private static final long serialVersionUID = 0L;
     if (isInitialized == 1) return true;
     if (isInitialized == 0) return false;
 
+    if (hasFloat()) {
+      if (!getFloat().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasDouble()) {
+      if (!getDouble().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasInt32()) {
+      if (!getInt32().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasInt64()) {
+      if (!getInt64().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasUint32()) {
+      if (!getUint32().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasUint64()) {
+      if (!getUint64().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasSint32()) {
+      if (!getSint32().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasSint64()) {
+      if (!getSint64().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasFixed32()) {
+      if (!getFixed32().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasFixed64()) {
+      if (!getFixed64().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasSfixed32()) {
+      if (!getSfixed32().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasSfixed64()) {
+      if (!getSfixed64().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasBool()) {
+      if (!getBool().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasString()) {
+      if (!getString().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasBytes()) {
+      if (!getBytes().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasEnum()) {
+      if (!getEnum().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasRepeated()) {
+      if (!getRepeated().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasMap()) {
+      if (!getMap().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasDuration()) {
+      if (!getDuration().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasTimestamp()) {
+      if (!getTimestamp().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
     memoizedIsInitialized = 1;
     return true;
   }
@@ -1138,16 +1317,10 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < cel_.size(); i++) {
       output.writeMessage(23, cel_.get(i));
     }
-    if (skipped_ != false) {
-      output.writeBool(24, skipped_);
-    }
-    if (required_ != false) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       output.writeBool(25, required_);
     }
-    if (ignoreEmpty_ != false) {
-      output.writeBool(26, ignoreEmpty_);
-    }
-    if (ignore_ != build.buf.validate.Ignore.IGNORE_UNSPECIFIED.getNumber()) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       output.writeEnum(27, ignore_);
     }
     getUnknownFields().writeTo(output);
@@ -1247,19 +1420,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(23, cel_.get(i));
     }
-    if (skipped_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(24, skipped_);
-    }
-    if (required_ != false) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(25, required_);
     }
-    if (ignoreEmpty_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(26, ignoreEmpty_);
-    }
-    if (ignore_ != build.buf.validate.Ignore.IGNORE_UNSPECIFIED.getNumber()) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(27, ignore_);
     }
@@ -1273,20 +1438,22 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof build.buf.validate.FieldConstraints)) {
+    if (!(obj instanceof build.buf.validate.FieldRules)) {
       return super.equals(obj);
     }
-    build.buf.validate.FieldConstraints other = (build.buf.validate.FieldConstraints) obj;
+    build.buf.validate.FieldRules other = (build.buf.validate.FieldRules) obj;
 
     if (!getCelList()
         .equals(other.getCelList())) return false;
-    if (getRequired()
-        != other.getRequired()) return false;
-    if (ignore_ != other.ignore_) return false;
-    if (getSkipped()
-        != other.getSkipped()) return false;
-    if (getIgnoreEmpty()
-        != other.getIgnoreEmpty()) return false;
+    if (hasRequired() != other.hasRequired()) return false;
+    if (hasRequired()) {
+      if (getRequired()
+          != other.getRequired()) return false;
+    }
+    if (hasIgnore() != other.hasIgnore()) return false;
+    if (hasIgnore()) {
+      if (ignore_ != other.ignore_) return false;
+    }
     if (!getTypeCase().equals(other.getTypeCase())) return false;
     switch (typeCase_) {
       case 1:
@@ -1391,17 +1558,15 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + CEL_FIELD_NUMBER;
       hash = (53 * hash) + getCelList().hashCode();
     }
-    hash = (37 * hash) + REQUIRED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getRequired());
-    hash = (37 * hash) + IGNORE_FIELD_NUMBER;
-    hash = (53 * hash) + ignore_;
-    hash = (37 * hash) + SKIPPED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getSkipped());
-    hash = (37 * hash) + IGNORE_EMPTY_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getIgnoreEmpty());
+    if (hasRequired()) {
+      hash = (37 * hash) + REQUIRED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getRequired());
+    }
+    if (hasIgnore()) {
+      hash = (37 * hash) + IGNORE_FIELD_NUMBER;
+      hash = (53 * hash) + ignore_;
+    }
     switch (typeCase_) {
       case 1:
         hash = (37 * hash) + FLOAT_FIELD_NUMBER;
@@ -1495,44 +1660,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(byte[] data)
+  public static build.buf.validate.FieldRules parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(java.io.InputStream input)
+  public static build.buf.validate.FieldRules parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -1540,26 +1705,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static build.buf.validate.FieldConstraints parseDelimitedFrom(java.io.InputStream input)
+  public static build.buf.validate.FieldRules parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static build.buf.validate.FieldConstraints parseDelimitedFrom(
+  public static build.buf.validate.FieldRules parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static build.buf.validate.FieldConstraints parseFrom(
+  public static build.buf.validate.FieldRules parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -1572,7 +1737,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(build.buf.validate.FieldConstraints prototype) {
+  public static Builder newBuilder(build.buf.validate.FieldRules prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -1589,30 +1754,30 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * FieldConstraints encapsulates the rules for each type of field. Depending on
+   * FieldRules encapsulates the rules for each type of field. Depending on
    * the field, the correct set should be used to ensure proper validations.
    * </pre>
    *
-   * Protobuf type {@code buf.validate.FieldConstraints}
+   * Protobuf type {@code buf.validate.FieldRules}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:buf.validate.FieldConstraints)
-      build.buf.validate.FieldConstraintsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:buf.validate.FieldRules)
+      build.buf.validate.FieldRulesOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldConstraints_descriptor;
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldRules_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldConstraints_fieldAccessorTable
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldRules_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              build.buf.validate.FieldConstraints.class, build.buf.validate.FieldConstraints.Builder.class);
+              build.buf.validate.FieldRules.class, build.buf.validate.FieldRules.Builder.class);
     }
 
-    // Construct using build.buf.validate.FieldConstraints.newBuilder()
+    // Construct using build.buf.validate.FieldRules.newBuilder()
     private Builder() {
 
     }
@@ -1698,8 +1863,6 @@ private static final long serialVersionUID = 0L;
       if (timestampBuilder_ != null) {
         timestampBuilder_.clear();
       }
-      skipped_ = false;
-      ignoreEmpty_ = false;
       typeCase_ = 0;
       type_ = null;
       return this;
@@ -1708,17 +1871,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldConstraints_descriptor;
+      return build.buf.validate.ValidateProto.internal_static_buf_validate_FieldRules_descriptor;
     }
 
     @java.lang.Override
-    public build.buf.validate.FieldConstraints getDefaultInstanceForType() {
-      return build.buf.validate.FieldConstraints.getDefaultInstance();
+    public build.buf.validate.FieldRules getDefaultInstanceForType() {
+      return build.buf.validate.FieldRules.getDefaultInstance();
     }
 
     @java.lang.Override
-    public build.buf.validate.FieldConstraints build() {
-      build.buf.validate.FieldConstraints result = buildPartial();
+    public build.buf.validate.FieldRules build() {
+      build.buf.validate.FieldRules result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -1726,8 +1889,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public build.buf.validate.FieldConstraints buildPartial() {
-      build.buf.validate.FieldConstraints result = new build.buf.validate.FieldConstraints(this);
+    public build.buf.validate.FieldRules buildPartial() {
+      build.buf.validate.FieldRules result = new build.buf.validate.FieldRules(this);
       buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       buildPartialOneofs(result);
@@ -1735,7 +1898,7 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    private void buildPartialRepeatedFields(build.buf.validate.FieldConstraints result) {
+    private void buildPartialRepeatedFields(build.buf.validate.FieldRules result) {
       if (celBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           cel_ = java.util.Collections.unmodifiableList(cel_);
@@ -1747,23 +1910,21 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private void buildPartial0(build.buf.validate.FieldConstraints result) {
+    private void buildPartial0(build.buf.validate.FieldRules result) {
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.required_ = required_;
+        to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
         result.ignore_ = ignore_;
+        to_bitField0_ |= 0x00000002;
       }
-      if (((from_bitField0_ & 0x01000000) != 0)) {
-        result.skipped_ = skipped_;
-      }
-      if (((from_bitField0_ & 0x02000000) != 0)) {
-        result.ignoreEmpty_ = ignoreEmpty_;
-      }
+      result.bitField0_ |= to_bitField0_;
     }
 
-    private void buildPartialOneofs(build.buf.validate.FieldConstraints result) {
+    private void buildPartialOneofs(build.buf.validate.FieldRules result) {
       result.typeCase_ = typeCase_;
       result.type_ = this.type_;
       if (typeCase_ == 1 &&
@@ -1854,16 +2015,16 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof build.buf.validate.FieldConstraints) {
-        return mergeFrom((build.buf.validate.FieldConstraints)other);
+      if (other instanceof build.buf.validate.FieldRules) {
+        return mergeFrom((build.buf.validate.FieldRules)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(build.buf.validate.FieldConstraints other) {
-      if (other == build.buf.validate.FieldConstraints.getDefaultInstance()) return this;
+    public Builder mergeFrom(build.buf.validate.FieldRules other) {
+      if (other == build.buf.validate.FieldRules.getDefaultInstance()) return this;
       if (celBuilder_ == null) {
         if (!other.cel_.isEmpty()) {
           if (cel_.isEmpty()) {
@@ -1890,17 +2051,11 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
-      if (other.getRequired() != false) {
+      if (other.hasRequired()) {
         setRequired(other.getRequired());
       }
-      if (other.ignore_ != 0) {
-        setIgnoreValue(other.getIgnoreValue());
-      }
-      if (other.getSkipped() != false) {
-        setSkipped(other.getSkipped());
-      }
-      if (other.getIgnoreEmpty() != false) {
-        setIgnoreEmpty(other.getIgnoreEmpty());
+      if (other.hasIgnore()) {
+        setIgnore(other.getIgnore());
       }
       switch (other.getTypeCase()) {
         case FLOAT: {
@@ -1998,6 +2153,106 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public final boolean isInitialized() {
+      if (hasFloat()) {
+        if (!getFloat().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasDouble()) {
+        if (!getDouble().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasInt32()) {
+        if (!getInt32().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasInt64()) {
+        if (!getInt64().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasUint32()) {
+        if (!getUint32().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasUint64()) {
+        if (!getUint64().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasSint32()) {
+        if (!getSint32().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasSint64()) {
+        if (!getSint64().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasFixed32()) {
+        if (!getFixed32().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasFixed64()) {
+        if (!getFixed64().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasSfixed32()) {
+        if (!getSfixed32().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasSfixed64()) {
+        if (!getSfixed64().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasBool()) {
+        if (!getBool().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasString()) {
+        if (!getString().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasBytes()) {
+        if (!getBytes().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasEnum()) {
+        if (!getEnum().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasRepeated()) {
+        if (!getRepeated().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasMap()) {
+        if (!getMap().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasDuration()) {
+        if (!getDuration().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasTimestamp()) {
+        if (!getTimestamp().isInitialized()) {
+          return false;
+        }
+      }
       return true;
     }
 
@@ -2165,9 +2420,9 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 178
             case 186: {
-              build.buf.validate.Constraint m =
+              build.buf.validate.Rule m =
                   input.readMessage(
-                      build.buf.validate.Constraint.parser(),
+                      build.buf.validate.Rule.parser(),
                       extensionRegistry);
               if (celBuilder_ == null) {
                 ensureCelIsMutable();
@@ -2177,24 +2432,21 @@ private static final long serialVersionUID = 0L;
               }
               break;
             } // case 186
-            case 192: {
-              skipped_ = input.readBool();
-              bitField0_ |= 0x01000000;
-              break;
-            } // case 192
             case 200: {
               required_ = input.readBool();
               bitField0_ |= 0x00000002;
               break;
             } // case 200
-            case 208: {
-              ignoreEmpty_ = input.readBool();
-              bitField0_ |= 0x02000000;
-              break;
-            } // case 208
             case 216: {
-              ignore_ = input.readEnum();
-              bitField0_ |= 0x00000004;
+              int tmpRaw = input.readEnum();
+              build.buf.validate.Ignore tmpValue =
+                  build.buf.validate.Ignore.forNumber(tmpRaw);
+              if (tmpValue == null) {
+                mergeUnknownVarintField(27, tmpRaw);
+              } else {
+                ignore_ = tmpRaw;
+                bitField0_ |= 0x00000004;
+              }
               break;
             } // case 216
             default: {
@@ -2229,23 +2481,23 @@ private static final long serialVersionUID = 0L;
 
     private int bitField0_;
 
-    private java.util.List<build.buf.validate.Constraint> cel_ =
+    private java.util.List<build.buf.validate.Rule> cel_ =
       java.util.Collections.emptyList();
     private void ensureCelIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        cel_ = new java.util.ArrayList<build.buf.validate.Constraint>(cel_);
+        cel_ = new java.util.ArrayList<build.buf.validate.Rule>(cel_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilder<
-        build.buf.validate.Constraint, build.buf.validate.Constraint.Builder, build.buf.validate.ConstraintOrBuilder> celBuilder_;
+        build.buf.validate.Rule, build.buf.validate.Rule.Builder, build.buf.validate.RuleOrBuilder> celBuilder_;
 
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2259,9 +2511,9 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public java.util.List<build.buf.validate.Constraint> getCelList() {
+    public java.util.List<build.buf.validate.Rule> getCelList() {
       if (celBuilder_ == null) {
         return java.util.Collections.unmodifiableList(cel_);
       } else {
@@ -2271,8 +2523,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2286,7 +2538,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public int getCelCount() {
       if (celBuilder_ == null) {
@@ -2298,8 +2550,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2313,9 +2565,9 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public build.buf.validate.Constraint getCel(int index) {
+    public build.buf.validate.Rule getCel(int index) {
       if (celBuilder_ == null) {
         return cel_.get(index);
       } else {
@@ -2325,8 +2577,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2340,10 +2592,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder setCel(
-        int index, build.buf.validate.Constraint value) {
+        int index, build.buf.validate.Rule value) {
       if (celBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2359,8 +2611,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2374,10 +2626,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder setCel(
-        int index, build.buf.validate.Constraint.Builder builderForValue) {
+        int index, build.buf.validate.Rule.Builder builderForValue) {
       if (celBuilder_ == null) {
         ensureCelIsMutable();
         cel_.set(index, builderForValue.build());
@@ -2390,8 +2642,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2405,9 +2657,9 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public Builder addCel(build.buf.validate.Constraint value) {
+    public Builder addCel(build.buf.validate.Rule value) {
       if (celBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2423,8 +2675,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2438,10 +2690,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder addCel(
-        int index, build.buf.validate.Constraint value) {
+        int index, build.buf.validate.Rule value) {
       if (celBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2457,8 +2709,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2472,10 +2724,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder addCel(
-        build.buf.validate.Constraint.Builder builderForValue) {
+        build.buf.validate.Rule.Builder builderForValue) {
       if (celBuilder_ == null) {
         ensureCelIsMutable();
         cel_.add(builderForValue.build());
@@ -2488,8 +2740,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2503,10 +2755,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder addCel(
-        int index, build.buf.validate.Constraint.Builder builderForValue) {
+        int index, build.buf.validate.Rule.Builder builderForValue) {
       if (celBuilder_ == null) {
         ensureCelIsMutable();
         cel_.add(index, builderForValue.build());
@@ -2519,8 +2771,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2534,10 +2786,10 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder addAllCel(
-        java.lang.Iterable<? extends build.buf.validate.Constraint> values) {
+        java.lang.Iterable<? extends build.buf.validate.Rule> values) {
       if (celBuilder_ == null) {
         ensureCelIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2551,8 +2803,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2566,7 +2818,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder clearCel() {
       if (celBuilder_ == null) {
@@ -2581,8 +2833,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2596,7 +2848,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
     public Builder removeCel(int index) {
       if (celBuilder_ == null) {
@@ -2611,8 +2863,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2626,17 +2878,17 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public build.buf.validate.Constraint.Builder getCelBuilder(
+    public build.buf.validate.Rule.Builder getCelBuilder(
         int index) {
       return internalGetCelFieldBuilder().getBuilder(index);
     }
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2650,9 +2902,9 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public build.buf.validate.ConstraintOrBuilder getCelOrBuilder(
+    public build.buf.validate.RuleOrBuilder getCelOrBuilder(
         int index) {
       if (celBuilder_ == null) {
         return cel_.get(index);  } else {
@@ -2662,8 +2914,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2677,9 +2929,9 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public java.util.List<? extends build.buf.validate.ConstraintOrBuilder> 
+    public java.util.List<? extends build.buf.validate.RuleOrBuilder> 
          getCelOrBuilderList() {
       if (celBuilder_ != null) {
         return celBuilder_.getMessageOrBuilderList();
@@ -2690,8 +2942,8 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2705,17 +2957,17 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public build.buf.validate.Constraint.Builder addCelBuilder() {
+    public build.buf.validate.Rule.Builder addCelBuilder() {
       return internalGetCelFieldBuilder().addBuilder(
-          build.buf.validate.Constraint.getDefaultInstance());
+          build.buf.validate.Rule.getDefaultInstance());
     }
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2729,18 +2981,18 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public build.buf.validate.Constraint.Builder addCelBuilder(
+    public build.buf.validate.Rule.Builder addCelBuilder(
         int index) {
       return internalGetCelFieldBuilder().addBuilder(
-          index, build.buf.validate.Constraint.getDefaultInstance());
+          index, build.buf.validate.Rule.getDefaultInstance());
     }
     /**
      * <pre>
      * `cel` is a repeated field used to represent a textual expression
-     * in the Common Expression Language (CEL) syntax. For more information on
-     * CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+     * in the Common Expression Language (CEL) syntax. For more information,
+     * [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
      *
      * ```proto
      * message MyMessage {
@@ -2754,18 +3006,18 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>repeated .buf.validate.Constraint cel = 23 [json_name = "cel"];</code>
+     * <code>repeated .buf.validate.Rule cel = 23 [json_name = "cel"];</code>
      */
-    public java.util.List<build.buf.validate.Constraint.Builder> 
+    public java.util.List<build.buf.validate.Rule.Builder> 
          getCelBuilderList() {
       return internalGetCelFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilder<
-        build.buf.validate.Constraint, build.buf.validate.Constraint.Builder, build.buf.validate.ConstraintOrBuilder> 
+        build.buf.validate.Rule, build.buf.validate.Rule.Builder, build.buf.validate.RuleOrBuilder> 
         internalGetCelFieldBuilder() {
       if (celBuilder_ == null) {
         celBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            build.buf.validate.Constraint, build.buf.validate.Constraint.Builder, build.buf.validate.ConstraintOrBuilder>(
+            build.buf.validate.Rule, build.buf.validate.Rule.Builder, build.buf.validate.RuleOrBuilder>(
                 cel_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
@@ -2778,26 +3030,120 @@ private static final long serialVersionUID = 0L;
     private boolean required_ ;
     /**
      * <pre>
-     * If `required` is true, the field must be populated. A populated field can be
-     * described as "serialized in the wire format," which includes:
-     *
-     * - the following "nullable" fields must be explicitly set to be considered populated:
-     * - singular message fields (whose fields may be unpopulated/default values)
-     * - member fields of a oneof (may be their default value)
-     * - proto3 optional fields (may be their default value)
-     * - proto2 scalar fields (both optional and required)
-     * - proto3 scalar fields must be non-zero to be considered populated
-     * - repeated and map fields must be non-empty to be considered populated
+     * If `required` is true, the field must be set. A validation error is returned
+     * if the field is not set.
      *
      * ```proto
-     * message MyMessage {
-     * // The field `value` must be set to a non-null value.
-     * optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+     * syntax="proto3";
+     *
+     * message FieldsWithPresence {
+     * // Requires any string to be set, including the empty string.
+     * optional string link = 1 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires true or false to be set.
+     * optional bool disabled = 2 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires a message to be set, including the empty message.
+     * SomeMessage msg = 4 [
+     * (buf.validate.field).required = true
+     * ];
      * }
      * ```
+     *
+     * All fields in the example above track presence. By default, Protovalidate
+     * ignores rules on those fields if no value is set. `required` ensures that
+     * the fields are set and valid.
+     *
+     * Fields that don't track presence are always validated by Protovalidate,
+     * whether they are set or not. It is not necessary to add `required`:
+     *
+     * ```proto
+     * syntax="proto3";
+     *
+     * message FieldsWithoutPresence {
+     * // `string.email` always applies, even to an empty string.
+     * string link = 1 [
+     * (buf.validate.field).string.email = true
+     * ];
+     * // `repeated.min_items` always applies, even to an empty list.
+     * repeated string labels = 4 [
+     * (buf.validate.field).repeated.min_items = 1
+     * ];
+     * }
+     * ```
+     *
+     * To learn which fields track presence, see the
+     * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+     *
+     * Note: While field rules can be applied to repeated items, map keys, and map
+     * values, the elements are always considered to be set. Consequently,
+     * specifying `repeated.items.required` is redundant.
      * </pre>
      *
-     * <code>bool required = 25 [json_name = "required"];</code>
+     * <code>optional bool required = 25 [json_name = "required"];</code>
+     * @return Whether the required field is set.
+     */
+    @java.lang.Override
+    public boolean hasRequired() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * If `required` is true, the field must be set. A validation error is returned
+     * if the field is not set.
+     *
+     * ```proto
+     * syntax="proto3";
+     *
+     * message FieldsWithPresence {
+     * // Requires any string to be set, including the empty string.
+     * optional string link = 1 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires true or false to be set.
+     * optional bool disabled = 2 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires a message to be set, including the empty message.
+     * SomeMessage msg = 4 [
+     * (buf.validate.field).required = true
+     * ];
+     * }
+     * ```
+     *
+     * All fields in the example above track presence. By default, Protovalidate
+     * ignores rules on those fields if no value is set. `required` ensures that
+     * the fields are set and valid.
+     *
+     * Fields that don't track presence are always validated by Protovalidate,
+     * whether they are set or not. It is not necessary to add `required`:
+     *
+     * ```proto
+     * syntax="proto3";
+     *
+     * message FieldsWithoutPresence {
+     * // `string.email` always applies, even to an empty string.
+     * string link = 1 [
+     * (buf.validate.field).string.email = true
+     * ];
+     * // `repeated.min_items` always applies, even to an empty list.
+     * repeated string labels = 4 [
+     * (buf.validate.field).repeated.min_items = 1
+     * ];
+     * }
+     * ```
+     *
+     * To learn which fields track presence, see the
+     * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+     *
+     * Note: While field rules can be applied to repeated items, map keys, and map
+     * values, the elements are always considered to be set. Consequently,
+     * specifying `repeated.items.required` is redundant.
+     * </pre>
+     *
+     * <code>optional bool required = 25 [json_name = "required"];</code>
      * @return The required.
      */
     @java.lang.Override
@@ -2806,26 +3152,59 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If `required` is true, the field must be populated. A populated field can be
-     * described as "serialized in the wire format," which includes:
-     *
-     * - the following "nullable" fields must be explicitly set to be considered populated:
-     * - singular message fields (whose fields may be unpopulated/default values)
-     * - member fields of a oneof (may be their default value)
-     * - proto3 optional fields (may be their default value)
-     * - proto2 scalar fields (both optional and required)
-     * - proto3 scalar fields must be non-zero to be considered populated
-     * - repeated and map fields must be non-empty to be considered populated
+     * If `required` is true, the field must be set. A validation error is returned
+     * if the field is not set.
      *
      * ```proto
-     * message MyMessage {
-     * // The field `value` must be set to a non-null value.
-     * optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+     * syntax="proto3";
+     *
+     * message FieldsWithPresence {
+     * // Requires any string to be set, including the empty string.
+     * optional string link = 1 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires true or false to be set.
+     * optional bool disabled = 2 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires a message to be set, including the empty message.
+     * SomeMessage msg = 4 [
+     * (buf.validate.field).required = true
+     * ];
      * }
      * ```
+     *
+     * All fields in the example above track presence. By default, Protovalidate
+     * ignores rules on those fields if no value is set. `required` ensures that
+     * the fields are set and valid.
+     *
+     * Fields that don't track presence are always validated by Protovalidate,
+     * whether they are set or not. It is not necessary to add `required`:
+     *
+     * ```proto
+     * syntax="proto3";
+     *
+     * message FieldsWithoutPresence {
+     * // `string.email` always applies, even to an empty string.
+     * string link = 1 [
+     * (buf.validate.field).string.email = true
+     * ];
+     * // `repeated.min_items` always applies, even to an empty list.
+     * repeated string labels = 4 [
+     * (buf.validate.field).repeated.min_items = 1
+     * ];
+     * }
+     * ```
+     *
+     * To learn which fields track presence, see the
+     * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+     *
+     * Note: While field rules can be applied to repeated items, map keys, and map
+     * values, the elements are always considered to be set. Consequently,
+     * specifying `repeated.items.required` is redundant.
      * </pre>
      *
-     * <code>bool required = 25 [json_name = "required"];</code>
+     * <code>optional bool required = 25 [json_name = "required"];</code>
      * @param value The required to set.
      * @return This builder for chaining.
      */
@@ -2838,26 +3217,59 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * If `required` is true, the field must be populated. A populated field can be
-     * described as "serialized in the wire format," which includes:
-     *
-     * - the following "nullable" fields must be explicitly set to be considered populated:
-     * - singular message fields (whose fields may be unpopulated/default values)
-     * - member fields of a oneof (may be their default value)
-     * - proto3 optional fields (may be their default value)
-     * - proto2 scalar fields (both optional and required)
-     * - proto3 scalar fields must be non-zero to be considered populated
-     * - repeated and map fields must be non-empty to be considered populated
+     * If `required` is true, the field must be set. A validation error is returned
+     * if the field is not set.
      *
      * ```proto
-     * message MyMessage {
-     * // The field `value` must be set to a non-null value.
-     * optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+     * syntax="proto3";
+     *
+     * message FieldsWithPresence {
+     * // Requires any string to be set, including the empty string.
+     * optional string link = 1 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires true or false to be set.
+     * optional bool disabled = 2 [
+     * (buf.validate.field).required = true
+     * ];
+     * // Requires a message to be set, including the empty message.
+     * SomeMessage msg = 4 [
+     * (buf.validate.field).required = true
+     * ];
      * }
      * ```
+     *
+     * All fields in the example above track presence. By default, Protovalidate
+     * ignores rules on those fields if no value is set. `required` ensures that
+     * the fields are set and valid.
+     *
+     * Fields that don't track presence are always validated by Protovalidate,
+     * whether they are set or not. It is not necessary to add `required`:
+     *
+     * ```proto
+     * syntax="proto3";
+     *
+     * message FieldsWithoutPresence {
+     * // `string.email` always applies, even to an empty string.
+     * string link = 1 [
+     * (buf.validate.field).string.email = true
+     * ];
+     * // `repeated.min_items` always applies, even to an empty list.
+     * repeated string labels = 4 [
+     * (buf.validate.field).repeated.min_items = 1
+     * ];
+     * }
+     * ```
+     *
+     * To learn which fields track presence, see the
+     * [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
+     *
+     * Note: While field rules can be applied to repeated items, map keys, and map
+     * values, the elements are always considered to be set. Consequently,
+     * specifying `repeated.items.required` is redundant.
      * </pre>
      *
-     * <code>bool required = 25 [json_name = "required"];</code>
+     * <code>optional bool required = 25 [json_name = "required"];</code>
      * @return This builder for chaining.
      */
     public Builder clearRequired() {
@@ -2870,97 +3282,67 @@ private static final long serialVersionUID = 0L;
     private int ignore_ = 0;
     /**
      * <pre>
-     * Skip validation on the field if its value matches the specified criteria.
-     * See Ignore enum for details.
+     * Ignore validation rules on the field if its value matches the specified
+     * criteria. See the `Ignore` enum for details.
      *
      * ```proto
      * message UpdateRequest {
-     * // The uri rule only applies if the field is populated and not an empty
-     * // string.
-     * optional string url = 1 [
-     * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-     * (buf.validate.field).string.uri = true,
+     * // The uri rule only applies if the field is not an empty string.
+     * string url = 1 [
+     * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+     * (buf.validate.field).string.uri = true
      * ];
      * }
      * ```
      * </pre>
      *
-     * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
-     * @return The enum numeric value on the wire for ignore.
+     * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+     * @return Whether the ignore field is set.
      */
-    @java.lang.Override public int getIgnoreValue() {
-      return ignore_;
+    @java.lang.Override public boolean hasIgnore() {
+      return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <pre>
-     * Skip validation on the field if its value matches the specified criteria.
-     * See Ignore enum for details.
+     * Ignore validation rules on the field if its value matches the specified
+     * criteria. See the `Ignore` enum for details.
      *
      * ```proto
      * message UpdateRequest {
-     * // The uri rule only applies if the field is populated and not an empty
-     * // string.
-     * optional string url = 1 [
-     * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-     * (buf.validate.field).string.uri = true,
+     * // The uri rule only applies if the field is not an empty string.
+     * string url = 1 [
+     * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+     * (buf.validate.field).string.uri = true
      * ];
      * }
      * ```
      * </pre>
      *
-     * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
-     * @param value The enum numeric value on the wire for ignore to set.
-     * @return This builder for chaining.
-     */
-    public Builder setIgnoreValue(int value) {
-      ignore_ = value;
-      bitField0_ |= 0x00000004;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Skip validation on the field if its value matches the specified criteria.
-     * See Ignore enum for details.
-     *
-     * ```proto
-     * message UpdateRequest {
-     * // The uri rule only applies if the field is populated and not an empty
-     * // string.
-     * optional string url = 1 [
-     * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-     * (buf.validate.field).string.uri = true,
-     * ];
-     * }
-     * ```
-     * </pre>
-     *
-     * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+     * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
      * @return The ignore.
      */
     @java.lang.Override
     public build.buf.validate.Ignore getIgnore() {
       build.buf.validate.Ignore result = build.buf.validate.Ignore.forNumber(ignore_);
-      return result == null ? build.buf.validate.Ignore.UNRECOGNIZED : result;
+      return result == null ? build.buf.validate.Ignore.IGNORE_UNSPECIFIED : result;
     }
     /**
      * <pre>
-     * Skip validation on the field if its value matches the specified criteria.
-     * See Ignore enum for details.
+     * Ignore validation rules on the field if its value matches the specified
+     * criteria. See the `Ignore` enum for details.
      *
      * ```proto
      * message UpdateRequest {
-     * // The uri rule only applies if the field is populated and not an empty
-     * // string.
-     * optional string url = 1 [
-     * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-     * (buf.validate.field).string.uri = true,
+     * // The uri rule only applies if the field is not an empty string.
+     * string url = 1 [
+     * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+     * (buf.validate.field).string.uri = true
      * ];
      * }
      * ```
      * </pre>
      *
-     * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+     * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
      * @param value The ignore to set.
      * @return This builder for chaining.
      */
@@ -2973,22 +3355,21 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Skip validation on the field if its value matches the specified criteria.
-     * See Ignore enum for details.
+     * Ignore validation rules on the field if its value matches the specified
+     * criteria. See the `Ignore` enum for details.
      *
      * ```proto
      * message UpdateRequest {
-     * // The uri rule only applies if the field is populated and not an empty
-     * // string.
-     * optional string url = 1 [
-     * (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-     * (buf.validate.field).string.uri = true,
+     * // The uri rule only applies if the field is not an empty string.
+     * string url = 1 [
+     * (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+     * (buf.validate.field).string.uri = true
      * ];
      * }
      * ```
      * </pre>
      *
-     * <code>.buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
+     * <code>optional .buf.validate.Ignore ignore = 27 [json_name = "ignore"];</code>
      * @return This builder for chaining.
      */
     public Builder clearIgnore() {
@@ -6088,123 +6469,23 @@ private static final long serialVersionUID = 0L;
       return timestampBuilder_;
     }
 
-    private boolean skipped_ ;
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool skipped = 24 [json_name = "skipped", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.skipped is deprecated.
-     *     See buf/validate/validate.proto;l=196
-     * @return The skipped.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated public boolean getSkipped() {
-      return skipped_;
-    }
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool skipped = 24 [json_name = "skipped", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.skipped is deprecated.
-     *     See buf/validate/validate.proto;l=196
-     * @param value The skipped to set.
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder setSkipped(boolean value) {
-
-      skipped_ = value;
-      bitField0_ |= 0x01000000;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool skipped = 24 [json_name = "skipped", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.skipped is deprecated.
-     *     See buf/validate/validate.proto;l=196
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder clearSkipped() {
-      bitField0_ = (bitField0_ & ~0x01000000);
-      skipped_ = false;
-      onChanged();
-      return this;
-    }
-
-    private boolean ignoreEmpty_ ;
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool ignore_empty = 26 [json_name = "ignoreEmpty", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.ignore_empty is deprecated.
-     *     See buf/validate/validate.proto;l=198
-     * @return The ignoreEmpty.
-     */
-    @java.lang.Override
-    @java.lang.Deprecated public boolean getIgnoreEmpty() {
-      return ignoreEmpty_;
-    }
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool ignore_empty = 26 [json_name = "ignoreEmpty", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.ignore_empty is deprecated.
-     *     See buf/validate/validate.proto;l=198
-     * @param value The ignoreEmpty to set.
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder setIgnoreEmpty(boolean value) {
-
-      ignoreEmpty_ = value;
-      bitField0_ |= 0x02000000;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-     * </pre>
-     *
-     * <code>bool ignore_empty = 26 [json_name = "ignoreEmpty", deprecated = true];</code>
-     * @deprecated buf.validate.FieldConstraints.ignore_empty is deprecated.
-     *     See buf/validate/validate.proto;l=198
-     * @return This builder for chaining.
-     */
-    @java.lang.Deprecated public Builder clearIgnoreEmpty() {
-      bitField0_ = (bitField0_ & ~0x02000000);
-      ignoreEmpty_ = false;
-      onChanged();
-      return this;
-    }
-
-    // @@protoc_insertion_point(builder_scope:buf.validate.FieldConstraints)
+    // @@protoc_insertion_point(builder_scope:buf.validate.FieldRules)
   }
 
-  // @@protoc_insertion_point(class_scope:buf.validate.FieldConstraints)
-  private static final build.buf.validate.FieldConstraints DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:buf.validate.FieldRules)
+  private static final build.buf.validate.FieldRules DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new build.buf.validate.FieldConstraints();
+    DEFAULT_INSTANCE = new build.buf.validate.FieldRules();
   }
 
-  public static build.buf.validate.FieldConstraints getDefaultInstance() {
+  public static build.buf.validate.FieldRules getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FieldConstraints>
-      PARSER = new com.google.protobuf.AbstractParser<FieldConstraints>() {
+  private static final com.google.protobuf.Parser<FieldRules>
+      PARSER = new com.google.protobuf.AbstractParser<FieldRules>() {
     @java.lang.Override
-    public FieldConstraints parsePartialFrom(
+    public FieldRules parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6223,17 +6504,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<FieldConstraints> parser() {
+  public static com.google.protobuf.Parser<FieldRules> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FieldConstraints> getParserForType() {
+  public com.google.protobuf.Parser<FieldRules> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public build.buf.validate.FieldConstraints getDefaultInstanceForType() {
+  public build.buf.validate.FieldRules getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

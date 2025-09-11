@@ -7,7 +7,7 @@ package build.buf.validate;
 
 /**
  * <pre>
- * WellKnownRegex contain some well-known patterns.
+ * KnownRegex contains some well-known patterns.
  * </pre>
  *
  * Protobuf enum {@code buf.validate.KnownRegex}
@@ -21,7 +21,7 @@ public enum KnownRegex
   KNOWN_REGEX_UNSPECIFIED(0),
   /**
    * <pre>
-   * HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
+   * HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2).
    * </pre>
    *
    * <code>KNOWN_REGEX_HTTP_HEADER_NAME = 1;</code>
@@ -29,13 +29,12 @@ public enum KnownRegex
   KNOWN_REGEX_HTTP_HEADER_NAME(1),
   /**
    * <pre>
-   * HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4).
+   * HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4).
    * </pre>
    *
    * <code>KNOWN_REGEX_HTTP_HEADER_VALUE = 2;</code>
    */
   KNOWN_REGEX_HTTP_HEADER_VALUE(2),
-  UNRECOGNIZED(-1),
   ;
 
   static {
@@ -53,7 +52,7 @@ public enum KnownRegex
   public static final int KNOWN_REGEX_UNSPECIFIED_VALUE = 0;
   /**
    * <pre>
-   * HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
+   * HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2).
    * </pre>
    *
    * <code>KNOWN_REGEX_HTTP_HEADER_NAME = 1;</code>
@@ -61,7 +60,7 @@ public enum KnownRegex
   public static final int KNOWN_REGEX_HTTP_HEADER_NAME_VALUE = 1;
   /**
    * <pre>
-   * HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4).
+   * HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4).
    * </pre>
    *
    * <code>KNOWN_REGEX_HTTP_HEADER_VALUE = 2;</code>
@@ -70,10 +69,6 @@ public enum KnownRegex
 
 
   public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-      throw new java.lang.IllegalArgumentException(
-          "Can't get the number of an unknown enum value.");
-    }
     return value;
   }
 
@@ -114,10 +109,6 @@ public enum KnownRegex
 
   public final com.google.protobuf.Descriptors.EnumValueDescriptor
       getValueDescriptor() {
-    if (this == UNRECOGNIZED) {
-      throw new java.lang.IllegalStateException(
-          "Can't get the descriptor of an unrecognized enum value.");
-    }
     return getDescriptor().getValues().get(ordinal());
   }
   public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -136,9 +127,6 @@ public enum KnownRegex
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
         "EnumValueDescriptor is not for this type.");
-    }
-    if (desc.getIndex() == -1) {
-      return UNRECOGNIZED;
     }
     return VALUES[desc.getIndex()];
   }

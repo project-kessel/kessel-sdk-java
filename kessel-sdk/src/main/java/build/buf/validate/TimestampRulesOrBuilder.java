@@ -8,7 +8,8 @@ package build.buf.validate;
 @com.google.protobuf.Generated
 public interface TimestampRulesOrBuilder extends
     // @@protoc_insertion_point(interface_extends:buf.validate.TimestampRules)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.GeneratedMessage.
+        ExtendableMessageOrBuilder<TimestampRules> {
 
   /**
    * <pre>
@@ -22,7 +23,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the const field is set.
    */
   boolean hasConst();
@@ -38,7 +39,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return The const.
    */
   com.google.protobuf.Timestamp getConst();
@@ -54,7 +55,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Timestamp const = 2 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getConstOrBuilder();
 
@@ -70,7 +71,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the lt field is set.
    */
   boolean hasLt();
@@ -86,7 +87,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
    * @return The lt.
    */
   com.google.protobuf.Timestamp getLt();
@@ -102,7 +103,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lt = 3 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getLtOrBuilder();
 
@@ -118,7 +119,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the lte field is set.
    */
   boolean hasLte();
@@ -134,7 +135,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
    * @return The lte.
    */
   com.google.protobuf.Timestamp getLte();
@@ -150,7 +151,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp lte = 4 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getLteOrBuilder();
 
@@ -166,7 +167,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool lt_now = 7 [json_name = "ltNow", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool lt_now = 7 [json_name = "ltNow", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the ltNow field is set.
    */
   boolean hasLtNow();
@@ -182,7 +183,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool lt_now = 7 [json_name = "ltNow", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool lt_now = 7 [json_name = "ltNow", (.buf.validate.predefined) = { ... }</code>
    * @return The ltNow.
    */
   boolean getLtNow();
@@ -209,7 +210,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the gt field is set.
    */
   boolean hasGt();
@@ -235,7 +236,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
    * @return The gt.
    */
   com.google.protobuf.Timestamp getGt();
@@ -261,7 +262,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gt = 5 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getGtOrBuilder();
 
@@ -287,7 +288,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the gte field is set.
    */
   boolean hasGte();
@@ -313,7 +314,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
    * @return The gte.
    */
   com.google.protobuf.Timestamp getGte();
@@ -339,7 +340,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>.google.protobuf.Timestamp gte = 6 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getGteOrBuilder();
 
@@ -355,7 +356,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool gt_now = 8 [json_name = "gtNow", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool gt_now = 8 [json_name = "gtNow", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the gtNow field is set.
    */
   boolean hasGtNow();
@@ -371,7 +372,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>bool gt_now = 8 [json_name = "gtNow", (.buf.validate.priv.field) = { ... }</code>
+   * <code>bool gt_now = 8 [json_name = "gtNow", (.buf.validate.predefined) = { ... }</code>
    * @return The gtNow.
    */
   boolean getGtNow();
@@ -388,7 +389,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the within field is set.
    */
   boolean hasWithin();
@@ -404,7 +405,7 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.predefined) = { ... }</code>
    * @return The within.
    */
   com.google.protobuf.Duration getWithin();
@@ -420,9 +421,108 @@ public interface TimestampRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional .google.protobuf.Duration within = 9 [json_name = "within", (.buf.validate.predefined) = { ... }</code>
    */
   com.google.protobuf.DurationOrBuilder getWithinOrBuilder();
+
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyTimestamp {
+   * google.protobuf.Timestamp value = 1 [
+   * (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+   * (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated .google.protobuf.Timestamp example = 10 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   */
+  java.util.List<com.google.protobuf.Timestamp> 
+      getExampleList();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyTimestamp {
+   * google.protobuf.Timestamp value = 1 [
+   * (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+   * (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated .google.protobuf.Timestamp example = 10 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   */
+  com.google.protobuf.Timestamp getExample(int index);
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyTimestamp {
+   * google.protobuf.Timestamp value = 1 [
+   * (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+   * (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated .google.protobuf.Timestamp example = 10 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   */
+  int getExampleCount();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyTimestamp {
+   * google.protobuf.Timestamp value = 1 [
+   * (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+   * (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated .google.protobuf.Timestamp example = 10 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   */
+  java.util.List<? extends com.google.protobuf.TimestampOrBuilder> 
+      getExampleOrBuilderList();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MyTimestamp {
+   * google.protobuf.Timestamp value = 1 [
+   * (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+   * (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated .google.protobuf.Timestamp example = 10 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getExampleOrBuilder(
+      int index);
 
   build.buf.validate.TimestampRules.LessThanCase getLessThanCase();
 

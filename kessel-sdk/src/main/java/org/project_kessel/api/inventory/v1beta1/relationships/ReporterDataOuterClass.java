@@ -44,28 +44,28 @@ public final class ReporterDataOuterClass {
       "/reporter_data.proto\022&kessel.inventory.v" +
       "1beta1.relationships\032\037google/api/field_b" +
       "ehavior.proto\032\037google/protobuf/timestamp" +
-      ".proto\032\033buf/validate/validate.proto\"\224\005\n\014" +
-      "ReporterData\022w\n\rreporter_type\030\331\217\231u \001(\0162A" +
+      ".proto\032\033buf/validate/validate.proto\"\223\005\n\014" +
+      "ReporterData\022v\n\rreporter_type\030\331\217\231u \001(\0162A" +
       ".kessel.inventory.v1beta1.relationships." +
-      "ReporterData.ReporterTypeB\013\272H\010\202\001\005\020\001\"\001\000R\r" +
-      "reporter_type\022:\n\024reporter_instance_id\030\272\325" +
-      "\372r \001(\tB\003\340A\003R\024reporter_instance_id\022.\n\020rep" +
-      "orter_version\030\373\356\310\200\001 \001(\tR\020reporter_versio" +
-      "n\022J\n\016first_reported\030\201\355\316\006 \001(\0132\032.google.pr" +
-      "otobuf.TimestampB\003\340A\003R\016first_reported\022I\n" +
-      "\rlast_reported\030\214\235\220\320\001 \001(\0132\032.google.protob" +
-      "uf.TimestampB\003\340A\003R\rlast_reported\022I\n\031subj" +
-      "ect_local_resource_id\030\276\270\331\362\001 \001(\tB\007\272H\004r\002\020\001" +
-      "R\031subject_local_resource_id\022G\n\030object_lo" +
-      "cal_resource_id\030\277\270\331\362\001 \001(\tB\007\272H\004r\002\020\001R\030obje" +
-      "ct_local_resource_id\"t\n\014ReporterType\022\035\n\031" +
-      "REPORTER_TYPE_UNSPECIFIED\020\000\022\027\n\023REPORTER_" +
-      "TYPE_OTHER\020\001\022\007\n\003ACM\020\002\022\007\n\003HBI\020\003\022\007\n\003OCM\020\004\022" +
-      "\021\n\rNOTIFICATIONS\020\005B\216\001\n6org.project_kesse" +
-      "l.api.inventory.v1beta1.relationshipsP\001Z" +
-      "Rgithub.com/project-kessel/inventory-api" +
-      "/api/kessel/inventory/v1beta1/relationsh" +
-      "ipsb\006proto3"
+      "ReporterData.ReporterTypeB\n\272H\007\202\001\004\020\001 \000R\rr" +
+      "eporter_type\022:\n\024reporter_instance_id\030\272\325\372" +
+      "r \001(\tB\003\340A\003R\024reporter_instance_id\022.\n\020repo" +
+      "rter_version\030\373\356\310\200\001 \001(\tR\020reporter_version" +
+      "\022J\n\016first_reported\030\201\355\316\006 \001(\0132\032.google.pro" +
+      "tobuf.TimestampB\003\340A\003R\016first_reported\022I\n\r" +
+      "last_reported\030\214\235\220\320\001 \001(\0132\032.google.protobu" +
+      "f.TimestampB\003\340A\003R\rlast_reported\022I\n\031subje" +
+      "ct_local_resource_id\030\276\270\331\362\001 \001(\tB\007\272H\004r\002\020\001R" +
+      "\031subject_local_resource_id\022G\n\030object_loc" +
+      "al_resource_id\030\277\270\331\362\001 \001(\tB\007\272H\004r\002\020\001R\030objec" +
+      "t_local_resource_id\"t\n\014ReporterType\022\035\n\031R" +
+      "EPORTER_TYPE_UNSPECIFIED\020\000\022\027\n\023REPORTER_T" +
+      "YPE_OTHER\020\001\022\007\n\003ACM\020\002\022\007\n\003HBI\020\003\022\007\n\003OCM\020\004\022\021" +
+      "\n\rNOTIFICATIONS\020\005B\216\001\n6org.project_kessel" +
+      ".api.inventory.v1beta1.relationshipsP\001ZR" +
+      "github.com/project-kessel/inventory-api/" +
+      "api/kessel/inventory/v1beta1/relationshi" +
+      "psb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

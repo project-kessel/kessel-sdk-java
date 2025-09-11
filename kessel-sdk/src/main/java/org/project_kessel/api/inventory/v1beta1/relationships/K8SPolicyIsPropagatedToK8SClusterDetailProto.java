@@ -44,21 +44,21 @@ public final class K8SPolicyIsPropagatedToK8SClusterDetailProto {
       "/k8spolicy_ispropagatedto_k8scluster_det" +
       "ail.proto\022&kessel.inventory.v1beta1.rela" +
       "tionships\032\037google/api/field_behavior.pro" +
-      "to\032\033buf/validate/validate.proto\"\337\002\n\'K8SP" +
+      "to\032\033buf/validate/validate.proto\"\336\002\n\'K8SP" +
       "olicyIsPropagatedToK8SClusterDetail\022,\n\rk" +
       "8s_policy_id\030\270\261\316k \001(\tB\003\340A\003R\rk8s_policy_i" +
       "d\022.\n\016k8s_cluster_id\030\200\313\311r \001(\tB\003\340A\003R\016k8s_c" +
-      "luster_id\022\177\n\006status\030\217\340\310\251\001 \001(\0162V.kessel.i" +
+      "luster_id\022~\n\006status\030\217\340\310\251\001 \001(\0162V.kessel.i" +
       "nventory.v1beta1.relationships.K8SPolicy" +
-      "IsPropagatedToK8SClusterDetail.StatusB\013\272" +
-      "H\010\202\001\005\020\001\"\001\000R\006status\"U\n\006Status\022\026\n\022STATUS_U" +
-      "NSPECIFIED\020\000\022\020\n\014STATUS_OTHER\020\001\022\016\n\nVIOLAT" +
-      "IONS\020\002\022\021\n\rNO_VIOLATIONS\020\003B\274\001\n6org.projec" +
-      "t_kessel.api.inventory.v1beta1.relations" +
-      "hipsB,K8SPolicyIsPropagatedToK8SClusterD" +
-      "etailProtoP\001ZRgithub.com/project-kessel/" +
-      "inventory-api/api/kessel/inventory/v1bet" +
-      "a1/relationshipsb\006proto3"
+      "IsPropagatedToK8SClusterDetail.StatusB\n\272" +
+      "H\007\202\001\004\020\001 \000R\006status\"U\n\006Status\022\026\n\022STATUS_UN" +
+      "SPECIFIED\020\000\022\020\n\014STATUS_OTHER\020\001\022\016\n\nVIOLATI" +
+      "ONS\020\002\022\021\n\rNO_VIOLATIONS\020\003B\274\001\n6org.project" +
+      "_kessel.api.inventory.v1beta1.relationsh" +
+      "ipsB,K8SPolicyIsPropagatedToK8SClusterDe" +
+      "tailProtoP\001ZRgithub.com/project-kessel/i" +
+      "nventory-api/api/kessel/inventory/v1beta" +
+      "1/relationshipsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

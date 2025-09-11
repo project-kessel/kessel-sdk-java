@@ -19,7 +19,9 @@ public interface AnyRulesOrBuilder extends
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -38,7 +40,9 @@ public interface AnyRulesOrBuilder extends
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -56,7 +60,9 @@ public interface AnyRulesOrBuilder extends
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -75,7 +81,9 @@ public interface AnyRulesOrBuilder extends
    * ```proto
    * message MyAny {
    * //  The `value` field must have a `type_url` equal to one of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -93,8 +101,10 @@ public interface AnyRulesOrBuilder extends
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -110,8 +120,10 @@ public interface AnyRulesOrBuilder extends
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -126,8 +138,10 @@ public interface AnyRulesOrBuilder extends
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>
@@ -143,8 +157,10 @@ public interface AnyRulesOrBuilder extends
    *
    * ```proto
    * message MyAny {
-   * // The field `value` must not have a `type_url` equal to any of the specified values.
-   * google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+   * //  The `value` field must not have a `type_url` equal to any of the specified values.
+   * google.protobuf.Any value = 1 [(buf.validate.field).any = {
+   * not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+   * }];
    * }
    * ```
    * </pre>

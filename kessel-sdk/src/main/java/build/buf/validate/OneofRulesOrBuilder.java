@@ -6,15 +6,14 @@
 package build.buf.validate;
 
 @com.google.protobuf.Generated
-public interface OneofConstraintsOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:buf.validate.OneofConstraints)
+public interface OneofRulesOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:buf.validate.OneofRules)
     com.google.protobuf.MessageOrBuilder {
 
   /**
    * <pre>
-   * If `required` is true, exactly one field of the oneof must be present. A
-   * validation error is returned if no fields in the oneof are present. The
-   * field itself may still be a default value; further constraints
+   * If `required` is true, exactly one field of the oneof must be set. A
+   * validation error is returned if no fields in the oneof are set. Further rules
    * should be placed on the fields themselves to ensure they are valid values,
    * such as `min_len` or `gt`.
    *
@@ -37,9 +36,8 @@ public interface OneofConstraintsOrBuilder extends
   boolean hasRequired();
   /**
    * <pre>
-   * If `required` is true, exactly one field of the oneof must be present. A
-   * validation error is returned if no fields in the oneof are present. The
-   * field itself may still be a default value; further constraints
+   * If `required` is true, exactly one field of the oneof must be set. A
+   * validation error is returned if no fields in the oneof are set. Further rules
    * should be placed on the fields themselves to ensure they are valid values,
    * such as `min_len` or `gt`.
    *

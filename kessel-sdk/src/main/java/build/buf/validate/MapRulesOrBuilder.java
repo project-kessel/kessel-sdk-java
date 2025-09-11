@@ -8,7 +8,8 @@ package build.buf.validate;
 @com.google.protobuf.Generated
 public interface MapRulesOrBuilder extends
     // @@protoc_insertion_point(interface_extends:buf.validate.MapRules)
-    com.google.protobuf.MessageOrBuilder {
+    com.google.protobuf.GeneratedMessage.
+        ExtendableMessageOrBuilder<MapRules> {
 
   /**
    * <pre>
@@ -23,7 +24,7 @@ public interface MapRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_pairs = 1 [json_name = "minPairs", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_pairs = 1 [json_name = "minPairs", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the minPairs field is set.
    */
   boolean hasMinPairs();
@@ -40,7 +41,7 @@ public interface MapRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 min_pairs = 1 [json_name = "minPairs", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 min_pairs = 1 [json_name = "minPairs", (.buf.validate.predefined) = { ... }</code>
    * @return The minPairs.
    */
   long getMinPairs();
@@ -58,7 +59,7 @@ public interface MapRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_pairs = 2 [json_name = "maxPairs", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_pairs = 2 [json_name = "maxPairs", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the maxPairs field is set.
    */
   boolean hasMaxPairs();
@@ -75,18 +76,18 @@ public interface MapRulesOrBuilder extends
    * ```
    * </pre>
    *
-   * <code>optional uint64 max_pairs = 2 [json_name = "maxPairs", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional uint64 max_pairs = 2 [json_name = "maxPairs", (.buf.validate.predefined) = { ... }</code>
    * @return The maxPairs.
    */
   long getMaxPairs();
 
   /**
    * <pre>
-   * Specifies the constraints to be applied to each key in the field.
+   * Specifies the rules to be applied to each key in the field.
    *
    * ```proto
    * message MyMap {
-   * // The keys in the field `value` must follow the specified constraints.
+   * // The keys in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.keys = {
    * string: {
    * min_len: 3
@@ -95,19 +96,21 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Map keys cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints keys = 4 [json_name = "keys"];</code>
+   * <code>optional .buf.validate.FieldRules keys = 4 [json_name = "keys"];</code>
    * @return Whether the keys field is set.
    */
   boolean hasKeys();
   /**
    * <pre>
-   * Specifies the constraints to be applied to each key in the field.
+   * Specifies the rules to be applied to each key in the field.
    *
    * ```proto
    * message MyMap {
-   * // The keys in the field `value` must follow the specified constraints.
+   * // The keys in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.keys = {
    * string: {
    * min_len: 3
@@ -116,19 +119,21 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Map keys cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints keys = 4 [json_name = "keys"];</code>
+   * <code>optional .buf.validate.FieldRules keys = 4 [json_name = "keys"];</code>
    * @return The keys.
    */
-  build.buf.validate.FieldConstraints getKeys();
+  build.buf.validate.FieldRules getKeys();
   /**
    * <pre>
-   * Specifies the constraints to be applied to each key in the field.
+   * Specifies the rules to be applied to each key in the field.
    *
    * ```proto
    * message MyMap {
-   * // The keys in the field `value` must follow the specified constraints.
+   * // The keys in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.keys = {
    * string: {
    * min_len: 3
@@ -137,21 +142,23 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   *
+   * Note that the `required` rule does not apply. Map keys cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints keys = 4 [json_name = "keys"];</code>
+   * <code>optional .buf.validate.FieldRules keys = 4 [json_name = "keys"];</code>
    */
-  build.buf.validate.FieldConstraintsOrBuilder getKeysOrBuilder();
+  build.buf.validate.FieldRulesOrBuilder getKeysOrBuilder();
 
   /**
    * <pre>
-   * Specifies the constraints to be applied to the value of each key in the
+   * Specifies the rules to be applied to the value of each key in the
    * field. Message values will still have their validations evaluated unless
-   * skip is specified here.
+   * `ignore` is specified.
    *
    * ```proto
    * message MyMap {
-   * // The values in the field `value` must follow the specified constraints.
+   * // The values in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.values = {
    * string: {
    * min_len: 5
@@ -160,21 +167,22 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   * Note that the `required` rule does not apply. Map values cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints values = 5 [json_name = "values"];</code>
+   * <code>optional .buf.validate.FieldRules values = 5 [json_name = "values"];</code>
    * @return Whether the values field is set.
    */
   boolean hasValues();
   /**
    * <pre>
-   * Specifies the constraints to be applied to the value of each key in the
+   * Specifies the rules to be applied to the value of each key in the
    * field. Message values will still have their validations evaluated unless
-   * skip is specified here.
+   * `ignore` is specified.
    *
    * ```proto
    * message MyMap {
-   * // The values in the field `value` must follow the specified constraints.
+   * // The values in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.values = {
    * string: {
    * min_len: 5
@@ -183,21 +191,22 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   * Note that the `required` rule does not apply. Map values cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints values = 5 [json_name = "values"];</code>
+   * <code>optional .buf.validate.FieldRules values = 5 [json_name = "values"];</code>
    * @return The values.
    */
-  build.buf.validate.FieldConstraints getValues();
+  build.buf.validate.FieldRules getValues();
   /**
    * <pre>
-   * Specifies the constraints to be applied to the value of each key in the
+   * Specifies the rules to be applied to the value of each key in the
    * field. Message values will still have their validations evaluated unless
-   * skip is specified here.
+   * `ignore` is specified.
    *
    * ```proto
    * message MyMap {
-   * // The values in the field `value` must follow the specified constraints.
+   * // The values in the field `value` must follow the specified rules.
    * map&lt;string, string&gt; value = 1 [(buf.validate.field).map.values = {
    * string: {
    * min_len: 5
@@ -206,9 +215,10 @@ public interface MapRulesOrBuilder extends
    * }];
    * }
    * ```
+   * Note that the `required` rule does not apply. Map values cannot be unset.
    * </pre>
    *
-   * <code>optional .buf.validate.FieldConstraints values = 5 [json_name = "values"];</code>
+   * <code>optional .buf.validate.FieldRules values = 5 [json_name = "values"];</code>
    */
-  build.buf.validate.FieldConstraintsOrBuilder getValuesOrBuilder();
+  build.buf.validate.FieldRulesOrBuilder getValuesOrBuilder();
 }

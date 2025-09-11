@@ -7,14 +7,15 @@ package build.buf.validate;
 
 /**
  * <pre>
- * SFixed64Rules describes the constraints applied to `fixed64` values.
+ * SFixed64Rules describes the rules applied to `fixed64` values.
  * </pre>
  *
  * Protobuf type {@code buf.validate.SFixed64Rules}
  */
 @com.google.protobuf.Generated
 public final class SFixed64Rules extends
-    com.google.protobuf.GeneratedMessage implements
+    com.google.protobuf.GeneratedMessage.ExtendableMessage<
+      SFixed64Rules> implements
     // @@protoc_insertion_point(message_implements:buf.validate.SFixed64Rules)
     SFixed64RulesOrBuilder {
 private static final long serialVersionUID = 0L;
@@ -28,12 +29,13 @@ private static final long serialVersionUID = 0L;
       SFixed64Rules.class.getName());
   }
   // Use SFixed64Rules.newBuilder() to construct.
-  private SFixed64Rules(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  private SFixed64Rules(com.google.protobuf.GeneratedMessage.ExtendableBuilder<build.buf.validate.SFixed64Rules, ?> builder) {
     super(builder);
   }
   private SFixed64Rules() {
     in_ = emptyLongList();
     notIn_ = emptyLongList();
+    example_ = emptyLongList();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
@@ -149,7 +151,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the const field is set.
    */
   @java.lang.Override
@@ -169,7 +171,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+   * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
    * @return The const.
    */
   @java.lang.Override
@@ -192,7 +194,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the lt field is set.
    */
   @java.lang.Override
@@ -213,7 +215,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
    * @return The lt.
    */
   @java.lang.Override
@@ -239,7 +241,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the lte field is set.
    */
   @java.lang.Override
@@ -260,7 +262,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
    * @return The lte.
    */
   @java.lang.Override
@@ -294,7 +296,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the gt field is set.
    */
   @java.lang.Override
@@ -323,7 +325,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
    * @return The gt.
    */
   @java.lang.Override
@@ -357,7 +359,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
    * @return Whether the gte field is set.
    */
   @java.lang.Override
@@ -386,7 +388,7 @@ private static final long serialVersionUID = 0L;
    * ```
    * </pre>
    *
-   * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+   * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
    * @return The gte.
    */
   @java.lang.Override
@@ -410,12 +412,12 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the in.
    */
   @java.lang.Override
@@ -432,12 +434,12 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @return The count of in.
    */
   public int getInCount() {
@@ -452,19 +454,18 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The in at the given index.
    */
   public long getIn(int index) {
     return in_.getLong(index);
   }
-  private int inMemoizedSerializedSize = -1;
 
   public static final int NOT_IN_FIELD_NUMBER = 7;
   @SuppressWarnings("serial")
@@ -479,12 +480,12 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must not be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return A list containing the notIn.
    */
   @java.lang.Override
@@ -501,12 +502,12 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must not be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @return The count of notIn.
    */
   public int getNotInCount() {
@@ -521,19 +522,92 @@ private static final long serialVersionUID = 0L;
    * ```proto
    * message MySFixed64 {
    * // value must not be in list [1, 2, 3]
-   * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+   * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
    * }
    * ```
    * </pre>
    *
-   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+   * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
    * @param index The index of the element to return.
    * @return The notIn at the given index.
    */
   public long getNotIn(int index) {
     return notIn_.getLong(index);
   }
-  private int notInMemoizedSerializedSize = -1;
+
+  public static final int EXAMPLE_FIELD_NUMBER = 8;
+  @SuppressWarnings("serial")
+  private com.google.protobuf.Internal.LongList example_ =
+      emptyLongList();
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MySFixed64 {
+   * sfixed64 value = 1 [
+   * (buf.validate.field).sfixed64.example = 1,
+   * (buf.validate.field).sfixed64.example = 2
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return A list containing the example.
+   */
+  @java.lang.Override
+  public java.util.List<java.lang.Long>
+      getExampleList() {
+    return example_;
+  }
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MySFixed64 {
+   * sfixed64 value = 1 [
+   * (buf.validate.field).sfixed64.example = 1,
+   * (buf.validate.field).sfixed64.example = 2
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @return The count of example.
+   */
+  public int getExampleCount() {
+    return example_.size();
+  }
+  /**
+   * <pre>
+   * `example` specifies values that the field may have. These values SHOULD
+   * conform to other rules. `example` values will not impact validation
+   * but may be used as helpful guidance on how to populate the given field.
+   *
+   * ```proto
+   * message MySFixed64 {
+   * sfixed64 value = 1 [
+   * (buf.validate.field).sfixed64.example = 1,
+   * (buf.validate.field).sfixed64.example = 2
+   * ];
+   * }
+   * ```
+   * </pre>
+   *
+   * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+   * @param index The index of the element to return.
+   * @return The example at the given index.
+   */
+  public long getExample(int index) {
+    return example_.getLong(index);
+  }
 
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
@@ -542,6 +616,10 @@ private static final long serialVersionUID = 0L;
     if (isInitialized == 1) return true;
     if (isInitialized == 0) return false;
 
+    if (!extensionsAreInitialized()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
     memoizedIsInitialized = 1;
     return true;
   }
@@ -549,7 +627,9 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    getSerializedSize();
+    com.google.protobuf.GeneratedMessage
+      .ExtendableMessage.ExtensionSerializer
+        extensionWriter = newExtensionSerializer();
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeSFixed64(1, const_);
     }
@@ -569,20 +649,16 @@ private static final long serialVersionUID = 0L;
       output.writeSFixed64(
           5, (long)((java.lang.Long) greaterThan_));
     }
-    if (getInList().size() > 0) {
-      output.writeUInt32NoTag(50);
-      output.writeUInt32NoTag(inMemoizedSerializedSize);
-    }
     for (int i = 0; i < in_.size(); i++) {
-      output.writeSFixed64NoTag(in_.getLong(i));
-    }
-    if (getNotInList().size() > 0) {
-      output.writeUInt32NoTag(58);
-      output.writeUInt32NoTag(notInMemoizedSerializedSize);
+      output.writeSFixed64(6, in_.getLong(i));
     }
     for (int i = 0; i < notIn_.size(); i++) {
-      output.writeSFixed64NoTag(notIn_.getLong(i));
+      output.writeSFixed64(7, notIn_.getLong(i));
     }
+    for (int i = 0; i < example_.size(); i++) {
+      output.writeSFixed64(8, example_.getLong(i));
+    }
+    extensionWriter.writeUntil(536870912, output);
     getUnknownFields().writeTo(output);
   }
 
@@ -620,24 +696,21 @@ private static final long serialVersionUID = 0L;
       int dataSize = 0;
       dataSize = 8 * getInList().size();
       size += dataSize;
-      if (!getInList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      inMemoizedSerializedSize = dataSize;
+      size += 1 * getInList().size();
     }
     {
       int dataSize = 0;
       dataSize = 8 * getNotInList().size();
       size += dataSize;
-      if (!getNotInList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      notInMemoizedSerializedSize = dataSize;
+      size += 1 * getNotInList().size();
     }
+    {
+      int dataSize = 0;
+      dataSize = 8 * getExampleList().size();
+      size += dataSize;
+      size += 1 * getExampleList().size();
+    }
+    size += extensionsSerializedSize();
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -662,6 +735,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getInList())) return false;
     if (!getNotInList()
         .equals(other.getNotInList())) return false;
+    if (!getExampleList()
+        .equals(other.getExampleList())) return false;
     if (!getLessThanCase().equals(other.getLessThanCase())) return false;
     switch (lessThanCase_) {
       case 2:
@@ -689,6 +764,8 @@ private static final long serialVersionUID = 0L;
       default:
     }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+    if (!getExtensionFields().equals(other.getExtensionFields()))
+      return false;
     return true;
   }
 
@@ -711,6 +788,10 @@ private static final long serialVersionUID = 0L;
     if (getNotInCount() > 0) {
       hash = (37 * hash) + NOT_IN_FIELD_NUMBER;
       hash = (53 * hash) + getNotInList().hashCode();
+    }
+    if (getExampleCount() > 0) {
+      hash = (37 * hash) + EXAMPLE_FIELD_NUMBER;
+      hash = (53 * hash) + getExampleList().hashCode();
     }
     switch (lessThanCase_) {
       case 2:
@@ -740,6 +821,7 @@ private static final long serialVersionUID = 0L;
       case 0:
       default:
     }
+    hash = hashFields(hash, getExtensionFields());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -839,13 +921,14 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * SFixed64Rules describes the constraints applied to `fixed64` values.
+   * SFixed64Rules describes the rules applied to `fixed64` values.
    * </pre>
    *
    * Protobuf type {@code buf.validate.SFixed64Rules}
    */
   public static final class Builder extends
-      com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+      com.google.protobuf.GeneratedMessage.ExtendableBuilder<
+        build.buf.validate.SFixed64Rules, Builder> implements
       // @@protoc_insertion_point(builder_implements:buf.validate.SFixed64Rules)
       build.buf.validate.SFixed64RulesOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -878,6 +961,7 @@ private static final long serialVersionUID = 0L;
       const_ = 0L;
       in_ = emptyLongList();
       notIn_ = emptyLongList();
+      example_ = emptyLongList();
       lessThanCase_ = 0;
       lessThan_ = null;
       greaterThanCase_ = 0;
@@ -929,6 +1013,10 @@ private static final long serialVersionUID = 0L;
         notIn_.makeImmutable();
         result.notIn_ = notIn_;
       }
+      if (((from_bitField0_ & 0x00000080) != 0)) {
+        example_.makeImmutable();
+        result.example_ = example_;
+      }
       result.bitField0_ |= to_bitField0_;
     }
 
@@ -976,6 +1064,17 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       }
+      if (!other.example_.isEmpty()) {
+        if (example_.isEmpty()) {
+          example_ = other.example_;
+          example_.makeImmutable();
+          bitField0_ |= 0x00000080;
+        } else {
+          ensureExampleIsMutable();
+          example_.addAll(other.example_);
+        }
+        onChanged();
+      }
       switch (other.getLessThanCase()) {
         case LT: {
           setLt(other.getLt());
@@ -1002,6 +1101,7 @@ private static final long serialVersionUID = 0L;
           break;
         }
       }
+      this.mergeExtensionFields(other);
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -1009,6 +1109,9 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public final boolean isInitialized() {
+      if (!extensionsAreInitialized()) {
+        return false;
+      }
       return true;
     }
 
@@ -1087,6 +1190,23 @@ private static final long serialVersionUID = 0L;
               input.popLimit(limit);
               break;
             } // case 58
+            case 65: {
+              long v = input.readSFixed64();
+              ensureExampleIsMutable();
+              example_.addLong(v);
+              break;
+            } // case 65
+            case 66: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              int alloc = length > 4096 ? 4096 : length;
+              ensureExampleIsMutable(alloc / 8);
+              while (input.getBytesUntilLimit() > 0) {
+                example_.addLong(input.readSFixed64());
+              }
+              input.popLimit(limit);
+              break;
+            } // case 66
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1148,7 +1268,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the const field is set.
      */
     @java.lang.Override
@@ -1168,7 +1288,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return The const.
      */
     @java.lang.Override
@@ -1188,7 +1308,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @param value The const to set.
      * @return This builder for chaining.
      */
@@ -1212,7 +1332,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.priv.field) = { ... }</code>
+     * <code>optional sfixed64 const = 1 [json_name = "const", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearConst() {
@@ -1236,7 +1356,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the lt field is set.
      */
     public boolean hasLt() {
@@ -1256,7 +1376,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
      * @return The lt.
      */
     public long getLt() {
@@ -1279,7 +1399,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
      * @param value The lt to set.
      * @return This builder for chaining.
      */
@@ -1304,7 +1424,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lt = 2 [json_name = "lt", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearLt() {
@@ -1330,7 +1450,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the lte field is set.
      */
     public boolean hasLte() {
@@ -1350,7 +1470,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
      * @return The lte.
      */
     public long getLte() {
@@ -1373,7 +1493,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
      * @param value The lte to set.
      * @return This builder for chaining.
      */
@@ -1398,7 +1518,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 lte = 3 [json_name = "lte", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearLte() {
@@ -1432,7 +1552,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the gt field is set.
      */
     public boolean hasGt() {
@@ -1460,7 +1580,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
      * @return The gt.
      */
     public long getGt() {
@@ -1491,7 +1611,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
      * @param value The gt to set.
      * @return This builder for chaining.
      */
@@ -1524,7 +1644,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gt = 4 [json_name = "gt", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearGt() {
@@ -1558,7 +1678,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
      * @return Whether the gte field is set.
      */
     public boolean hasGte() {
@@ -1586,7 +1706,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
      * @return The gte.
      */
     public long getGte() {
@@ -1617,7 +1737,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
      * @param value The gte to set.
      * @return This builder for chaining.
      */
@@ -1650,7 +1770,7 @@ private static final long serialVersionUID = 0L;
      * ```
      * </pre>
      *
-     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.priv.field) = { ... }</code>
+     * <code>sfixed64 gte = 5 [json_name = "gte", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearGte() {
@@ -1684,12 +1804,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return A list containing the in.
      */
     public java.util.List<java.lang.Long>
@@ -1706,12 +1826,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return The count of in.
      */
     public int getInCount() {
@@ -1726,12 +1846,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param index The index of the element to return.
      * @return The in at the given index.
      */
@@ -1747,12 +1867,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param index The index to set the value at.
      * @param value The in to set.
      * @return This builder for chaining.
@@ -1775,12 +1895,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param value The in to add.
      * @return This builder for chaining.
      */
@@ -1801,12 +1921,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @param values The in to add.
      * @return This builder for chaining.
      */
@@ -1828,12 +1948,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 in = 6 [json_name = "in", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearIn() {
@@ -1865,12 +1985,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return A list containing the notIn.
      */
     public java.util.List<java.lang.Long>
@@ -1887,12 +2007,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return The count of notIn.
      */
     public int getNotInCount() {
@@ -1907,12 +2027,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param index The index of the element to return.
      * @return The notIn at the given index.
      */
@@ -1928,12 +2048,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param index The index to set the value at.
      * @param value The notIn to set.
      * @return This builder for chaining.
@@ -1956,12 +2076,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param value The notIn to add.
      * @return This builder for chaining.
      */
@@ -1982,12 +2102,12 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @param values The notIn to add.
      * @return This builder for chaining.
      */
@@ -2009,17 +2129,212 @@ private static final long serialVersionUID = 0L;
      * ```proto
      * message MySFixed64 {
      * // value must not be in list [1, 2, 3]
-     * repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+     * sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
      * }
      * ```
      * </pre>
      *
-     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.priv.field) = { ... }</code>
+     * <code>repeated sfixed64 not_in = 7 [json_name = "notIn", (.buf.validate.predefined) = { ... }</code>
      * @return This builder for chaining.
      */
     public Builder clearNotIn() {
       notIn_ = emptyLongList();
       bitField0_ = (bitField0_ & ~0x00000040);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.Internal.LongList example_ = emptyLongList();
+    private void ensureExampleIsMutable() {
+      if (!example_.isModifiable()) {
+        example_ = makeMutableCopy(example_);
+      }
+      bitField0_ |= 0x00000080;
+    }
+    private void ensureExampleIsMutable(int capacity) {
+      if (!example_.isModifiable()) {
+        example_ = makeMutableCopy(example_, capacity);
+      }
+      bitField0_ |= 0x00000080;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return A list containing the example.
+     */
+    public java.util.List<java.lang.Long>
+        getExampleList() {
+      example_.makeImmutable();
+      return example_;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return The count of example.
+     */
+    public int getExampleCount() {
+      return example_.size();
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The example at the given index.
+     */
+    public long getExample(int index) {
+      return example_.getLong(index);
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param index The index to set the value at.
+     * @param value The example to set.
+     * @return This builder for chaining.
+     */
+    public Builder setExample(
+        int index, long value) {
+
+      ensureExampleIsMutable();
+      example_.setLong(index, value);
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param value The example to add.
+     * @return This builder for chaining.
+     */
+    public Builder addExample(long value) {
+
+      ensureExampleIsMutable();
+      example_.addLong(value);
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @param values The example to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllExample(
+        java.lang.Iterable<? extends java.lang.Long> values) {
+      ensureExampleIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, example_);
+      bitField0_ |= 0x00000080;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * `example` specifies values that the field may have. These values SHOULD
+     * conform to other rules. `example` values will not impact validation
+     * but may be used as helpful guidance on how to populate the given field.
+     *
+     * ```proto
+     * message MySFixed64 {
+     * sfixed64 value = 1 [
+     * (buf.validate.field).sfixed64.example = 1,
+     * (buf.validate.field).sfixed64.example = 2
+     * ];
+     * }
+     * ```
+     * </pre>
+     *
+     * <code>repeated sfixed64 example = 8 [json_name = "example", (.buf.validate.predefined) = { ... }</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearExample() {
+      example_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000080);
       onChanged();
       return this;
     }
