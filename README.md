@@ -66,7 +66,7 @@ cd examples
 
 ## Release Instructions
 
-This section provides step-by-step instructions for maintainers to release a new version of the Kessel SDK for Node.js.
+This section provides step-by-step instructions for maintainers to release a new version of the Kessel SDK for Java.
 
 ### Version Management
 
