@@ -34,6 +34,7 @@ Check out the [examples directory](./examples) for working code samples:
 
 Run examples:
 ```bash
+./mvnw clean install
 cd examples
 ../mvnw compile exec:java -Prun-auth
 ```
