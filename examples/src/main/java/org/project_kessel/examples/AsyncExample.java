@@ -61,6 +61,7 @@ public class AsyncExample {
             public void onError(Throwable throwable) {
                 System.out.println("gRPC error occurred during Check:");
                 throwable.printStackTrace();
+                clientAndChannel.getRight().shutdown();
             }
 
             @Override
