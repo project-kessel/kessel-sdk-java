@@ -1,0 +1,10 @@
+version: v2
+inputs:
+  - module: buf.build/project-kessel/inventory-api
+plugins:
+  - remote: buf.build/protocolbuffers/java:v32.0
+    out: kessel-sdk/src/main/java
+    include_imports: true
+  - remote: buf.build/grpc/java:v1.75.0
+    out: kessel-sdk/src/main/java
+    include_imports: true
