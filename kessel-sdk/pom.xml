@@ -36,11 +36,6 @@
             <version>${protobuf.version}</version>
         </dependency>
         <dependency>
-            <groupId>build.buf</groupId>
-            <artifactId>protovalidate</artifactId>
-            <version>${protovalidate.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>oauth2-oidc-sdk</artifactId>
             <version>${nimbus-oauth.version}</version>

@@ -26,8 +26,7 @@
         <!-- Dependency versions -->
         <grpc.version>1.75.0</grpc.version>
         <protobuf.version>4.32.0</protobuf.version>
-        <protovalidate.version>0.14.1</protovalidate.version>
-        <nimbus-oauth.version>11.20.1</nimbus-oauth.version>
+        <nimbus-oauth.version>11.28</nimbus-oauth.version>
     </properties>
 
 
