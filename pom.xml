@@ -4,13 +4,37 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.project_kessel</groupId>
+    <groupId>org.project-kessel</groupId>
     <artifactId>kessel-sdk-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Kessel SDK Parent</name>
     <description>Parent POM for Project Kessel Java SDK</description>
+    <url>https://github.com/project-kessel/kessel-sdk-java</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>project-kessel</id>
+            <name>Project Kessel</name>
+            <url>https://github.com/project-kessel</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/project-kessel/kessel-sdk-java</url>
+        <connection>scm:git:https://github.com/project-kessel/kessel-sdk-java.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/project-kessel/kessel-sdk-java.git</developerConnection>
+        <tag>main</tag>
+    </scm>
 
     <modules>
         <module>kessel-sdk</module>
@@ -27,6 +51,9 @@
         <grpc.version>1.75.0</grpc.version>
         <protobuf.version>4.32.0</protobuf.version>
         <nimbus-oauth.version>11.28</nimbus-oauth.version>
+        
+        <!-- Do not deploy the parent POM -->
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
 

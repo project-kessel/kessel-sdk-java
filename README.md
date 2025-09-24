@@ -14,7 +14,7 @@ Add to your Maven `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>org.project_kessel</groupId>
+    <groupId>org.project-kessel</groupId>
     <artifactId>kessel-sdk</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -34,7 +34,7 @@ Check out the [examples directory](./examples) for working code samples:
 
 Run examples:
 ```bash
-./mvnw clean install
+./mvnw clean install -Dgpg.skip
 cd examples
 ../mvnw compile exec:java -Prun-auth
 ```
@@ -78,6 +78,83 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/). Version n
 - **PATCH**: Increment for backward-compatible bug fixes
 
 **Note**: SDK versions across different languages (Ruby, Python, Go, etc.) do not need to be synchronized. Each language SDK can evolve independently based on its specific requirements and release schedule.
+
+### Prerequisites for Release
+
+- Write access to the GitHub repository
+- Maven central account with publish access to the `org.project-kessel` namespace
+- Ensure quality checks are passing
+- Review and update CHANGELOG or release notes as needed
+- Java 21 or higher
+- [buf](https://github.com/bufbuild/buf) for protobuf/gRPC code generation:
+  ```bash
+  # On macOS
+  brew install bufbuild/buf/buf
+  
+  # On Linux
+  curl -sSL "https://github.com/bufbuild/buf/releases/latest/download/buf-$(uname -s)-$(uname -m)" -o "/usr/local/bin/buf" && chmod +x "/usr/local/bin/buf"
+  ```
+
+### Release Process
+
+1. **Update the Version**
+
+```bash
+# Edit pyproject.toml
+# Update the <version></version> field to the new version number
+vim kessel-sdk/pom.xml
+```
+
+2. **Update Dependencies (if needed)**
+
+```bash
+# Regenerate gRPC code if there are updates to the Kessel Inventory API
+buf generate
+```
+
+3. **Run Quality Checks**
+
+```bash
+# Build the project
+./mvnw clean install -Dgpg.skip
+# Test that examples can compile without errors
+cd examples
+../mvnw compile exec:java -Prun-auth
+```
+
+4. **Commit and Push Changes**
+
+```bash
+# Revert changes to pom.xml
+git stash
+# Commit any related changes (if any, e.g. proto updates)
+git commit -m "chore: bump version to X.Y.Z"
+git push origin main # or git push upstream main
+```
+
+5. **Build and Publish the Package**
+
+```bash
+# Push deployment to maven central
+./mvnw -B clean deploy
+```
+Check deployment page for errors before publishing on maven web portal
+
+6. **Tag the Release**
+
+```bash
+# Create and push a git tag
+git tag -a vX.Y.Z -m "Release version X.Y.Z"
+git push origin vX.Y.Z
+```
+
+7. **Create GitHub Release**
+
+- Go to the [GitHub Releases page](https://github.com/project-kessel/kessel-sdk-py/releases)
+- Click "Create a new release"
+- Select the tag you just created
+- Add release notes describing the changes
+- Publish the release
 
 ## License
 
