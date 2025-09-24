@@ -34,7 +34,7 @@ Check out the [examples directory](./examples) for working code samples:
 
 Run examples:
 ```bash
-./mvnw clean install -Dgpg.skip
+./mvnw clean install
 cd examples
 ../mvnw compile exec:java -Prun-auth
 ```
@@ -118,7 +118,7 @@ buf generate
 
 ```bash
 # Build the project
-./mvnw clean install -Dgpg.skip
+./mvnw clean install
 # Test that examples can compile without errors
 cd examples
 ../mvnw compile exec:java -Prun-auth
@@ -143,7 +143,7 @@ For publishing it is also required to have a [GPG key](https://central.sonatype.
 
 ```bash
 # Push deployment to maven central
-./mvnw -B clean deploy
+./mvnw -B clean deploy -Psign
 ```
 Check deployment page for errors before publishing on maven web portal.
 
