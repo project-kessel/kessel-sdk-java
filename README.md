@@ -124,17 +124,7 @@ cd examples
 ../mvnw compile exec:java -Prun-auth
 ```
 
-4. **Commit and Push Changes**
-
-```bash
-# Revert changes to pom.xml
-git stash
-# Commit any related changes (if any, e.g. proto updates)
-git commit -m "chore: bump version to X.Y.Z"
-git push origin main # or git push upstream main
-```
-
-5. **Build and Publish the Package**
+4. **Build and Publish the Package**
 
 It's required to configure your `settings.xml` with token credentials before deploying.
 You can follow the instructions found [here](https://central.sonatype.org/publish/publish-portal-maven/#credentials) for generating a user token and configuring your `setings.xml`.
@@ -146,6 +136,16 @@ For publishing it is also required to have a [GPG key](https://central.sonatype.
 ./mvnw -B clean deploy -Psign
 ```
 Check deployment page for errors before publishing on maven web portal.
+
+5. **Commit and Push Changes**
+
+```bash
+# Revert changes to pom.xml
+git stash
+# Commit any related changes (if any, e.g. proto updates)
+git commit -m "chore: bump version to X.Y.Z"
+git push origin main # or git push upstream main
+```
 
 6. **Tag the Release**
 
