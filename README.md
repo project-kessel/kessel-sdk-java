@@ -83,6 +83,8 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/). Version n
 
 - Write access to the GitHub repository
 - Maven central account with publish access to the `org.project-kessel` namespace
+- Credentials configured for [maven central](https://central.sonatype.org/publish/publish-portal-maven/#credentials) 
+- GPG key for publishing to [maven central](https://central.sonatype.org/publish/requirements/gpg/)
 - Ensure quality checks are passing
 - Review and update CHANGELOG or release notes as needed
 - Java 21 or higher
@@ -134,11 +136,16 @@ git push origin main # or git push upstream main
 
 5. **Build and Publish the Package**
 
+It's required to configure your `settings.xml` with token credentials before deploying.
+You can follow the instructions found [here](https://central.sonatype.org/publish/publish-portal-maven/#credentials) for generating a user token and configuring your `setings.xml`.
+
+For publishing it is also required to have a [GPG key](https://central.sonatype.org/publish/requirements/gpg/) configured.
+
 ```bash
 # Push deployment to maven central
 ./mvnw -B clean deploy
 ```
-Check deployment page for errors before publishing on maven web portal
+Check deployment page for errors before publishing on maven web portal.
 
 6. **Tag the Release**
 
