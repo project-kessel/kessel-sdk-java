@@ -11,7 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class Workspaces {
+public class FetchWorkspace {
 
     private static final String WORKSPACE_ENDPOINT = "/api/rbac/v2/workspaces/";
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -61,7 +61,7 @@ public class Workspaces {
             throw new IOException("unexpected number of " + type + " workspaces");
         }
         JsonNode obj = data.get(0);
-        Workspace ws = MAPPER.readValue(obj.toString(), Workspace.class);
+        Workspace ws = MAPPER.treeToValue(obj, Workspace.class);
         return ws;
     }
 }

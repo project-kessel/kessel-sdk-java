@@ -152,6 +152,21 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>run-fetch-workspace</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <mainClass>org.project_kessel.examples.FetchWorkspaceExample</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
