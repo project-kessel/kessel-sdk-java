@@ -16,19 +16,38 @@ public class FetchWorkspace {
     private static final String WORKSPACE_ENDPOINT = "/api/rbac/v2/workspaces/";
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId, FetchWorkspaceOptions options)
+    public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId)
             throws IOException, InterruptedException, OAuth2Exception {
-        return fetchWorkspace(rbacBaseEndpoint, orgId, "root", options);
+        return fetchRootWorkspace(rbacBaseEndpoint, orgId, null, null);
     }
 
-    public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId, FetchWorkspaceOptions options)
+    public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth)
             throws IOException, InterruptedException, OAuth2Exception {
-        return fetchWorkspace(rbacBaseEndpoint, orgId, "default", options);
+        return fetchRootWorkspace(rbacBaseEndpoint, orgId, auth, null);
     }
 
-    private static Workspace fetchWorkspace(String rbacBaseEndpoint, String orgId, String type,
-            FetchWorkspaceOptions options) throws IOException, InterruptedException, OAuth2Exception {
-        HttpClient httpClient = options.httpClient();
+    public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
+            HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
+        return fetchWorkspace(rbacBaseEndpoint, orgId, "root", auth, httpClient);
+    }
+
+    public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId)
+            throws IOException, InterruptedException, OAuth2Exception {
+        return fetchDefaultWorkspace(rbacBaseEndpoint, orgId, null, null);
+    }
+
+    public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth)
+            throws IOException, InterruptedException, OAuth2Exception {
+        return fetchDefaultWorkspace(rbacBaseEndpoint, orgId, auth, null);
+    }
+
+    public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
+            HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
+        return fetchWorkspace(rbacBaseEndpoint, orgId, "default", auth, httpClient);
+    }
+
+    private static Workspace fetchWorkspace(String rbacBaseEndpoint, String orgId, String type, AuthRequest auth,
+            HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
         if (httpClient == null) {
             httpClient = HttpClient.newHttpClient();
         }
@@ -43,7 +62,6 @@ public class FetchWorkspace {
                 .header("x-rh-rbac-org-id", orgId)
                 .GET();
 
-        AuthRequest auth = options.auth();
         if (auth != null) {
             auth.configureRequest(requestBuilder);
         }

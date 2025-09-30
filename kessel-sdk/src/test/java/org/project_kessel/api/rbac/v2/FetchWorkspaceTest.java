@@ -91,15 +91,6 @@ class FetchWorkspaceTest {
     }
 
     @Test
-    void testFetchWorkspaceOptions() {
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(null, null);
-
-        assertNull(options.httpClient());
-        assertNull(options.auth());
-        assertNotNull(options.toString());
-    }
-
-    @Test
     void testWorkspaceGetters() {
         Workspace workspace = new Workspace();
 
@@ -112,38 +103,36 @@ class FetchWorkspaceTest {
 
     @Test
     void testFetchRootWorkspaceWithNullEndpoint() {
-        assertThrows(NullPointerException.class, () -> FetchWorkspace.fetchRootWorkspace(null, "orgId", null));
+        assertThrows(NullPointerException.class, () -> FetchWorkspace.fetchRootWorkspace(null, "orgId"));
     }
 
     @Test
     void testFetchDefaultWorkspaceWithNullEndpoint() {
-        assertThrows(NullPointerException.class, () -> FetchWorkspace.fetchDefaultWorkspace(null, "orgId", null));
+        assertThrows(NullPointerException.class, () -> FetchWorkspace.fetchDefaultWorkspace(null, "orgId"));
     }
 
     @Test
     void testFetchRootWorkspaceWithNullOrgId() {
         assertThrows(NullPointerException.class,
-                () -> FetchWorkspace.fetchRootWorkspace("https://example.com", null, null));
+                () -> FetchWorkspace.fetchRootWorkspace("https://example.com", null));
     }
 
     @Test
     void testFetchDefaultWorkspaceWithNullOrgId() {
         assertThrows(NullPointerException.class,
-                () -> FetchWorkspace.fetchDefaultWorkspace("https://example.com", null, null));
+                () -> FetchWorkspace.fetchDefaultWorkspace("https://example.com", null));
     }
 
     @Test
     void testFetchRootWorkspaceWithInvalidEndpoint() {
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(null, null);
         assertThrows(IOException.class,
-                () -> FetchWorkspace.fetchRootWorkspace("https://non-existent-host-12345.com", "orgId", options));
+                () -> FetchWorkspace.fetchRootWorkspace("https://non-existent-host-12345.com", "orgId"));
     }
 
     @Test
     void testFetchDefaultWorkspaceWithInvalidEndpoint() {
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(null, null);
         assertThrows(IOException.class,
-                () -> FetchWorkspace.fetchDefaultWorkspace("https://non-existent-host-12345.com", "orgId", options));
+                () -> FetchWorkspace.fetchDefaultWorkspace("https://non-existent-host-12345.com", "orgId"));
     }
 
     @Test
@@ -151,8 +140,7 @@ class FetchWorkspaceTest {
         when(mockResponse.statusCode()).thenReturn(200);
         when(mockResponse.body()).thenReturn(VALID_ROOT_WORKSPACE_JSON.getBytes());
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(mockHttpClient, mockAuth);
-        Workspace workspace = FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, options);
+        Workspace workspace = FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient);
 
         assertNotNull(workspace);
         assertEquals("root-ws-1", workspace.getId());
@@ -168,8 +156,7 @@ class FetchWorkspaceTest {
         when(mockResponse.statusCode()).thenReturn(200);
         when(mockResponse.body()).thenReturn(VALID_DEFAULT_WORKSPACE_JSON.getBytes());
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(mockHttpClient, mockAuth);
-        Workspace workspace = FetchWorkspace.fetchDefaultWorkspace(BASE_ENDPOINT, ORG_ID, options);
+        Workspace workspace = FetchWorkspace.fetchDefaultWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient);
 
         assertNotNull(workspace);
         assertEquals("default-ws-1", workspace.getId());
@@ -185,8 +172,7 @@ class FetchWorkspaceTest {
         when(mockResponse.statusCode()).thenReturn(200);
         when(mockResponse.body()).thenReturn(VALID_ROOT_WORKSPACE_JSON.getBytes());
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(mockHttpClient, null);
-        Workspace workspace = FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, options);
+        Workspace workspace = FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, null, mockHttpClient);
 
         assertNotNull(workspace);
         assertEquals("root-ws-1", workspace.getId());
@@ -199,10 +185,8 @@ class FetchWorkspaceTest {
         when(mockResponse.statusCode()).thenReturn(200);
         when(mockResponse.body()).thenReturn(EMPTY_DATA_JSON.getBytes());
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(mockHttpClient, mockAuth);
-
         IOException exception = assertThrows(IOException.class,
-                () -> FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, options));
+                () -> FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient));
 
         assertTrue(exception.getMessage().contains("unexpected number of root workspaces"));
     }
@@ -212,10 +196,8 @@ class FetchWorkspaceTest {
         when(mockResponse.statusCode()).thenReturn(200);
         when(mockResponse.body()).thenReturn(MULTIPLE_WORKSPACES_JSON.getBytes());
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(mockHttpClient, mockAuth);
-
         IOException exception = assertThrows(IOException.class,
-                () -> FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, options));
+                () -> FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient));
 
         assertTrue(exception.getMessage().contains("unexpected number of root workspaces"));
     }

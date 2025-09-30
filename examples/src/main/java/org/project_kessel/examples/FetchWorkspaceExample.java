@@ -27,12 +27,10 @@ public class FetchWorkspaceExample {
         ));
         OAuth2AuthRequest auth = new OAuth2AuthRequest(oauth);
 
-        FetchWorkspaceOptions options = new FetchWorkspaceOptions(null, auth);
-
-        Workspace def = FetchWorkspace.fetchDefaultWorkspace(rbacBase, "12345", options);
+        Workspace def = FetchWorkspace.fetchDefaultWorkspace(rbacBase, "12345", auth);
         System.out.println("Default workspace: " + def.getId());
         
-        Workspace root = FetchWorkspace.fetchRootWorkspace(rbacBase, "12345", options);
+        Workspace root = FetchWorkspace.fetchRootWorkspace(rbacBase, "12345", auth);
         System.out.println("Root workspace: " + root.getId());
     }
 }
