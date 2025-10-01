@@ -5,9 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Workspace {
+    @JsonProperty("id")
     private String id;
+    
+    @JsonProperty("name")
     private String name;
+    
+    @JsonProperty("type")
     private String type;
+    
+    @JsonProperty("description")
     private String description;
 
     public String getId() {
@@ -26,22 +33,18 @@ public class Workspace {
         return description;
     }
 
-    @JsonProperty("id")
     void setId(String id) {
         this.id = id;
     }
 
-    @JsonProperty("name")
     void setName(String name) {
         this.name = name;
     }
 
-    @JsonProperty("type")
     void setType(String type) {
         this.type = type;
     }
 
-    @JsonProperty("description")
     void setDescription(String description) {
         this.description = description;
     }
