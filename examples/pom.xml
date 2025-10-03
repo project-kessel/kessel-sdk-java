@@ -168,7 +168,7 @@
             </build>
         </profile>
         <profile>
-            <id>run-list-workspaces-sync</id>
+            <id>run-list-workspaces</id>
             <build>
                 <plugins>
                     <plugin>
@@ -176,7 +176,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>3.1.0</version>
                         <configuration>
-                            <mainClass>org.project_kessel.examples.ListWorkspacesSyncExample</mainClass>
+                            <mainClass>org.project_kessel.examples.ListWorkspacesExample</mainClass>
                         </configuration>
                     </plugin>
                 </plugins>

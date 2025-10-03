@@ -10,7 +10,7 @@ import org.project_kessel.api.rbac.v2.ListWorkspaces;
 import org.project_kessel.api.rbac.v2.Utils;
 import org.project_kessel.examples.util.EnvConfig;
 
-public class ListWorkspacesSyncExample {
+public class ListWorkspacesExample {
 
     public static void main(String[] args) {
         // Validate required environment variables
