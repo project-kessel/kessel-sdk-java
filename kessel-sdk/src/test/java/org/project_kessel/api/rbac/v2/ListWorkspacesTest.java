@@ -43,7 +43,7 @@ class ListWorkspacesTest {
         ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member").forEach(response -> {
         });
 
-        verify(mockInventoryClient, times(2)).streamedListObjects(requestCaptor.capture());
+        verify(mockInventoryClient, times(1)).streamedListObjects(requestCaptor.capture());
         StreamedListObjectsRequest capturedRequest = requestCaptor.getAllValues().get(0);
 
         assertEquals("member", capturedRequest.getRelation());
@@ -58,16 +58,15 @@ class ListWorkspacesTest {
         Iterator<StreamedListObjectsResponse> secondPage = List.of(responseWithToken("")).iterator();
         when(mockInventoryClient.streamedListObjects(any(StreamedListObjectsRequest.class)))
                 .thenReturn(firstPage)
-                .thenReturn(secondPage)
-                .thenReturn(Collections.emptyIterator());
+                .thenReturn(secondPage);
 
         ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "viewer").forEach(response -> {
         });
 
-        verify(mockInventoryClient, times(3)).streamedListObjects(requestCaptor.capture());
+        verify(mockInventoryClient, times(2)).streamedListObjects(requestCaptor.capture());
         List<StreamedListObjectsRequest> capturedRequests = requestCaptor.getAllValues();
 
-        assertEquals(3, capturedRequests.size());
+        assertEquals(2, capturedRequests.size());
         // First request has no token
         assertFalse(capturedRequests.get(0).getPagination().hasContinuationToken());
         // Second request uses the token from the first response
@@ -84,7 +83,7 @@ class ListWorkspacesTest {
         ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "admin").forEach(response -> {
         });
 
-        verify(mockInventoryClient, times(2)).streamedListObjects(any(StreamedListObjectsRequest.class));
+        verify(mockInventoryClient, times(1)).streamedListObjects(any(StreamedListObjectsRequest.class));
     }
 
     @Test
@@ -114,7 +113,7 @@ class ListWorkspacesTest {
         ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member", initialToken).forEach(response -> {
         });
 
-        verify(mockInventoryClient, times(2)).streamedListObjects(requestCaptor.capture());
+        verify(mockInventoryClient, times(1)).streamedListObjects(requestCaptor.capture());
         StreamedListObjectsRequest capturedRequest = requestCaptor.getAllValues().get(0);
 
         assertEquals(initialToken, capturedRequest.getPagination().getContinuationToken());
@@ -158,8 +157,7 @@ class ListWorkspacesTest {
 
         when(mockInventoryClient.streamedListObjects(any(StreamedListObjectsRequest.class)))
                 .thenReturn(firstPage)
-                .thenReturn(secondPage)
-                .thenReturn(Collections.emptyIterator());
+                .thenReturn(secondPage);
 
         List<StreamedListObjectsResponse> allResponses = new ArrayList<>();
         for (StreamedListObjectsResponse response : ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject,

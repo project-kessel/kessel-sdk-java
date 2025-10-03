@@ -1,7 +1,10 @@
 package org.project_kessel.api.rbac.v2;
 
-import org.project_kessel.api.inventory.v1beta2.*;
 import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
+import org.project_kessel.api.inventory.v1beta2.RequestPagination;
+import org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest;
+import org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse;
+import org.project_kessel.api.inventory.v1beta2.SubjectReference;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -32,9 +35,9 @@ public class ListWorkspaces {
         private String relation;
 
         private String continuationToken;
+        private String lastToken;
         private Iterator<StreamedListObjectsResponse> currentPageIterator;
         private StreamedListObjectsResponse nextResponse;
-        private boolean hasMoreData;
 
         public WorkspaceListIterator(
                 KesselInventoryServiceBlockingStub inventory,
@@ -45,8 +48,8 @@ public class ListWorkspaces {
             this.subject = subject;
             this.relation = relation;
             this.continuationToken = initialToken;
+            this.lastToken = null;
             this.currentPageIterator = Collections.emptyIterator();
-            this.hasMoreData = true;
         }
 
         @Override
@@ -73,30 +76,28 @@ public class ListWorkspaces {
                     nextResponse = currentPageIterator.next();
                     if (nextResponse.hasPagination()) {
                         String token = nextResponse.getPagination().getContinuationToken();
-                        if (token != null && !token.isEmpty()) {
-                            this.continuationToken = token;
+                        if (token != null) {
+                            lastToken = token;
                         }
                     }
-                    // Done feching everything from this page
                     return true;
                 }
 
-                if (!hasMoreData) {
+                if (lastToken != null && lastToken.isEmpty()) {
                     return false;
                 }
 
-                // Fetch the next page of results.
+                if (lastToken != null) {
+                    continuationToken = lastToken;
+                }
+                lastToken = null;
                 try {
-                    StreamedListObjectsRequest request = buildStreamedListObjectsRequest(subject, relation,
-                            continuationToken);
+                    StreamedListObjectsRequest request = buildStreamedListObjectsRequest(subject, relation, continuationToken);
                     currentPageIterator = inventory.streamedListObjects(request);
-
                     if (!currentPageIterator.hasNext()) {
-                        hasMoreData = false;
                         return false;
                     }
                 } catch (Exception e) {
-                    hasMoreData = false;
                     throw new RuntimeException("Error fetching workspaces: " + e.getMessage(), e);
                 }
             }
