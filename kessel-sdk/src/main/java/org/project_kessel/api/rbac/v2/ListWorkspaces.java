@@ -35,7 +35,6 @@ public class ListWorkspaces {
         private String relation;
 
         private String continuationToken;
-        private String lastToken;
         private Iterator<StreamedListObjectsResponse> currentPageIterator;
         private StreamedListObjectsResponse nextResponse;
 
@@ -48,7 +47,6 @@ public class ListWorkspaces {
             this.subject = subject;
             this.relation = relation;
             this.continuationToken = initialToken;
-            this.lastToken = null;
             this.currentPageIterator = Collections.emptyIterator();
         }
 
@@ -75,22 +73,16 @@ public class ListWorkspaces {
                 if (currentPageIterator.hasNext()) {
                     nextResponse = currentPageIterator.next();
                     if (nextResponse.hasPagination()) {
-                        String token = nextResponse.getPagination().getContinuationToken();
-                        if (token != null) {
-                            lastToken = token;
-                        }
+                        continuationToken = nextResponse.getPagination().getContinuationToken();
                     }
                     return true;
                 }
 
-                if (lastToken != null && lastToken.isEmpty()) {
+                // in case of an empty token, we're done here
+                if (continuationToken != null && continuationToken.isEmpty()) {
                     return false;
                 }
 
-                if (lastToken != null) {
-                    continuationToken = lastToken;
-                }
-                lastToken = null;
                 try {
                     StreamedListObjectsRequest request = buildStreamedListObjectsRequest(subject, relation, continuationToken);
                     currentPageIterator = inventory.streamedListObjects(request);
