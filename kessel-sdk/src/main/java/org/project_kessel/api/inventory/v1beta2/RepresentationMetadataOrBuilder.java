@@ -67,4 +67,23 @@ public interface RepresentationMetadataOrBuilder extends
    */
   com.google.protobuf.ByteString
       getReporterVersionBytes();
+
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return Whether the transactionId field is set.
+   */
+  boolean hasTransactionId();
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return The transactionId.
+   */
+  java.lang.String getTransactionId();
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return The bytes for transactionId.
+   */
+  com.google.protobuf.ByteString
+      getTransactionIdBytes();
+
+  org.project_kessel.api.inventory.v1beta2.RepresentationMetadata.IdempotencyKeyCase getIdempotencyKeyCase();
 }

@@ -48,6 +48,46 @@ private static final long serialVersionUID = 0L;
   }
 
   private int bitField0_;
+  private int idempotencyKeyCase_ = 0;
+  @SuppressWarnings("serial")
+  private java.lang.Object idempotencyKey_;
+  public enum IdempotencyKeyCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    TRANSACTION_ID(5),
+    IDEMPOTENCYKEY_NOT_SET(0);
+    private final int value;
+    private IdempotencyKeyCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static IdempotencyKeyCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static IdempotencyKeyCase forNumber(int value) {
+      switch (value) {
+        case 5: return TRANSACTION_ID;
+        case 0: return IDEMPOTENCYKEY_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public IdempotencyKeyCase
+  getIdempotencyKeyCase() {
+    return IdempotencyKeyCase.forNumber(
+        idempotencyKeyCase_);
+  }
+
   public static final int LOCAL_RESOURCE_ID_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
   private volatile java.lang.Object localResourceId_ = "";
@@ -220,6 +260,58 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int TRANSACTION_ID_FIELD_NUMBER = 5;
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return Whether the transactionId field is set.
+   */
+  public boolean hasTransactionId() {
+    return idempotencyKeyCase_ == 5;
+  }
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return The transactionId.
+   */
+  public java.lang.String getTransactionId() {
+    java.lang.Object ref = "";
+    if (idempotencyKeyCase_ == 5) {
+      ref = idempotencyKey_;
+    }
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      if (idempotencyKeyCase_ == 5) {
+        idempotencyKey_ = s;
+      }
+      return s;
+    }
+  }
+  /**
+   * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+   * @return The bytes for transactionId.
+   */
+  public com.google.protobuf.ByteString
+      getTransactionIdBytes() {
+    java.lang.Object ref = "";
+    if (idempotencyKeyCase_ == 5) {
+      ref = idempotencyKey_;
+    }
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      if (idempotencyKeyCase_ == 5) {
+        idempotencyKey_ = b;
+      }
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -246,6 +338,9 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000002) != 0)) {
       com.google.protobuf.GeneratedMessage.writeString(output, 4, reporterVersion_);
     }
+    if (idempotencyKeyCase_ == 5) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 5, idempotencyKey_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -266,6 +361,9 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.GeneratedMessage.computeStringSize(4, reporterVersion_);
+    }
+    if (idempotencyKeyCase_ == 5) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(5, idempotencyKey_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -296,6 +394,15 @@ private static final long serialVersionUID = 0L;
       if (!getReporterVersion()
           .equals(other.getReporterVersion())) return false;
     }
+    if (!getIdempotencyKeyCase().equals(other.getIdempotencyKeyCase())) return false;
+    switch (idempotencyKeyCase_) {
+      case 5:
+        if (!getTransactionId()
+            .equals(other.getTransactionId())) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -318,6 +425,14 @@ private static final long serialVersionUID = 0L;
     if (hasReporterVersion()) {
       hash = (37 * hash) + REPORTER_VERSION_FIELD_NUMBER;
       hash = (53 * hash) + getReporterVersion().hashCode();
+    }
+    switch (idempotencyKeyCase_) {
+      case 5:
+        hash = (37 * hash) + TRANSACTION_ID_FIELD_NUMBER;
+        hash = (53 * hash) + getTransactionId().hashCode();
+        break;
+      case 0:
+      default:
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
@@ -454,6 +569,8 @@ private static final long serialVersionUID = 0L;
       apiHref_ = "";
       consoleHref_ = "";
       reporterVersion_ = "";
+      idempotencyKeyCase_ = 0;
+      idempotencyKey_ = null;
       return this;
     }
 
@@ -481,6 +598,7 @@ private static final long serialVersionUID = 0L;
     public org.project_kessel.api.inventory.v1beta2.RepresentationMetadata buildPartial() {
       org.project_kessel.api.inventory.v1beta2.RepresentationMetadata result = new org.project_kessel.api.inventory.v1beta2.RepresentationMetadata(this);
       if (bitField0_ != 0) { buildPartial0(result); }
+      buildPartialOneofs(result);
       onBuilt();
       return result;
     }
@@ -503,6 +621,11 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000002;
       }
       result.bitField0_ |= to_bitField0_;
+    }
+
+    private void buildPartialOneofs(org.project_kessel.api.inventory.v1beta2.RepresentationMetadata result) {
+      result.idempotencyKeyCase_ = idempotencyKeyCase_;
+      result.idempotencyKey_ = this.idempotencyKey_;
     }
 
     @java.lang.Override
@@ -536,6 +659,17 @@ private static final long serialVersionUID = 0L;
         reporterVersion_ = other.reporterVersion_;
         bitField0_ |= 0x00000008;
         onChanged();
+      }
+      switch (other.getIdempotencyKeyCase()) {
+        case TRANSACTION_ID: {
+          idempotencyKeyCase_ = 5;
+          idempotencyKey_ = other.idempotencyKey_;
+          onChanged();
+          break;
+        }
+        case IDEMPOTENCYKEY_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -583,6 +717,12 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000008;
               break;
             } // case 34
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+              idempotencyKeyCase_ = 5;
+              idempotencyKey_ = s;
+              break;
+            } // case 42
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -598,6 +738,21 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
+    private int idempotencyKeyCase_ = 0;
+    private java.lang.Object idempotencyKey_;
+    public IdempotencyKeyCase
+        getIdempotencyKeyCase() {
+      return IdempotencyKeyCase.forNumber(
+          idempotencyKeyCase_);
+    }
+
+    public Builder clearIdempotencyKey() {
+      idempotencyKeyCase_ = 0;
+      idempotencyKey_ = null;
+      onChanged();
+      return this;
+    }
+
     private int bitField0_;
 
     private java.lang.Object localResourceId_ = "";
@@ -898,6 +1053,99 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       reporterVersion_ = value;
       bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @return Whether the transactionId field is set.
+     */
+    @java.lang.Override
+    public boolean hasTransactionId() {
+      return idempotencyKeyCase_ == 5;
+    }
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @return The transactionId.
+     */
+    @java.lang.Override
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = "";
+      if (idempotencyKeyCase_ == 5) {
+        ref = idempotencyKey_;
+      }
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (idempotencyKeyCase_ == 5) {
+          idempotencyKey_ = s;
+        }
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @return The bytes for transactionId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTransactionIdBytes() {
+      java.lang.Object ref = "";
+      if (idempotencyKeyCase_ == 5) {
+        ref = idempotencyKey_;
+      }
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        if (idempotencyKeyCase_ == 5) {
+          idempotencyKey_ = b;
+        }
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @param value The transactionId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTransactionId(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      idempotencyKeyCase_ = 5;
+      idempotencyKey_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTransactionId() {
+      if (idempotencyKeyCase_ == 5) {
+        idempotencyKeyCase_ = 0;
+        idempotencyKey_ = null;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>string transaction_id = 5 [json_name = "transactionId"];</code>
+     * @param value The bytes for transactionId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTransactionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      idempotencyKeyCase_ = 5;
+      idempotencyKey_ = value;
       onChanged();
       return this;
     }

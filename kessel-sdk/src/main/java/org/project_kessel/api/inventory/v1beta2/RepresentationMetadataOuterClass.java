@@ -42,16 +42,18 @@ public final class RepresentationMetadataOuterClass {
     java.lang.String[] descriptorData = {
       "\n6kessel/inventory/v1beta2/representatio" +
       "n_metadata.proto\022\030kessel.inventory.v1bet" +
-      "a2\032\033buf/validate/validate.proto\"\357\001\n\026Repr" +
+      "a2\032\033buf/validate/validate.proto\"\253\002\n\026Repr" +
       "esentationMetadata\0223\n\021local_resource_id\030" +
       "\001 \001(\tB\007\272H\004r\002\020\001R\017localResourceId\022\"\n\010api_h" +
       "ref\030\002 \001(\tB\007\272H\004r\002\020\001R\007apiHref\022&\n\014console_h" +
-      "ref\030\003 \001(\tH\000R\013consoleHref\210\001\001\022.\n\020reporter_" +
-      "version\030\004 \001(\tH\001R\017reporterVersion\210\001\001B\017\n\r_" +
-      "console_hrefB\023\n\021_reporter_versionBr\n(org" +
-      ".project_kessel.api.inventory.v1beta2P\001Z" +
-      "Dgithub.com/project-kessel/inventory-api" +
-      "/api/kessel/inventory/v1beta2b\006proto3"
+      "ref\030\003 \001(\tH\001R\013consoleHref\210\001\001\022.\n\020reporter_" +
+      "version\030\004 \001(\tH\002R\017reporterVersion\210\001\001\022\'\n\016t" +
+      "ransaction_id\030\005 \001(\tH\000R\rtransactionIdB\021\n\017" +
+      "idempotency_keyB\017\n\r_console_hrefB\023\n\021_rep" +
+      "orter_versionBr\n(org.project_kessel.api." +
+      "inventory.v1beta2P\001ZDgithub.com/project-" +
+      "kessel/inventory-api/api/kessel/inventor" +
+      "y/v1beta2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -63,7 +65,7 @@ public final class RepresentationMetadataOuterClass {
     internal_static_kessel_inventory_v1beta2_RepresentationMetadata_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_kessel_inventory_v1beta2_RepresentationMetadata_descriptor,
-        new java.lang.String[] { "LocalResourceId", "ApiHref", "ConsoleHref", "ReporterVersion", });
+        new java.lang.String[] { "LocalResourceId", "ApiHref", "ConsoleHref", "ReporterVersion", "TransactionId", "IdempotencyKey", });
     descriptor.resolveAllFeaturesImmutable();
     build.buf.validate.ValidateProto.getDescriptor();
     com.google.protobuf.ExtensionRegistry registry =

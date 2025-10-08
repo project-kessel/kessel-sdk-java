@@ -16,7 +16,7 @@ Add to your Maven `pom.xml`:
 <dependency>
     <groupId>org.project-kessel</groupId>
     <artifactId>kessel-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
