@@ -49,7 +49,7 @@
 
         <!-- Dependency versions -->
         <grpc.version>1.75.0</grpc.version>
-        <protobuf.version>4.32.0</protobuf.version>
+        <protobuf.version>4.32.1</protobuf.version>
         <nimbus-oauth.version>11.28</nimbus-oauth.version>
         <jackson.version>2.20.0</jackson.version>
         
