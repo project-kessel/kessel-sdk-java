@@ -16,7 +16,7 @@ Add to your Maven `pom.xml`:
 <dependency>
     <groupId>org.project-kessel</groupId>
     <artifactId>kessel-sdk</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -102,9 +102,10 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/). Version n
 1. **Update the Version**
 
 ```bash
-# Edit pyproject.toml
-# Update the <version></version> field to the new version number
-vim kessel-sdk/pom.xml
+# Update the project version across all modules
+./mvnw versions:set -DnewVersion=X.Y.Z
+
+# Ensure the root pom.xml now contains <version>X.Y.Z</version>
 ```
 
 2. **Update Dependencies (if needed)**
@@ -135,7 +136,7 @@ For publishing it is also required to have a [GPG key](https://central.sonatype.
 # Push deployment to maven central
 ./mvnw -B clean deploy -Psign
 ```
-Check deployment page for errors before publishing on maven web portal.
+Check deployment page for errors before publishing on maven web portal. Verify that both `org.project-kessel:kessel-sdk-parent` and `org.project-kessel:kessel-sdk` are present in the staging repository before closing it.
 
 5. **Commit and Push Changes**
 
@@ -157,7 +158,7 @@ git push origin vX.Y.Z
 
 7. **Create GitHub Release**
 
-- Go to the [GitHub Releases page](https://github.com/project-kessel/kessel-sdk-py/releases)
+- Go to the [GitHub Releases page](https://github.com/project-kessel/kessel-sdk-java/releases)
 - Click "Create a new release"
 - Select the tag you just created
 - Add release notes describing the changes
