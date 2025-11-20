@@ -14,8 +14,7 @@ public class CheckBulkExample {
     public static void main(String[] args) {
         // Validate required environment variables
         EnvConfig.validateRequired(
-            "KESSEL_ENDPOINT"
-        );
+                "KESSEL_ENDPOINT");
 
         // Load configuration from environment/.env file
         String kesselEndpoint = EnvConfig.get("KESSEL_ENDPOINT");
@@ -51,8 +50,7 @@ public class CheckBulkExample {
                                     .setReporter(ReporterReference.newBuilder().setType("rbac").build())
                                     .setResourceId("invalid_resource")
                                     .setResourceType("not_a_valid_type")
-                                    .build()
-                    )
+                                    .build())
                     .setRelation("view_widget")
                     .setSubject(Utils.principalSubject("alice", "redhat"))
                     .build();
@@ -72,7 +70,7 @@ public class CheckBulkExample {
             for (int idx = 0; idx < response.getPairsCount(); idx++) {
                 CheckBulkResponsePair pair = response.getPairs(idx);
                 System.out.println("--- Result " + (idx + 1) + " ---");
-                
+
                 CheckBulkRequestItem req = pair.getRequest();
                 System.out.println("Request: subject=" + req.getSubject().getResource().getResourceId() +
                         " relation=" + req.getRelation() +
@@ -85,7 +83,6 @@ public class CheckBulkExample {
                     com.google.rpc.Status error = pair.getError();
                     System.out.println("Error: Code=" + error.getCode() + ", Message=" + error.getMessage());
                 }
-                System.out.println();
             }
         } catch (StatusRuntimeException statusException) {
             System.out.println("gRPC error occurred during CheckBulk:");
@@ -95,4 +92,3 @@ public class CheckBulkExample {
         }
     }
 }
-
