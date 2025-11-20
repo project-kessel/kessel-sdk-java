@@ -78,6 +78,37 @@ public final class KesselInventoryServiceGrpc {
     return getCheckForUpdateMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckBulkRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> getCheckBulkMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CheckBulk",
+      requestType = org.project_kessel.api.inventory.v1beta2.CheckBulkRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.CheckBulkResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckBulkRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> getCheckBulkMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckBulkRequest, org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> getCheckBulkMethod;
+    if ((getCheckBulkMethod = KesselInventoryServiceGrpc.getCheckBulkMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getCheckBulkMethod = KesselInventoryServiceGrpc.getCheckBulkMethod) == null) {
+          KesselInventoryServiceGrpc.getCheckBulkMethod = getCheckBulkMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.CheckBulkRequest, org.project_kessel.api.inventory.v1beta2.CheckBulkResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CheckBulk"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckBulkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckBulkResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("CheckBulk"))
+              .build();
+        }
+      }
+    }
+    return getCheckBulkMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.ReportResourceRequest,
       org.project_kessel.api.inventory.v1beta2.ReportResourceResponse> getReportResourceMethod;
 
@@ -273,6 +304,25 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs bulk permission checks for multiple resource-subject-relation combinations.
+     * This API is more efficient than making individual Check calls when verifying permissions
+     * for multiple items. It answers questions like:
+     * "Which of these resources can subject *X* perform action *Y* on?"
+     * Common use cases include:
+     * - Filtering lists based on user permissions
+     * - Batch authorization checks before performing bulk operations
+     * - Dashboard rendering with multiple permission checks
+     * - Pre-authorization for UI components
+     * The response includes a result for each item in the request, maintaining the same order.
+     * </pre>
+     */
+    default void checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckBulkMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * Reports to Kessel Inventory that a Resource has been created or has been updated.
      * Reporters can use this API to report facts about their resources in order to
      * facilitate integration, correlation, and access control.
@@ -405,6 +455,26 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs bulk permission checks for multiple resource-subject-relation combinations.
+     * This API is more efficient than making individual Check calls when verifying permissions
+     * for multiple items. It answers questions like:
+     * "Which of these resources can subject *X* perform action *Y* on?"
+     * Common use cases include:
+     * - Filtering lists based on user permissions
+     * - Batch authorization checks before performing bulk operations
+     * - Dashboard rendering with multiple permission checks
+     * - Pre-authorization for UI components
+     * The response includes a result for each item in the request, maintaining the same order.
+     * </pre>
+     */
+    public void checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCheckBulkMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Reports to Kessel Inventory that a Resource has been created or has been updated.
      * Reporters can use this API to report facts about their resources in order to
      * facilitate integration, correlation, and access control.
@@ -523,6 +593,25 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs bulk permission checks for multiple resource-subject-relation combinations.
+     * This API is more efficient than making individual Check calls when verifying permissions
+     * for multiple items. It answers questions like:
+     * "Which of these resources can subject *X* perform action *Y* on?"
+     * Common use cases include:
+     * - Filtering lists based on user permissions
+     * - Batch authorization checks before performing bulk operations
+     * - Dashboard rendering with multiple permission checks
+     * - Pre-authorization for UI components
+     * The response includes a result for each item in the request, maintaining the same order.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckBulkResponse checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getCheckBulkMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Reports to Kessel Inventory that a Resource has been created or has been updated.
      * Reporters can use this API to report facts about their resources in order to
      * facilitate integration, correlation, and access control.
@@ -636,6 +725,25 @@ public final class KesselInventoryServiceGrpc {
     public org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse checkForUpdate(org.project_kessel.api.inventory.v1beta2.CheckForUpdateRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCheckForUpdateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks for multiple resource-subject-relation combinations.
+     * This API is more efficient than making individual Check calls when verifying permissions
+     * for multiple items. It answers questions like:
+     * "Which of these resources can subject *X* perform action *Y* on?"
+     * Common use cases include:
+     * - Filtering lists based on user permissions
+     * - Batch authorization checks before performing bulk operations
+     * - Dashboard rendering with multiple permission checks
+     * - Pre-authorization for UI components
+     * The response includes a result for each item in the request, maintaining the same order.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckBulkResponse checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCheckBulkMethod(), getCallOptions(), request);
     }
 
     /**
@@ -758,6 +866,26 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs bulk permission checks for multiple resource-subject-relation combinations.
+     * This API is more efficient than making individual Check calls when verifying permissions
+     * for multiple items. It answers questions like:
+     * "Which of these resources can subject *X* perform action *Y* on?"
+     * Common use cases include:
+     * - Filtering lists based on user permissions
+     * - Batch authorization checks before performing bulk operations
+     * - Dashboard rendering with multiple permission checks
+     * - Pre-authorization for UI components
+     * The response includes a result for each item in the request, maintaining the same order.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> checkBulk(
+        org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCheckBulkMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Reports to Kessel Inventory that a Resource has been created or has been updated.
      * Reporters can use this API to report facts about their resources in order to
      * facilitate integration, correlation, and access control.
@@ -806,9 +934,10 @@ public final class KesselInventoryServiceGrpc {
 
   private static final int METHODID_CHECK = 0;
   private static final int METHODID_CHECK_FOR_UPDATE = 1;
-  private static final int METHODID_REPORT_RESOURCE = 2;
-  private static final int METHODID_DELETE_RESOURCE = 3;
-  private static final int METHODID_STREAMED_LIST_OBJECTS = 4;
+  private static final int METHODID_CHECK_BULK = 2;
+  private static final int METHODID_REPORT_RESOURCE = 3;
+  private static final int METHODID_DELETE_RESOURCE = 4;
+  private static final int METHODID_STREAMED_LIST_OBJECTS = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -834,6 +963,10 @@ public final class KesselInventoryServiceGrpc {
         case METHODID_CHECK_FOR_UPDATE:
           serviceImpl.checkForUpdate((org.project_kessel.api.inventory.v1beta2.CheckForUpdateRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_BULK:
+          serviceImpl.checkBulk((org.project_kessel.api.inventory.v1beta2.CheckBulkRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse>) responseObserver);
           break;
         case METHODID_REPORT_RESOURCE:
           serviceImpl.reportResource((org.project_kessel.api.inventory.v1beta2.ReportResourceRequest) request,
@@ -879,6 +1012,13 @@ public final class KesselInventoryServiceGrpc {
               org.project_kessel.api.inventory.v1beta2.CheckForUpdateRequest,
               org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse>(
                 service, METHODID_CHECK_FOR_UPDATE)))
+        .addMethod(
+          getCheckBulkMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.CheckBulkRequest,
+              org.project_kessel.api.inventory.v1beta2.CheckBulkResponse>(
+                service, METHODID_CHECK_BULK)))
         .addMethod(
           getReportResourceMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -950,6 +1090,7 @@ public final class KesselInventoryServiceGrpc {
               .setSchemaDescriptor(new KesselInventoryServiceFileDescriptorSupplier())
               .addMethod(getCheckMethod())
               .addMethod(getCheckForUpdateMethod())
+              .addMethod(getCheckBulkMethod())
               .addMethod(getReportResourceMethod())
               .addMethod(getDeleteResourceMethod())
               .addMethod(getStreamedListObjectsMethod())

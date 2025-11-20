@@ -51,30 +51,36 @@ public final class InventoryService {
       "ource_response.proto\032<kessel/inventory/v" +
       "1beta2/streamed_list_objects_request.pro" +
       "to\032=kessel/inventory/v1beta2/streamed_li" +
-      "st_objects_response.proto2\221\006\n\026KesselInve" +
-      "ntoryService\022\201\001\n\005Check\022&.kessel.inventor" +
-      "y.v1beta2.CheckRequest\032\'.kessel.inventor" +
-      "y.v1beta2.CheckResponse\"\'\202\323\344\223\002!\"\034/api/in" +
-      "ventory/v1beta2/check:\001*\022\245\001\n\016CheckForUpd" +
-      "ate\022/.kessel.inventory.v1beta2.CheckForU" +
-      "pdateRequest\0320.kessel.inventory.v1beta2." +
-      "CheckForUpdateResponse\"0\202\323\344\223\002*\"%/api/inv" +
-      "entory/v1beta2/checkforupdate:\001*\022\240\001\n\016Rep" +
-      "ortResource\022/.kessel.inventory.v1beta2.R" +
-      "eportResourceRequest\0320.kessel.inventory." +
-      "v1beta2.ReportResourceResponse\"+\202\323\344\223\002%\" " +
-      "/api/inventory/v1beta2/resources:\001*\022\240\001\n\016" +
-      "DeleteResource\022/.kessel.inventory.v1beta" +
-      "2.DeleteResourceRequest\0320.kessel.invento" +
-      "ry.v1beta2.DeleteResourceResponse\"+\202\323\344\223\002" +
-      "%* /api/inventory/v1beta2/resources:\001*\022\204" +
-      "\001\n\023StreamedListObjects\0224.kessel.inventor" +
-      "y.v1beta2.StreamedListObjectsRequest\0325.k" +
-      "essel.inventory.v1beta2.StreamedListObje" +
-      "ctsResponse0\001Br\n(org.project_kessel.api." +
-      "inventory.v1beta2P\001ZDgithub.com/project-" +
-      "kessel/inventory-api/api/kessel/inventor" +
-      "y/v1beta2b\006proto3"
+      "st_objects_response.proto\0321kessel/invent" +
+      "ory/v1beta2/check_bulk_request.proto\0322ke" +
+      "ssel/inventory/v1beta2/check_bulk_respon" +
+      "se.proto2\245\007\n\026KesselInventoryService\022\201\001\n\005" +
+      "Check\022&.kessel.inventory.v1beta2.CheckRe" +
+      "quest\032\'.kessel.inventory.v1beta2.CheckRe" +
+      "sponse\"\'\202\323\344\223\002!\"\034/api/inventory/v1beta2/c" +
+      "heck:\001*\022\245\001\n\016CheckForUpdate\022/.kessel.inve" +
+      "ntory.v1beta2.CheckForUpdateRequest\0320.ke" +
+      "ssel.inventory.v1beta2.CheckForUpdateRes" +
+      "ponse\"0\202\323\344\223\002*\"%/api/inventory/v1beta2/ch" +
+      "eckforupdate:\001*\022\221\001\n\tCheckBulk\022*.kessel.i" +
+      "nventory.v1beta2.CheckBulkRequest\032+.kess" +
+      "el.inventory.v1beta2.CheckBulkResponse\"+" +
+      "\202\323\344\223\002%\" /api/inventory/v1beta2/checkbulk" +
+      ":\001*\022\240\001\n\016ReportResource\022/.kessel.inventor" +
+      "y.v1beta2.ReportResourceRequest\0320.kessel" +
+      ".inventory.v1beta2.ReportResourceRespons" +
+      "e\"+\202\323\344\223\002%\" /api/inventory/v1beta2/resour" +
+      "ces:\001*\022\240\001\n\016DeleteResource\022/.kessel.inven" +
+      "tory.v1beta2.DeleteResourceRequest\0320.kes" +
+      "sel.inventory.v1beta2.DeleteResourceResp" +
+      "onse\"+\202\323\344\223\002%* /api/inventory/v1beta2/res" +
+      "ources:\001*\022\204\001\n\023StreamedListObjects\0224.kess" +
+      "el.inventory.v1beta2.StreamedListObjects" +
+      "Request\0325.kessel.inventory.v1beta2.Strea" +
+      "medListObjectsResponse0\001Br\n(org.project_" +
+      "kessel.api.inventory.v1beta2P\001ZDgithub.c" +
+      "om/project-kessel/inventory-api/api/kess" +
+      "el/inventory/v1beta2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -90,6 +96,8 @@ public final class InventoryService {
           org.project_kessel.api.inventory.v1beta2.DeleteResourceResponseOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequestOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponseOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.CheckBulkRequestOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.CheckBulkResponseOuterClass.getDescriptor(),
         });
     descriptor.resolveAllFeaturesImmutable();
     com.google.api.AnnotationsProto.getDescriptor();
@@ -103,6 +111,8 @@ public final class InventoryService {
     org.project_kessel.api.inventory.v1beta2.DeleteResourceResponseOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequestOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponseOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.CheckBulkRequestOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.CheckBulkResponseOuterClass.getDescriptor();
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);
