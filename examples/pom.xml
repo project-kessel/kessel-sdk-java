@@ -56,7 +56,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.AuthExample</mainClass>
                         </configuration>
@@ -71,7 +71,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.CheckExample</mainClass>
                         </configuration>
@@ -86,7 +86,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.CheckForUpdateExample</mainClass>
                         </configuration>
@@ -101,7 +101,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.DeleteResourceExample</mainClass>
                         </configuration>
@@ -116,7 +116,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.ReportResourceExample</mainClass>
                         </configuration>
@@ -131,7 +131,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.StreamedListObjectsExample</mainClass>
                         </configuration>
@@ -146,7 +146,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.AsyncExample</mainClass>
                         </configuration>
@@ -161,7 +161,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.FetchWorkspaceExample</mainClass>
                         </configuration>
@@ -176,7 +176,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.ListWorkspacesExample</mainClass>
                         </configuration>
@@ -191,7 +191,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.2</version>
+                        <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.CheckBulkExample</mainClass>
                         </configuration>
