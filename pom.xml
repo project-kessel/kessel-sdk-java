@@ -50,7 +50,7 @@
         <!-- Dependency versions -->
         <grpc.version>1.77.0</grpc.version>
         <protobuf.version>4.33.2</protobuf.version>
-        <nimbus-oauth.version>11.30.1</nimbus-oauth.version>
+        <nimbus-oauth.version>11.30.2</nimbus-oauth.version>
         <jackson.version>2.20.1</jackson.version>
         
         <!-- Allow deploying the parent POM so it is available for consumers -->
