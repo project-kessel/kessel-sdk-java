@@ -76,7 +76,7 @@ public class FetchWorkspace {
         JsonNode root = MAPPER.readTree(response.body());
         JsonNode data = root.get("data");
         if (data.size() != 1) {
-            throw new IOException("unexpected number of " + type + " workspaces");
+            throw new IOException("unexpected number of " + type + " workspaces: expected 1, got " + data.size() + ", data: " + data.toString());
         }
         JsonNode obj = data.get(0);
         Workspace ws = MAPPER.treeToValue(obj, Workspace.class);
