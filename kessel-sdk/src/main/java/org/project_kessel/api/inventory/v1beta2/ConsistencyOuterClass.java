@@ -43,15 +43,17 @@ public final class ConsistencyOuterClass {
       "\n*kessel/inventory/v1beta2/consistency.p" +
       "roto\022\030kessel.inventory.v1beta2\032\033buf/vali" +
       "date/validate.proto\0320kessel/inventory/v1" +
-      "beta2/consistency_token.proto\"\262\001\n\013Consis" +
+      "beta2/consistency_token.proto\"\366\001\n\013Consis" +
       "tency\0224\n\020minimize_latency\030\001 \001(\010B\007\272H\004j\002\010\001" +
       "H\000R\017minimizeLatency\022W\n\021at_least_as_fresh" +
       "\030\002 \001(\0132*.kessel.inventory.v1beta2.Consis" +
-      "tencyTokenH\000R\016atLeastAsFreshB\024\n\013requirem" +
-      "ent\022\005\272H\002\010\001Br\n(org.project_kessel.api.inv" +
-      "entory.v1beta2P\001ZDgithub.com/project-kes" +
-      "sel/inventory-api/api/kessel/inventory/v" +
-      "1beta2b\006proto3"
+      "tencyTokenH\000R\016atLeastAsFresh\022B\n\030at_least" +
+      "_as_acknowledged\030\003 \001(\010B\007\272H\004j\002\010\001H\000R\025atLea" +
+      "stAsAcknowledgedB\024\n\013requirement\022\005\272H\002\010\001Br" +
+      "\n(org.project_kessel.api.inventory.v1bet" +
+      "a2P\001ZDgithub.com/project-kessel/inventor" +
+      "y-api/api/kessel/inventory/v1beta2b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -64,7 +66,7 @@ public final class ConsistencyOuterClass {
     internal_static_kessel_inventory_v1beta2_Consistency_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_kessel_inventory_v1beta2_Consistency_descriptor,
-        new java.lang.String[] { "MinimizeLatency", "AtLeastAsFresh", "Requirement", });
+        new java.lang.String[] { "MinimizeLatency", "AtLeastAsFresh", "AtLeastAsAcknowledged", "Requirement", });
     descriptor.resolveAllFeaturesImmutable();
     build.buf.validate.ValidateProto.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOuterClass.getDescriptor();

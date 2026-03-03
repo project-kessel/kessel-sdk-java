@@ -64,5 +64,40 @@ public interface ConsistencyOrBuilder extends
    */
   org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder getAtLeastAsFreshOrBuilder();
 
+  /**
+   * <pre>
+   * All data used in the API call must be *at least as acknowledged*,
+   * meaning it includes data up to the latest write known to Inventory.
+   * This aligns with `ReportResource` write visibility: when
+   * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+   * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+   * least as recent as that write.
+   * Some deployments may use this behavior as the server-side default when
+   * consistency is omitted.
+   * *Must* be set true if used.
+   * </pre>
+   *
+   * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+   * @return Whether the atLeastAsAcknowledged field is set.
+   */
+  boolean hasAtLeastAsAcknowledged();
+  /**
+   * <pre>
+   * All data used in the API call must be *at least as acknowledged*,
+   * meaning it includes data up to the latest write known to Inventory.
+   * This aligns with `ReportResource` write visibility: when
+   * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+   * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+   * least as recent as that write.
+   * Some deployments may use this behavior as the server-side default when
+   * consistency is omitted.
+   * *Must* be set true if used.
+   * </pre>
+   *
+   * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+   * @return The atLeastAsAcknowledged.
+   */
+  boolean getAtLeastAsAcknowledged();
+
   org.project_kessel.api.inventory.v1beta2.Consistency.RequirementCase getRequirementCase();
 }
