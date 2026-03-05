@@ -47,6 +47,37 @@ public final class KesselInventoryServiceGrpc {
     return getCheckMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> getCheckSelfMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CheckSelf",
+      requestType = org.project_kessel.api.inventory.v1beta2.CheckSelfRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.CheckSelfResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> getCheckSelfMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfRequest, org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> getCheckSelfMethod;
+    if ((getCheckSelfMethod = KesselInventoryServiceGrpc.getCheckSelfMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getCheckSelfMethod = KesselInventoryServiceGrpc.getCheckSelfMethod) == null) {
+          KesselInventoryServiceGrpc.getCheckSelfMethod = getCheckSelfMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.CheckSelfRequest, org.project_kessel.api.inventory.v1beta2.CheckSelfResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CheckSelf"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckSelfRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckSelfResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("CheckSelf"))
+              .build();
+        }
+      }
+    }
+    return getCheckSelfMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckForUpdateRequest,
       org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse> getCheckForUpdateMethod;
 
@@ -107,6 +138,37 @@ public final class KesselInventoryServiceGrpc {
       }
     }
     return getCheckBulkMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> getCheckSelfBulkMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CheckSelfBulk",
+      requestType = org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest,
+      org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> getCheckSelfBulkMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest, org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> getCheckSelfBulkMethod;
+    if ((getCheckSelfBulkMethod = KesselInventoryServiceGrpc.getCheckSelfBulkMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getCheckSelfBulkMethod = KesselInventoryServiceGrpc.getCheckSelfBulkMethod) == null) {
+          KesselInventoryServiceGrpc.getCheckSelfBulkMethod = getCheckSelfBulkMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest, org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CheckSelfBulk"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("CheckSelfBulk"))
+              .build();
+        }
+      }
+    }
+    return getCheckSelfBulkMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.ReportResourceRequest,
@@ -287,6 +349,21 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs a relationship check where the subject is implicitly the caller
+     * (self), as determined by the authentication context, rather than being
+     * provided explicitly in the request.
+     * This API answers the question:
+     * "Does the current caller have relation *Y* on object *Z*?"
+     * Common use cases include enforcing access checks for the authenticated user.
+     * </pre>
+     */
+    default void checkSelf(org.project_kessel.api.inventory.v1beta2.CheckSelfRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckSelfMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * Performs a strongly consistent relationship check to determine whether a subject
      * has a specific relation to an object (representing, for example, a permission).
      * This API answers the question:
@@ -319,6 +396,22 @@ public final class KesselInventoryServiceGrpc {
     default void checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request,
         io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckBulkMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks where the subject is implicitly the caller
+     * (self) for multiple resource-relation combinations.
+     * This API is more efficient than making individual CheckSelf calls when
+     * verifying permissions for multiple items. It answers questions like:
+     * "Which of these resources can the current caller perform action *Y* on?"
+     * The response includes a result for each item in the request, maintaining
+     * the same order.
+     * </pre>
+     */
+    default void checkSelfBulk(org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckSelfBulkMethod(), responseObserver);
     }
 
     /**
@@ -437,6 +530,22 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs a relationship check where the subject is implicitly the caller
+     * (self), as determined by the authentication context, rather than being
+     * provided explicitly in the request.
+     * This API answers the question:
+     * "Does the current caller have relation *Y* on object *Z*?"
+     * Common use cases include enforcing access checks for the authenticated user.
+     * </pre>
+     */
+    public void checkSelf(org.project_kessel.api.inventory.v1beta2.CheckSelfRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCheckSelfMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Performs a strongly consistent relationship check to determine whether a subject
      * has a specific relation to an object (representing, for example, a permission).
      * This API answers the question:
@@ -471,6 +580,23 @@ public final class KesselInventoryServiceGrpc {
         io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCheckBulkMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks where the subject is implicitly the caller
+     * (self) for multiple resource-relation combinations.
+     * This API is more efficient than making individual CheckSelf calls when
+     * verifying permissions for multiple items. It answers questions like:
+     * "Which of these resources can the current caller perform action *Y* on?"
+     * The response includes a result for each item in the request, maintaining
+     * the same order.
+     * </pre>
+     */
+    public void checkSelfBulk(org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCheckSelfBulkMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -576,6 +702,21 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs a relationship check where the subject is implicitly the caller
+     * (self), as determined by the authentication context, rather than being
+     * provided explicitly in the request.
+     * This API answers the question:
+     * "Does the current caller have relation *Y* on object *Z*?"
+     * Common use cases include enforcing access checks for the authenticated user.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckSelfResponse checkSelf(org.project_kessel.api.inventory.v1beta2.CheckSelfRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getCheckSelfMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Performs a strongly consistent relationship check to determine whether a subject
      * has a specific relation to an object (representing, for example, a permission).
      * This API answers the question:
@@ -608,6 +749,22 @@ public final class KesselInventoryServiceGrpc {
     public org.project_kessel.api.inventory.v1beta2.CheckBulkResponse checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getCheckBulkMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks where the subject is implicitly the caller
+     * (self) for multiple resource-relation combinations.
+     * This API is more efficient than making individual CheckSelf calls when
+     * verifying permissions for multiple items. It answers questions like:
+     * "Which of these resources can the current caller perform action *Y* on?"
+     * The response includes a result for each item in the request, maintaining
+     * the same order.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse checkSelfBulk(org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getCheckSelfBulkMethod(), getCallOptions(), request);
     }
 
     /**
@@ -712,6 +869,21 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs a relationship check where the subject is implicitly the caller
+     * (self), as determined by the authentication context, rather than being
+     * provided explicitly in the request.
+     * This API answers the question:
+     * "Does the current caller have relation *Y* on object *Z*?"
+     * Common use cases include enforcing access checks for the authenticated user.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckSelfResponse checkSelf(org.project_kessel.api.inventory.v1beta2.CheckSelfRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCheckSelfMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Performs a strongly consistent relationship check to determine whether a subject
      * has a specific relation to an object (representing, for example, a permission).
      * This API answers the question:
@@ -744,6 +916,22 @@ public final class KesselInventoryServiceGrpc {
     public org.project_kessel.api.inventory.v1beta2.CheckBulkResponse checkBulk(org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCheckBulkMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks where the subject is implicitly the caller
+     * (self) for multiple resource-relation combinations.
+     * This API is more efficient than making individual CheckSelf calls when
+     * verifying permissions for multiple items. It answers questions like:
+     * "Which of these resources can the current caller perform action *Y* on?"
+     * The response includes a result for each item in the request, maintaining
+     * the same order.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse checkSelfBulk(org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCheckSelfBulkMethod(), getCallOptions(), request);
     }
 
     /**
@@ -848,6 +1036,22 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Performs a relationship check where the subject is implicitly the caller
+     * (self), as determined by the authentication context, rather than being
+     * provided explicitly in the request.
+     * This API answers the question:
+     * "Does the current caller have relation *Y* on object *Z*?"
+     * Common use cases include enforcing access checks for the authenticated user.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.project_kessel.api.inventory.v1beta2.CheckSelfResponse> checkSelf(
+        org.project_kessel.api.inventory.v1beta2.CheckSelfRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCheckSelfMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Performs a strongly consistent relationship check to determine whether a subject
      * has a specific relation to an object (representing, for example, a permission).
      * This API answers the question:
@@ -882,6 +1086,23 @@ public final class KesselInventoryServiceGrpc {
         org.project_kessel.api.inventory.v1beta2.CheckBulkRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCheckBulkMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Performs bulk permission checks where the subject is implicitly the caller
+     * (self) for multiple resource-relation combinations.
+     * This API is more efficient than making individual CheckSelf calls when
+     * verifying permissions for multiple items. It answers questions like:
+     * "Which of these resources can the current caller perform action *Y* on?"
+     * The response includes a result for each item in the request, maintaining
+     * the same order.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse> checkSelfBulk(
+        org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCheckSelfBulkMethod(), getCallOptions()), request);
     }
 
     /**
@@ -933,11 +1154,13 @@ public final class KesselInventoryServiceGrpc {
   }
 
   private static final int METHODID_CHECK = 0;
-  private static final int METHODID_CHECK_FOR_UPDATE = 1;
-  private static final int METHODID_CHECK_BULK = 2;
-  private static final int METHODID_REPORT_RESOURCE = 3;
-  private static final int METHODID_DELETE_RESOURCE = 4;
-  private static final int METHODID_STREAMED_LIST_OBJECTS = 5;
+  private static final int METHODID_CHECK_SELF = 1;
+  private static final int METHODID_CHECK_FOR_UPDATE = 2;
+  private static final int METHODID_CHECK_BULK = 3;
+  private static final int METHODID_CHECK_SELF_BULK = 4;
+  private static final int METHODID_REPORT_RESOURCE = 5;
+  private static final int METHODID_DELETE_RESOURCE = 6;
+  private static final int METHODID_STREAMED_LIST_OBJECTS = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -960,6 +1183,10 @@ public final class KesselInventoryServiceGrpc {
           serviceImpl.check((org.project_kessel.api.inventory.v1beta2.CheckRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckResponse>) responseObserver);
           break;
+        case METHODID_CHECK_SELF:
+          serviceImpl.checkSelf((org.project_kessel.api.inventory.v1beta2.CheckSelfRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfResponse>) responseObserver);
+          break;
         case METHODID_CHECK_FOR_UPDATE:
           serviceImpl.checkForUpdate((org.project_kessel.api.inventory.v1beta2.CheckForUpdateRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse>) responseObserver);
@@ -967,6 +1194,10 @@ public final class KesselInventoryServiceGrpc {
         case METHODID_CHECK_BULK:
           serviceImpl.checkBulk((org.project_kessel.api.inventory.v1beta2.CheckBulkRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckBulkResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_SELF_BULK:
+          serviceImpl.checkSelfBulk((org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse>) responseObserver);
           break;
         case METHODID_REPORT_RESOURCE:
           serviceImpl.reportResource((org.project_kessel.api.inventory.v1beta2.ReportResourceRequest) request,
@@ -1006,6 +1237,13 @@ public final class KesselInventoryServiceGrpc {
               org.project_kessel.api.inventory.v1beta2.CheckResponse>(
                 service, METHODID_CHECK)))
         .addMethod(
+          getCheckSelfMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.CheckSelfRequest,
+              org.project_kessel.api.inventory.v1beta2.CheckSelfResponse>(
+                service, METHODID_CHECK_SELF)))
+        .addMethod(
           getCheckForUpdateMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
@@ -1019,6 +1257,13 @@ public final class KesselInventoryServiceGrpc {
               org.project_kessel.api.inventory.v1beta2.CheckBulkRequest,
               org.project_kessel.api.inventory.v1beta2.CheckBulkResponse>(
                 service, METHODID_CHECK_BULK)))
+        .addMethod(
+          getCheckSelfBulkMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequest,
+              org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponse>(
+                service, METHODID_CHECK_SELF_BULK)))
         .addMethod(
           getReportResourceMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -1089,8 +1334,10 @@ public final class KesselInventoryServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new KesselInventoryServiceFileDescriptorSupplier())
               .addMethod(getCheckMethod())
+              .addMethod(getCheckSelfMethod())
               .addMethod(getCheckForUpdateMethod())
               .addMethod(getCheckBulkMethod())
+              .addMethod(getCheckSelfBulkMethod())
               .addMethod(getReportResourceMethod())
               .addMethod(getDeleteResourceMethod())
               .addMethod(getStreamedListObjectsMethod())

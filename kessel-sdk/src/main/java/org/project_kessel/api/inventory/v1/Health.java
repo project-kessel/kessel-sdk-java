@@ -61,17 +61,17 @@ public final class Health {
       "onse\022\026\n\006status\030\001 \001(\tR\006status\022\022\n\004code\030\002 \001" +
       "(\rR\004code\"\022\n\020GetReadyzRequest\"?\n\021GetReady" +
       "zResponse\022\026\n\006status\030\001 \001(\tR\006status\022\022\n\004cod" +
-      "e\030\002 \001(\rR\004code2\226\002\n\034KesselInventoryHealthS" +
-      "ervice\022x\n\010GetLivez\022$.kessel.inventory.v1" +
+      "e\030\002 \001(\rR\004code2\220\002\n\034KesselInventoryHealthS" +
+      "ervice\022u\n\010GetLivez\022$.kessel.inventory.v1" +
       ".GetLivezRequest\032%.kessel.inventory.v1.G" +
-      "etLivezResponse\"\037\202\323\344\223\002\031\022\027/api/inventory/" +
-      "v1/livez\022|\n\tGetReadyz\022%.kessel.inventory" +
-      ".v1.GetReadyzRequest\032&.kessel.inventory." +
-      "v1.GetReadyzResponse\" \202\323\344\223\002\032\022\030/api/inven" +
-      "tory/v1/readyzBh\n#org.project_kessel.api" +
-      ".inventory.v1P\001Z?github.com/project-kess" +
-      "el/inventory-api/api/kessel/inventory/v1" +
-      "b\006proto3"
+      "etLivezResponse\"\034\202\323\344\223\002\026\022\024/api/kessel/v1/" +
+      "livez\022y\n\tGetReadyz\022%.kessel.inventory.v1" +
+      ".GetReadyzRequest\032&.kessel.inventory.v1." +
+      "GetReadyzResponse\"\035\202\323\344\223\002\027\022\025/api/kessel/v" +
+      "1/readyzBh\n#org.project_kessel.api.inven" +
+      "tory.v1P\001Z?github.com/project-kessel/inv" +
+      "entory-api/api/kessel/inventory/v1b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

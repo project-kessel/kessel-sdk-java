@@ -8,6 +8,9 @@ package org.project_kessel.api.inventory.v1beta2;
 /**
  * <pre>
  * Defines how a request is handled by the service.
+ * If consistency is omitted by the client, standard server configuration uses
+ * minimize_latency by default, but deployments may override that default (for
+ * example, to at_least_as_acknowledged).
  * </pre>
  *
  * Protobuf type {@code kessel.inventory.v1beta2.Consistency}
@@ -55,6 +58,7 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     MINIMIZE_LATENCY(1),
     AT_LEAST_AS_FRESH(2),
+    AT_LEAST_AS_ACKNOWLEDGED(3),
     REQUIREMENT_NOT_SET(0);
     private final int value;
     private RequirementCase(int value) {
@@ -74,6 +78,7 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 1: return MINIMIZE_LATENCY;
         case 2: return AT_LEAST_AS_FRESH;
+        case 3: return AT_LEAST_AS_ACKNOWLEDGED;
         case 0: return REQUIREMENT_NOT_SET;
         default: return null;
       }
@@ -169,6 +174,51 @@ private static final long serialVersionUID = 0L;
     return org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance();
   }
 
+  public static final int AT_LEAST_AS_ACKNOWLEDGED_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * All data used in the API call must be *at least as acknowledged*,
+   * meaning it includes data up to the latest write known to Inventory.
+   * This aligns with `ReportResource` write visibility: when
+   * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+   * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+   * least as recent as that write.
+   * Some deployments may use this behavior as the server-side default when
+   * consistency is omitted.
+   * *Must* be set true if used.
+   * </pre>
+   *
+   * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+   * @return Whether the atLeastAsAcknowledged field is set.
+   */
+  @java.lang.Override
+  public boolean hasAtLeastAsAcknowledged() {
+    return requirementCase_ == 3;
+  }
+  /**
+   * <pre>
+   * All data used in the API call must be *at least as acknowledged*,
+   * meaning it includes data up to the latest write known to Inventory.
+   * This aligns with `ReportResource` write visibility: when
+   * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+   * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+   * least as recent as that write.
+   * Some deployments may use this behavior as the server-side default when
+   * consistency is omitted.
+   * *Must* be set true if used.
+   * </pre>
+   *
+   * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+   * @return The atLeastAsAcknowledged.
+   */
+  @java.lang.Override
+  public boolean getAtLeastAsAcknowledged() {
+    if (requirementCase_ == 3) {
+      return (java.lang.Boolean) requirement_;
+    }
+    return false;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -190,6 +240,10 @@ private static final long serialVersionUID = 0L;
     if (requirementCase_ == 2) {
       output.writeMessage(2, (org.project_kessel.api.inventory.v1beta2.ConsistencyToken) requirement_);
     }
+    if (requirementCase_ == 3) {
+      output.writeBool(
+          3, (boolean)((java.lang.Boolean) requirement_));
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -207,6 +261,11 @@ private static final long serialVersionUID = 0L;
     if (requirementCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (org.project_kessel.api.inventory.v1beta2.ConsistencyToken) requirement_);
+    }
+    if (requirementCase_ == 3) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(
+            3, (boolean)((java.lang.Boolean) requirement_));
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -233,6 +292,10 @@ private static final long serialVersionUID = 0L;
         if (!getAtLeastAsFresh()
             .equals(other.getAtLeastAsFresh())) return false;
         break;
+      case 3:
+        if (getAtLeastAsAcknowledged()
+            != other.getAtLeastAsAcknowledged()) return false;
+        break;
       case 0:
       default:
     }
@@ -256,6 +319,11 @@ private static final long serialVersionUID = 0L;
       case 2:
         hash = (37 * hash) + AT_LEAST_AS_FRESH_FIELD_NUMBER;
         hash = (53 * hash) + getAtLeastAsFresh().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + AT_LEAST_AS_ACKNOWLEDGED_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getAtLeastAsAcknowledged());
         break;
       case 0:
       default:
@@ -360,6 +428,9 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Defines how a request is handled by the service.
+   * If consistency is omitted by the client, standard server configuration uses
+   * minimize_latency by default, but deployments may override that default (for
+   * example, to at_least_as_acknowledged).
    * </pre>
    *
    * Protobuf type {@code kessel.inventory.v1beta2.Consistency}
@@ -466,6 +537,10 @@ private static final long serialVersionUID = 0L;
           mergeAtLeastAsFresh(other.getAtLeastAsFresh());
           break;
         }
+        case AT_LEAST_AS_ACKNOWLEDGED: {
+          setAtLeastAsAcknowledged(other.getAtLeastAsAcknowledged());
+          break;
+        }
         case REQUIREMENT_NOT_SET: {
           break;
         }
@@ -508,6 +583,11 @@ private static final long serialVersionUID = 0L;
               requirementCase_ = 2;
               break;
             } // case 18
+            case 24: {
+              requirement_ = input.readBool();
+              requirementCase_ = 3;
+              break;
+            } // case 24
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -796,6 +876,96 @@ private static final long serialVersionUID = 0L;
       requirementCase_ = 2;
       onChanged();
       return atLeastAsFreshBuilder_;
+    }
+
+    /**
+     * <pre>
+     * All data used in the API call must be *at least as acknowledged*,
+     * meaning it includes data up to the latest write known to Inventory.
+     * This aligns with `ReportResource` write visibility: when
+     * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+     * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+     * least as recent as that write.
+     * Some deployments may use this behavior as the server-side default when
+     * consistency is omitted.
+     * *Must* be set true if used.
+     * </pre>
+     *
+     * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+     * @return Whether the atLeastAsAcknowledged field is set.
+     */
+    public boolean hasAtLeastAsAcknowledged() {
+      return requirementCase_ == 3;
+    }
+    /**
+     * <pre>
+     * All data used in the API call must be *at least as acknowledged*,
+     * meaning it includes data up to the latest write known to Inventory.
+     * This aligns with `ReportResource` write visibility: when
+     * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+     * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+     * least as recent as that write.
+     * Some deployments may use this behavior as the server-side default when
+     * consistency is omitted.
+     * *Must* be set true if used.
+     * </pre>
+     *
+     * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+     * @return The atLeastAsAcknowledged.
+     */
+    public boolean getAtLeastAsAcknowledged() {
+      if (requirementCase_ == 3) {
+        return (java.lang.Boolean) requirement_;
+      }
+      return false;
+    }
+    /**
+     * <pre>
+     * All data used in the API call must be *at least as acknowledged*,
+     * meaning it includes data up to the latest write known to Inventory.
+     * This aligns with `ReportResource` write visibility: when
+     * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+     * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+     * least as recent as that write.
+     * Some deployments may use this behavior as the server-side default when
+     * consistency is omitted.
+     * *Must* be set true if used.
+     * </pre>
+     *
+     * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+     * @param value The atLeastAsAcknowledged to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAtLeastAsAcknowledged(boolean value) {
+
+      requirementCase_ = 3;
+      requirement_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * All data used in the API call must be *at least as acknowledged*,
+     * meaning it includes data up to the latest write known to Inventory.
+     * This aligns with `ReportResource` write visibility: when
+     * `write_visibility=IMMEDIATE`, the write waits for acknowledgement, so a
+     * subsequent read with `at_least_as_acknowledged` is guaranteed to be at
+     * least as recent as that write.
+     * Some deployments may use this behavior as the server-side default when
+     * consistency is omitted.
+     * *Must* be set true if used.
+     * </pre>
+     *
+     * <code>bool at_least_as_acknowledged = 3 [json_name = "atLeastAsAcknowledged", (.buf.validate.field) = { ... }</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAtLeastAsAcknowledged() {
+      if (requirementCase_ == 3) {
+        requirementCase_ = 0;
+        requirement_ = null;
+        onChanged();
+      }
+      return this;
     }
 
     // @@protoc_insertion_point(builder_scope:kessel.inventory.v1beta2.Consistency)
