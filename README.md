@@ -133,6 +133,8 @@ You can follow the instructions found [here](https://central.sonatype.org/publis
 For publishing it is also required to have a [GPG key](https://central.sonatype.org/publish/requirements/gpg/) configured.
 
 ```bash
+# Exit back to main directory
+cd ..
 # Push deployment to maven central
 ./mvnw -B clean deploy -Psign
 ```
