@@ -44,6 +44,7 @@ private static final long serialVersionUID = 0L;
             org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse.class, org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int ALLOWED_FIELD_NUMBER = 1;
   private int allowed_ = 0;
   /**
@@ -60,6 +61,32 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override public org.project_kessel.api.inventory.v1beta2.Allowed getAllowed() {
     org.project_kessel.api.inventory.v1beta2.Allowed result = org.project_kessel.api.inventory.v1beta2.Allowed.forNumber(allowed_);
     return result == null ? org.project_kessel.api.inventory.v1beta2.Allowed.UNRECOGNIZED : result;
+  }
+
+  public static final int CONSISTENCY_TOKEN_FIELD_NUMBER = 2;
+  private org.project_kessel.api.inventory.v1beta2.ConsistencyToken consistencyToken_;
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   * @return Whether the consistencyToken field is set.
+   */
+  @java.lang.Override
+  public boolean hasConsistencyToken() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   * @return The consistencyToken.
+   */
+  @java.lang.Override
+  public org.project_kessel.api.inventory.v1beta2.ConsistencyToken getConsistencyToken() {
+    return consistencyToken_ == null ? org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance() : consistencyToken_;
+  }
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   */
+  @java.lang.Override
+  public org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder getConsistencyTokenOrBuilder() {
+    return consistencyToken_ == null ? org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance() : consistencyToken_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -79,6 +106,9 @@ private static final long serialVersionUID = 0L;
     if (allowed_ != org.project_kessel.api.inventory.v1beta2.Allowed.ALLOWED_UNSPECIFIED.getNumber()) {
       output.writeEnum(1, allowed_);
     }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(2, getConsistencyToken());
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -91,6 +121,10 @@ private static final long serialVersionUID = 0L;
     if (allowed_ != org.project_kessel.api.inventory.v1beta2.Allowed.ALLOWED_UNSPECIFIED.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, allowed_);
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getConsistencyToken());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -108,6 +142,11 @@ private static final long serialVersionUID = 0L;
     org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse other = (org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse) obj;
 
     if (allowed_ != other.allowed_) return false;
+    if (hasConsistencyToken() != other.hasConsistencyToken()) return false;
+    if (hasConsistencyToken()) {
+      if (!getConsistencyToken()
+          .equals(other.getConsistencyToken())) return false;
+    }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -121,6 +160,10 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ALLOWED_FIELD_NUMBER;
     hash = (53 * hash) + allowed_;
+    if (hasConsistencyToken()) {
+      hash = (37 * hash) + CONSISTENCY_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getConsistencyToken().hashCode();
+    }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -240,19 +283,30 @@ private static final long serialVersionUID = 0L;
 
     // Construct using org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse.newBuilder()
     private Builder() {
-
+      maybeForceBuilderInitialization();
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       super(parent);
-
+      maybeForceBuilderInitialization();
+    }
+    private void maybeForceBuilderInitialization() {
+      if (com.google.protobuf.GeneratedMessage
+              .alwaysUseFieldBuilders) {
+        internalGetConsistencyTokenFieldBuilder();
+      }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
       allowed_ = 0;
+      consistencyToken_ = null;
+      if (consistencyTokenBuilder_ != null) {
+        consistencyTokenBuilder_.dispose();
+        consistencyTokenBuilder_ = null;
+      }
       return this;
     }
 
@@ -289,6 +343,14 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.allowed_ = allowed_;
       }
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.consistencyToken_ = consistencyTokenBuilder_ == null
+            ? consistencyToken_
+            : consistencyTokenBuilder_.build();
+        to_bitField0_ |= 0x00000001;
+      }
+      result.bitField0_ |= to_bitField0_;
     }
 
     @java.lang.Override
@@ -305,6 +367,9 @@ private static final long serialVersionUID = 0L;
       if (other == org.project_kessel.api.inventory.v1beta2.CheckForUpdateResponse.getDefaultInstance()) return this;
       if (other.allowed_ != 0) {
         setAllowedValue(other.getAllowedValue());
+      }
+      if (other.hasConsistencyToken()) {
+        mergeConsistencyToken(other.getConsistencyToken());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -337,6 +402,13 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000001;
               break;
             } // case 8
+            case 18: {
+              input.readMessage(
+                  internalGetConsistencyTokenFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -403,6 +475,127 @@ private static final long serialVersionUID = 0L;
       allowed_ = 0;
       onChanged();
       return this;
+    }
+
+    private org.project_kessel.api.inventory.v1beta2.ConsistencyToken consistencyToken_;
+    private com.google.protobuf.SingleFieldBuilder<
+        org.project_kessel.api.inventory.v1beta2.ConsistencyToken, org.project_kessel.api.inventory.v1beta2.ConsistencyToken.Builder, org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder> consistencyTokenBuilder_;
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     * @return Whether the consistencyToken field is set.
+     */
+    public boolean hasConsistencyToken() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     * @return The consistencyToken.
+     */
+    public org.project_kessel.api.inventory.v1beta2.ConsistencyToken getConsistencyToken() {
+      if (consistencyTokenBuilder_ == null) {
+        return consistencyToken_ == null ? org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance() : consistencyToken_;
+      } else {
+        return consistencyTokenBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public Builder setConsistencyToken(org.project_kessel.api.inventory.v1beta2.ConsistencyToken value) {
+      if (consistencyTokenBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        consistencyToken_ = value;
+      } else {
+        consistencyTokenBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public Builder setConsistencyToken(
+        org.project_kessel.api.inventory.v1beta2.ConsistencyToken.Builder builderForValue) {
+      if (consistencyTokenBuilder_ == null) {
+        consistencyToken_ = builderForValue.build();
+      } else {
+        consistencyTokenBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public Builder mergeConsistencyToken(org.project_kessel.api.inventory.v1beta2.ConsistencyToken value) {
+      if (consistencyTokenBuilder_ == null) {
+        if (((bitField0_ & 0x00000002) != 0) &&
+          consistencyToken_ != null &&
+          consistencyToken_ != org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance()) {
+          getConsistencyTokenBuilder().mergeFrom(value);
+        } else {
+          consistencyToken_ = value;
+        }
+      } else {
+        consistencyTokenBuilder_.mergeFrom(value);
+      }
+      if (consistencyToken_ != null) {
+        bitField0_ |= 0x00000002;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public Builder clearConsistencyToken() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      consistencyToken_ = null;
+      if (consistencyTokenBuilder_ != null) {
+        consistencyTokenBuilder_.dispose();
+        consistencyTokenBuilder_ = null;
+      }
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public org.project_kessel.api.inventory.v1beta2.ConsistencyToken.Builder getConsistencyTokenBuilder() {
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return internalGetConsistencyTokenFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    public org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder getConsistencyTokenOrBuilder() {
+      if (consistencyTokenBuilder_ != null) {
+        return consistencyTokenBuilder_.getMessageOrBuilder();
+      } else {
+        return consistencyToken_ == null ?
+            org.project_kessel.api.inventory.v1beta2.ConsistencyToken.getDefaultInstance() : consistencyToken_;
+      }
+    }
+    /**
+     * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+     */
+    private com.google.protobuf.SingleFieldBuilder<
+        org.project_kessel.api.inventory.v1beta2.ConsistencyToken, org.project_kessel.api.inventory.v1beta2.ConsistencyToken.Builder, org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder> 
+        internalGetConsistencyTokenFieldBuilder() {
+      if (consistencyTokenBuilder_ == null) {
+        consistencyTokenBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+            org.project_kessel.api.inventory.v1beta2.ConsistencyToken, org.project_kessel.api.inventory.v1beta2.ConsistencyToken.Builder, org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder>(
+                getConsistencyToken(),
+                getParentForChildren(),
+                isClean());
+        consistencyToken_ = null;
+      }
+      return consistencyTokenBuilder_;
     }
 
     // @@protoc_insertion_point(builder_scope:kessel.inventory.v1beta2.CheckForUpdateResponse)

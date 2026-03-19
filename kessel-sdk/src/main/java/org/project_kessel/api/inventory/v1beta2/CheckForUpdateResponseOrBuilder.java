@@ -20,4 +20,19 @@ public interface CheckForUpdateResponseOrBuilder extends
    * @return The allowed.
    */
   org.project_kessel.api.inventory.v1beta2.Allowed getAllowed();
+
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   * @return Whether the consistencyToken field is set.
+   */
+  boolean hasConsistencyToken();
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   * @return The consistencyToken.
+   */
+  org.project_kessel.api.inventory.v1beta2.ConsistencyToken getConsistencyToken();
+  /**
+   * <code>.kessel.inventory.v1beta2.ConsistencyToken consistency_token = 2 [json_name = "consistencyToken"];</code>
+   */
+  org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOrBuilder getConsistencyTokenOrBuilder();
 }

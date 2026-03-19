@@ -43,26 +43,31 @@ public final class CheckForUpdateResponseOuterClass {
       "\n8kessel/inventory/v1beta2/check_for_upd" +
       "ate_response.proto\022\030kessel.inventory.v1b" +
       "eta2\032&kessel/inventory/v1beta2/allowed.p" +
-      "roto\"U\n\026CheckForUpdateResponse\022;\n\007allowe" +
-      "d\030\001 \001(\0162!.kessel.inventory.v1beta2.Allow" +
-      "edR\007allowedBr\n(org.project_kessel.api.in" +
-      "ventory.v1beta2P\001ZDgithub.com/project-ke" +
-      "ssel/inventory-api/api/kessel/inventory/" +
-      "v1beta2b\006proto3"
+      "roto\0320kessel/inventory/v1beta2/consisten" +
+      "cy_token.proto\"\256\001\n\026CheckForUpdateRespons" +
+      "e\022;\n\007allowed\030\001 \001(\0162!.kessel.inventory.v1" +
+      "beta2.AllowedR\007allowed\022W\n\021consistency_to" +
+      "ken\030\002 \001(\0132*.kessel.inventory.v1beta2.Con" +
+      "sistencyTokenR\020consistencyTokenBr\n(org.p" +
+      "roject_kessel.api.inventory.v1beta2P\001ZDg" +
+      "ithub.com/project-kessel/inventory-api/a" +
+      "pi/kessel/inventory/v1beta2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           org.project_kessel.api.inventory.v1beta2.AllowedOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOuterClass.getDescriptor(),
         });
     internal_static_kessel_inventory_v1beta2_CheckForUpdateResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_kessel_inventory_v1beta2_CheckForUpdateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_kessel_inventory_v1beta2_CheckForUpdateResponse_descriptor,
-        new java.lang.String[] { "Allowed", });
+        new java.lang.String[] { "Allowed", "ConsistencyToken", });
     descriptor.resolveAllFeaturesImmutable();
     org.project_kessel.api.inventory.v1beta2.AllowedOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.ConsistencyTokenOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
