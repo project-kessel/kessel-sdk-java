@@ -112,7 +112,7 @@ echo "Releasing version: v${VERSION}"
 # Update the project version across all modules
 ./mvnw versions:set -DnewVersion=${VERSION}
 
-# Ensure the root pom.xml now contains <version>${VERSION}</version>
+# Verify the root pom.xml <version> element now shows the concrete version (e.g. 1.2.3)
 ```
 
 3. **Update Dependencies (if needed)**
@@ -150,9 +150,10 @@ Check deployment page for errors before publishing on maven web portal. Verify t
 6. **Commit and Push Changes**
 
 ```bash
-# Revert changes to pom.xml
-git stash
+# Revert the temporary pom.xml version changes created by versions:set
+./mvnw versions:revert
 # Commit any related changes (if any, e.g. proto updates)
+git add .
 git commit -m "chore: bump version to ${VERSION}"
 git push origin main # or git push upstream main
 ```

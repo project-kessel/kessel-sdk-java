@@ -49,7 +49,7 @@ echo "Releasing version: v${VERSION}"
 ./mvnw versions:set -DnewVersion=${VERSION}
 ```
 
-Verify the root `pom.xml` now contains `<version>${VERSION}</version>`.
+Verify the root `pom.xml` `<version>` element now contains the concrete version you set (e.g. `1.2.3`).
 
 ### Step 3: Update Dependencies (if needed)
 
@@ -81,14 +81,14 @@ Check the deployment page for errors before publishing on the Maven Central web 
 
 ### Step 6: Commit and Push
 
+The `versions:set` command creates temporary `pom.xml.versionsBackup` files and modifies `pom.xml` version fields. Restore the pom files, then commit any other release changes (e.g. regenerated code):
+
 ```bash
-git stash
+./mvnw versions:revert
 git add .
 git commit -m "chore: bump version to ${VERSION}"
 git push origin main
 ```
-
-Include any other changed files (generated code, etc.) in the commit.
 
 ### Step 7: Tag the Release
 
@@ -113,7 +113,7 @@ Or manually:
 
 ## Quick Reference Checklist
 
-```
+```text
 Release v${VERSION}:
 - [ ] Check existing tags and determine new version
 - [ ] Set VERSION env var
