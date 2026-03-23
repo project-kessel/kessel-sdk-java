@@ -99,23 +99,30 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/). Version n
 
 ### Release Process
 
-1. **Update the Version**
+1. **Set the VERSION environment variable**
+
+```bash
+export VERSION=X.Y.Z
+echo "Releasing version: v${VERSION}"
+```
+
+2. **Update the Version**
 
 ```bash
 # Update the project version across all modules
-./mvnw versions:set -DnewVersion=X.Y.Z
+./mvnw versions:set -DnewVersion=${VERSION}
 
-# Ensure the root pom.xml now contains <version>X.Y.Z</version>
+# Verify the root pom.xml <version> element now shows the concrete version (e.g. 1.2.3)
 ```
 
-2. **Update Dependencies (if needed)**
+3. **Update Dependencies (if needed)**
 
 ```bash
 # Regenerate gRPC code if there are updates to the Kessel Inventory API
 buf generate
 ```
 
-3. **Run Quality Checks**
+4. **Run Quality Checks**
 
 ```bash
 # Build the project
@@ -125,7 +132,7 @@ cd examples
 ../mvnw compile exec:java -Prun-auth
 ```
 
-4. **Build and Publish the Package**
+5. **Build and Publish the Package**
 
 It's required to configure your `settings.xml` with token credentials before deploying.
 You can follow the instructions found [here](https://central.sonatype.org/publish/publish-portal-maven/#credentials) for generating a user token and configuring your `setings.xml`.
@@ -140,25 +147,32 @@ cd ..
 ```
 Check deployment page for errors before publishing on maven web portal. Verify that both `org.project-kessel:kessel-sdk-parent` and `org.project-kessel:kessel-sdk` are present in the staging repository before closing it.
 
-5. **Commit and Push Changes**
+6. **Commit and Push Changes**
 
 ```bash
-# Revert changes to pom.xml
-git stash
+# Revert the temporary pom.xml version changes created by versions:set
+./mvnw versions:revert
 # Commit any related changes (if any, e.g. proto updates)
-git commit -m "chore: bump version to X.Y.Z"
+git add .
+git commit -m "chore: bump version to ${VERSION}"
 git push origin main # or git push upstream main
 ```
 
-6. **Tag the Release**
+7. **Tag the Release**
 
 ```bash
 # Create and push a git tag
-git tag -a vX.Y.Z -m "Release version X.Y.Z"
-git push origin vX.Y.Z
+git tag -a v${VERSION} -m "Release version ${VERSION}"
+git push origin v${VERSION}
 ```
 
-7. **Create GitHub Release**
+8. **Create GitHub Release**
+
+```bash
+gh release create v${VERSION} --title "v${VERSION}" --generate-notes
+```
+
+Or manually:
 
 - Go to the [GitHub Releases page](https://github.com/project-kessel/kessel-sdk-java/releases)
 - Click "Create a new release"
