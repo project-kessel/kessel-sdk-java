@@ -59,41 +59,48 @@ public final class InventoryService {
       "beta2/check_self_response.proto\0326kessel/" +
       "inventory/v1beta2/check_self_bulk_reques" +
       "t.proto\0327kessel/inventory/v1beta2/check_" +
-      "self_bulk_response.proto2\307\t\n\026KesselInven" +
-      "toryService\022~\n\005Check\022&.kessel.inventory." +
-      "v1beta2.CheckRequest\032\'.kessel.inventory." +
-      "v1beta2.CheckResponse\"$\202\323\344\223\002\036\"\031/api/kess" +
-      "el/v1beta2/check:\001*\022\216\001\n\tCheckSelf\022*.kess" +
-      "el.inventory.v1beta2.CheckSelfRequest\032+." +
-      "kessel.inventory.v1beta2.CheckSelfRespon" +
-      "se\"(\202\323\344\223\002\"\"\035/api/kessel/v1beta2/checksel" +
-      "f:\001*\022\242\001\n\016CheckForUpdate\022/.kessel.invento" +
-      "ry.v1beta2.CheckForUpdateRequest\0320.kesse" +
-      "l.inventory.v1beta2.CheckForUpdateRespon" +
-      "se\"-\202\323\344\223\002\'\"\"/api/kessel/v1beta2/checkfor" +
-      "update:\001*\022\216\001\n\tCheckBulk\022*.kessel.invento" +
-      "ry.v1beta2.CheckBulkRequest\032+.kessel.inv" +
-      "entory.v1beta2.CheckBulkResponse\"(\202\323\344\223\002\"" +
-      "\"\035/api/kessel/v1beta2/checkbulk:\001*\022\236\001\n\rC" +
-      "heckSelfBulk\022..kessel.inventory.v1beta2." +
-      "CheckSelfBulkRequest\032/.kessel.inventory." +
-      "v1beta2.CheckSelfBulkResponse\",\202\323\344\223\002&\"!/" +
-      "api/kessel/v1beta2/checkselfbulk:\001*\022\235\001\n\016" +
-      "ReportResource\022/.kessel.inventory.v1beta" +
-      "2.ReportResourceRequest\0320.kessel.invento" +
-      "ry.v1beta2.ReportResourceResponse\"(\202\323\344\223\002" +
-      "\"\"\035/api/kessel/v1beta2/resources:\001*\022\235\001\n\016" +
-      "DeleteResource\022/.kessel.inventory.v1beta" +
-      "2.DeleteResourceRequest\0320.kessel.invento" +
-      "ry.v1beta2.DeleteResourceResponse\"(\202\323\344\223\002" +
-      "\"*\035/api/kessel/v1beta2/resources:\001*\022\204\001\n\023" +
-      "StreamedListObjects\0224.kessel.inventory.v" +
-      "1beta2.StreamedListObjectsRequest\0325.kess" +
-      "el.inventory.v1beta2.StreamedListObjects" +
-      "Response0\001Br\n(org.project_kessel.api.inv" +
-      "entory.v1beta2P\001ZDgithub.com/project-kes" +
-      "sel/inventory-api/api/kessel/inventory/v" +
-      "1beta2b\006proto3"
+      "self_bulk_response.proto\032<kessel/invento" +
+      "ry/v1beta2/check_for_update_bulk_request" +
+      ".proto\032=kessel/inventory/v1beta2/check_f" +
+      "or_update_bulk_response.proto2\374\n\n\026Kessel" +
+      "InventoryService\022~\n\005Check\022&.kessel.inven" +
+      "tory.v1beta2.CheckRequest\032\'.kessel.inven" +
+      "tory.v1beta2.CheckResponse\"$\202\323\344\223\002\036\"\031/api" +
+      "/kessel/v1beta2/check:\001*\022\216\001\n\tCheckSelf\022*" +
+      ".kessel.inventory.v1beta2.CheckSelfReque" +
+      "st\032+.kessel.inventory.v1beta2.CheckSelfR" +
+      "esponse\"(\202\323\344\223\002\"\"\035/api/kessel/v1beta2/che" +
+      "ckself:\001*\022\242\001\n\016CheckForUpdate\022/.kessel.in" +
+      "ventory.v1beta2.CheckForUpdateRequest\0320." +
+      "kessel.inventory.v1beta2.CheckForUpdateR" +
+      "esponse\"-\202\323\344\223\002\'\"\"/api/kessel/v1beta2/che" +
+      "ckforupdate:\001*\022\262\001\n\022CheckForUpdateBulk\0223." +
+      "kessel.inventory.v1beta2.CheckForUpdateB" +
+      "ulkRequest\0324.kessel.inventory.v1beta2.Ch" +
+      "eckForUpdateBulkResponse\"1\202\323\344\223\002+\"&/api/k" +
+      "essel/v1beta2/checkforupdatebulk:\001*\022\216\001\n\t" +
+      "CheckBulk\022*.kessel.inventory.v1beta2.Che" +
+      "ckBulkRequest\032+.kessel.inventory.v1beta2" +
+      ".CheckBulkResponse\"(\202\323\344\223\002\"\"\035/api/kessel/" +
+      "v1beta2/checkbulk:\001*\022\236\001\n\rCheckSelfBulk\022." +
+      ".kessel.inventory.v1beta2.CheckSelfBulkR" +
+      "equest\032/.kessel.inventory.v1beta2.CheckS" +
+      "elfBulkResponse\",\202\323\344\223\002&\"!/api/kessel/v1b" +
+      "eta2/checkselfbulk:\001*\022\235\001\n\016ReportResource" +
+      "\022/.kessel.inventory.v1beta2.ReportResour" +
+      "ceRequest\0320.kessel.inventory.v1beta2.Rep" +
+      "ortResourceResponse\"(\202\323\344\223\002\"\"\035/api/kessel" +
+      "/v1beta2/resources:\001*\022\235\001\n\016DeleteResource" +
+      "\022/.kessel.inventory.v1beta2.DeleteResour" +
+      "ceRequest\0320.kessel.inventory.v1beta2.Del" +
+      "eteResourceResponse\"(\202\323\344\223\002\"*\035/api/kessel" +
+      "/v1beta2/resources:\001*\022\204\001\n\023StreamedListOb" +
+      "jects\0224.kessel.inventory.v1beta2.Streame" +
+      "dListObjectsRequest\0325.kessel.inventory.v" +
+      "1beta2.StreamedListObjectsResponse0\001Br\n(" +
+      "org.project_kessel.api.inventory.v1beta2" +
+      "P\001ZDgithub.com/project-kessel/inventory-" +
+      "api/api/kessel/inventory/v1beta2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -115,6 +122,8 @@ public final class InventoryService {
           org.project_kessel.api.inventory.v1beta2.CheckSelfResponseOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequestOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponseOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.CheckForUpdateBulkRequestOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.CheckForUpdateBulkResponseOuterClass.getDescriptor(),
         });
     descriptor.resolveAllFeaturesImmutable();
     com.google.api.AnnotationsProto.getDescriptor();
@@ -134,6 +143,8 @@ public final class InventoryService {
     org.project_kessel.api.inventory.v1beta2.CheckSelfResponseOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.CheckSelfBulkRequestOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.CheckSelfBulkResponseOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.CheckForUpdateBulkRequestOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.CheckForUpdateBulkResponseOuterClass.getDescriptor();
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.api.AnnotationsProto.http);
