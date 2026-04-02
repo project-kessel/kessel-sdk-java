@@ -295,6 +295,37 @@ public final class KesselInventoryServiceGrpc {
     return getStreamedListObjectsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest,
+      org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> getStreamedListSubjectsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "StreamedListSubjects",
+      requestType = org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest,
+      org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> getStreamedListSubjectsMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest, org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> getStreamedListSubjectsMethod;
+    if ((getStreamedListSubjectsMethod = KesselInventoryServiceGrpc.getStreamedListSubjectsMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getStreamedListSubjectsMethod = KesselInventoryServiceGrpc.getStreamedListSubjectsMethod) == null) {
+          KesselInventoryServiceGrpc.getStreamedListSubjectsMethod = getStreamedListSubjectsMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest, org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "StreamedListSubjects"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("StreamedListSubjects"))
+              .build();
+        }
+      }
+    }
+    return getStreamedListSubjectsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -519,6 +550,22 @@ public final class KesselInventoryServiceGrpc {
         io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getStreamedListObjectsMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Streams a list of subjects that have the specified relation to a resource.
+     * This relationship query answers the question:
+     * "Which subjects of type *X* have relation *Y* to resource *Z*?"
+     * It is often used for access auditing, troubleshooting permissions, or
+     * displaying lists of users/principals with specific access to a resource.
+     * The result is streamed incrementally to support large datasets.
+     * Pagination and consistency controls allow fine-tuned performance and data freshness.
+     * </pre>
+     */
+    default void streamedListSubjects(org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getStreamedListSubjectsMethod(), responseObserver);
+    }
   }
 
   /**
@@ -722,6 +769,23 @@ public final class KesselInventoryServiceGrpc {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getStreamedListObjectsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Streams a list of subjects that have the specified relation to a resource.
+     * This relationship query answers the question:
+     * "Which subjects of type *X* have relation *Y* to resource *Z*?"
+     * It is often used for access auditing, troubleshooting permissions, or
+     * displaying lists of users/principals with specific access to a resource.
+     * The result is streamed incrementally to support large datasets.
+     * Pagination and consistency controls allow fine-tuned performance and data freshness.
+     * </pre>
+     */
+    public void streamedListSubjects(org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getStreamedListSubjectsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -903,6 +967,24 @@ public final class KesselInventoryServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingV2ServerStreamingCall(
           getChannel(), getStreamedListObjectsMethod(), getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     * Streams a list of subjects that have the specified relation to a resource.
+     * This relationship query answers the question:
+     * "Which subjects of type *X* have relation *Y* to resource *Z*?"
+     * It is often used for access auditing, troubleshooting permissions, or
+     * displaying lists of users/principals with specific access to a resource.
+     * The result is streamed incrementally to support large datasets.
+     * Pagination and consistency controls allow fine-tuned performance and data freshness.
+     * </pre>
+     */
+    @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/10918")
+    public io.grpc.stub.BlockingClientCall<?, org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse>
+        streamedListSubjects(org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingV2ServerStreamingCall(
+          getChannel(), getStreamedListSubjectsMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -1082,6 +1164,23 @@ public final class KesselInventoryServiceGrpc {
         org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getStreamedListObjectsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Streams a list of subjects that have the specified relation to a resource.
+     * This relationship query answers the question:
+     * "Which subjects of type *X* have relation *Y* to resource *Z*?"
+     * It is often used for access auditing, troubleshooting permissions, or
+     * displaying lists of users/principals with specific access to a resource.
+     * The result is streamed incrementally to support large datasets.
+     * Pagination and consistency controls allow fine-tuned performance and data freshness.
+     * </pre>
+     */
+    public java.util.Iterator<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse> streamedListSubjects(
+        org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getStreamedListSubjectsMethod(), getCallOptions(), request);
     }
   }
 
@@ -1265,6 +1364,7 @@ public final class KesselInventoryServiceGrpc {
   private static final int METHODID_REPORT_RESOURCE = 6;
   private static final int METHODID_DELETE_RESOURCE = 7;
   private static final int METHODID_STREAMED_LIST_OBJECTS = 8;
+  private static final int METHODID_STREAMED_LIST_SUBJECTS = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1318,6 +1418,10 @@ public final class KesselInventoryServiceGrpc {
         case METHODID_STREAMED_LIST_OBJECTS:
           serviceImpl.streamedListObjects((org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse>) responseObserver);
+          break;
+        case METHODID_STREAMED_LIST_SUBJECTS:
+          serviceImpl.streamedListSubjects((org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -1400,6 +1504,13 @@ public final class KesselInventoryServiceGrpc {
               org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest,
               org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse>(
                 service, METHODID_STREAMED_LIST_OBJECTS)))
+        .addMethod(
+          getStreamedListSubjectsMethod(),
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequest,
+              org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsResponse>(
+                service, METHODID_STREAMED_LIST_SUBJECTS)))
         .build();
   }
 
@@ -1457,6 +1568,7 @@ public final class KesselInventoryServiceGrpc {
               .addMethod(getReportResourceMethod())
               .addMethod(getDeleteResourceMethod())
               .addMethod(getStreamedListObjectsMethod())
+              .addMethod(getStreamedListSubjectsMethod())
               .build();
         }
       }
