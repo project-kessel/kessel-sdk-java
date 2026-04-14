@@ -25,7 +25,8 @@ public class Console {
             throw new IllegalArgumentException("identity must not be null");
         }
 
-        String type = (String) identity.get("type");
+        Object typeObj = identity.get("type");
+        String type = typeObj instanceof String ? (String) typeObj : null;
         String field;
 
         if ("User".equals(type)) {
@@ -34,7 +35,7 @@ public class Console {
             field = "service_account";
         } else {
             throw new IllegalArgumentException(
-                    "Unsupported identity type: \"" + type + "\" (supported: " + SUPPORTED_TYPES + ")");
+                    "Unsupported identity type: \"" + typeObj + "\" (supported: " + SUPPORTED_TYPES + ")");
         }
 
         Object details = identity.get(field);
@@ -57,6 +58,9 @@ public class Console {
     }
 
     public static SubjectReference principalFromRHIdentity(Map<String, Object> identity, String domain) {
+        if (domain == null || domain.trim().isEmpty()) {
+            throw new IllegalArgumentException("domain must not be null or blank");
+        }
         String userId = extractUserID(identity);
         return Utils.principalSubject(userId, domain);
     }
