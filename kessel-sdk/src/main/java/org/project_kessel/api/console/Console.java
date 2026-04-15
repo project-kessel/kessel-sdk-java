@@ -58,9 +58,6 @@ public class Console {
     }
 
     public static SubjectReference principalFromRHIdentity(Map<String, Object> identity, String domain) {
-        if (domain == null || domain.trim().isEmpty()) {
-            throw new IllegalArgumentException("domain must not be null or blank");
-        }
         String userId = extractUserID(identity);
         return Utils.principalSubject(userId, domain);
     }
