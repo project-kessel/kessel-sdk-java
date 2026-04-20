@@ -9,7 +9,7 @@ All protobuf definitions originate from the **Buf Schema Registry** module `buf.
 ### Rules
 
 1. **Never hand-edit files under these paths** -- they are auto-generated and marked `DO NOT EDIT`:
-   - `org.project_kessel.api.inventory.v1*` (all versioned packages)
+   - `org.project_kessel.api.inventory.v1*` (all versioned package files except `ClientBuilder.java`, which is hand-written)
    - `com.google.api.*`, `com.google.rpc.*`
    - `build.buf.validate.*`
 2. Run `buf generate` to regenerate all stubs. Configuration lives in `buf.gen.yaml` at the repo root.
