@@ -116,7 +116,7 @@ Always compare against enum constants, never raw integers.
 
 Each versioned service has a hand-written `ClientBuilder` extending `AbstractClientBuilder<BlockingStub, AsyncStub>`:
 
-```
+```java
 // Blocking client
 Pair<KesselInventoryServiceBlockingStub, ManagedChannel> pair =
     new ClientBuilder(endpoint).insecure().build();
@@ -158,4 +158,4 @@ Managed in the parent `pom.xml`:
 - `jackson.version` -- JSON processing for RBAC REST helpers
 - Java target: **21**
 
-When bumping gRPC or Protobuf versions, always regenerate stubs via `buf generate` and verify with `mvn clean verify`.
+When bumping gRPC or Protobuf versions, always regenerate stubs via `buf generate` and verify with `./mvnw clean verify`.
