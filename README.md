@@ -1,12 +1,37 @@
 # Kessel SDK for Java
 
-A Java SDK for connecting to Kessel services using gRPC with a fluent client builder API.
+A Java client SDK for [Project Kessel](https://github.com/project-kessel) services. It provides a fluent builder API over gRPC-generated stubs, with optional OAuth 2.0 Client Credentials authentication, automatic token caching, and RBAC utility helpers.
 
 ## Table of Contents
 
+- [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Authentication](#authentication)
 - [Examples](#examples)
 - [Development](#development)
+- [Prerequisites](#prerequisites)
+- [Documentation](#documentation)
+- [Release Instructions](#release-instructions)
+- [License](#license)
+
+
+## Project Structure
+
+```
+kessel-sdk-java/              # Parent POM (kessel-sdk-parent)
+  kessel-sdk/                 # Published SDK artifact (org.project-kessel:kessel-sdk)
+    src/main/java/
+      org/project_kessel/api/
+        auth/                 # OAuth2, OIDC, token management
+        grpc/                 # gRPC call credentials adapter
+        inventory/            # Client builders and generated service stubs (v1, v1beta1, v1beta2)
+        rbac/v2/              # RBAC utilities (workspaces, etc.)
+    src/test/java/            # Tests (mirrors source structure)
+  examples/                   # Runnable examples (not published)
+  docs/                       # Contributor guideline files
+```
+
+See [AGENTS.md](AGENTS.md) for the full structure with generated-vs-hand-written code boundaries.
 
 ## Installation
 
@@ -16,7 +41,41 @@ Add to your Maven `pom.xml`:
 <dependency>
     <groupId>org.project-kessel</groupId>
     <artifactId>kessel-sdk</artifactId>
-    <version>1.2.1</version>
+    <version>1.6.0</version>
+</dependency>
+```
+
+### gRPC Transport (required)
+
+The SDK is transport-agnostic -- you must also add a gRPC transport runtime. Pick one:
+
+```xml
+<!-- Option A: Netty (most common for server-side / standalone apps) -->
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-netty-shaded</artifactId>
+    <version>1.77.0</version>
+    <scope>runtime</scope>
+</dependency>
+
+<!-- Option B: OkHttp (lighter, good for Android or constrained environments) -->
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-okhttp</artifactId>
+    <version>1.77.0</version>
+    <scope>runtime</scope>
+</dependency>
+```
+
+### Nimbus OAuth (optional)
+
+If you use the SDK's built-in OAuth 2.0 Client Credentials support, add the Nimbus dependency. If you supply your own `CallCredentials` or connect without auth, you can skip this:
+
+```xml
+<dependency>
+    <groupId>com.nimbusds</groupId>
+    <artifactId>oauth2-oidc-sdk</artifactId>
+    <version>11.30.1</version>
 </dependency>
 ```
 
@@ -64,6 +123,18 @@ cd examples
 - Java 21 or higher
 - Maven 3.6 or higher
 - [buf](https://github.com/bufbuild/buf) for protobuf/gRPC code generation (if contributing)
+
+## Documentation
+
+Detailed guidelines for contributors and AI agents are in the following files:
+
+- [AGENTS.md](AGENTS.md) -- Repository conventions, architecture, naming, and common pitfalls
+- [docs/api-contracts-guidelines.md](docs/api-contracts-guidelines.md) -- Protobuf contracts and code generation
+- [docs/security-guidelines.md](docs/security-guidelines.md) -- TLS, OAuth2, credential handling
+- [docs/integration-guidelines.md](docs/integration-guidelines.md) -- Client builder usage, streaming, RBAC helpers
+- [docs/testing-guidelines.md](docs/testing-guidelines.md) -- Test patterns and conventions
+- [docs/error-handling-guidelines.md](docs/error-handling-guidelines.md) -- Exception hierarchy and error flows
+- [docs/performance-guidelines.md](docs/performance-guidelines.md) -- Concurrency, channel lifecycle, resource cleanup
 
 ## Release Instructions
 
