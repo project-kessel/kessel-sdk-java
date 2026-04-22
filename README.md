@@ -83,6 +83,31 @@ If you use the SDK's built-in OAuth 2.0 Client Credentials support, add the Nimb
 
 The SDK supports OAuth 2.0 Client Credentials flow for authentication with automatic token caching and refresh.
 
+## Listing Workspaces
+
+The `ListWorkspaces.listWorkspaces()` helper automatically paginates through
+all workspaces a subject can access. Continuation tokens are handled internally.
+
+```java
+import org.project_kessel.api.rbac.v2.ListWorkspaces;
+import org.project_kessel.api.rbac.v2.Utils;
+
+Iterable<StreamedListObjectsResponse> workspaces =
+    ListWorkspaces.listWorkspaces(client, Utils.principalSubject("alice", "redhat"), "viewer");
+
+// Lazy iteration (constant memory)
+for (StreamedListObjectsResponse response : workspaces) {
+    System.out.println(response.getObject().getResourceId());
+}
+
+// Materialise into a List
+List<StreamedListObjectsResponse> all =
+    StreamSupport.stream(workspaces.spliterator(), false)
+                 .collect(Collectors.toList());
+```
+
+See [`examples/`](./examples) for complete working examples.
+
 ## Examples
 
 Check out the [examples directory](./examples) for working code samples:
