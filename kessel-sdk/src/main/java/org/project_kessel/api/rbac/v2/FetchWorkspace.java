@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.project_kessel.api.auth.AuthRequest;
 import org.project_kessel.api.auth.OAuth2Exception;
+import org.project_kessel.api.common.JsonMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,7 +15,7 @@ import java.net.http.HttpResponse;
 public class FetchWorkspace {
 
     private static final String WORKSPACE_ENDPOINT = "/api/rbac/v2/workspaces/";
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER = JsonMapper.instance();
 
     public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId)
             throws IOException, InterruptedException, OAuth2Exception {

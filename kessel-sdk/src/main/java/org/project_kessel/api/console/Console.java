@@ -2,20 +2,21 @@ package org.project_kessel.api.console;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.project_kessel.api.common.JsonMapper;
 import org.project_kessel.api.inventory.v1beta2.SubjectReference;
 import org.project_kessel.api.rbac.v2.Utils;
 
 public class Console {
 
     private static final String DEFAULT_DOMAIN = "redhat";
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final List<String> SUPPORTED_TYPES = List.of("User", "ServiceAccount");
+    private static final Map<String, String> SUPPORTED_TYPES = Map.of(
+            "User", "user",
+            "ServiceAccount", "service_account"
+    );
 
     private Console() {
     }
@@ -27,15 +28,11 @@ public class Console {
 
         Object typeObj = identity.get("type");
         String type = typeObj instanceof String ? (String) typeObj : null;
-        String field;
+        String field = type != null ? SUPPORTED_TYPES.get(type) : null;
 
-        if ("User".equals(type)) {
-            field = "user";
-        } else if ("ServiceAccount".equals(type)) {
-            field = "service_account";
-        } else {
+        if (field == null) {
             throw new IllegalArgumentException(
-                    "Unsupported identity type: \"" + typeObj + "\" (supported: " + SUPPORTED_TYPES + ")");
+                    "Unsupported identity type: \"" + typeObj + "\" (supported: " + SUPPORTED_TYPES.keySet() + ")");
         }
 
         Object details = identity.get(field);
@@ -70,7 +67,7 @@ public class Console {
         Map<String, Object> decoded;
         try {
             byte[] bytes = Base64.getDecoder().decode(header);
-            decoded = OBJECT_MAPPER.readValue(
+            decoded = JsonMapper.instance().readValue(
                     new String(bytes, StandardCharsets.UTF_8),
                     new TypeReference<Map<String, Object>>() {
                     });
