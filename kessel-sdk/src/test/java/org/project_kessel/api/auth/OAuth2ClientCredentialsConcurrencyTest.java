@@ -23,6 +23,7 @@ class OAuth2ClientCredentialsConcurrencyTest {
     private static final int SSO_LATENCY_MS = 50;
 
     private HttpServer mockSsoServer;
+    private ExecutorService serverExecutor;
     private AtomicInteger ssoCallCount;
     private OAuth2ClientCredentials credentials;
 
@@ -46,7 +47,8 @@ class OAuth2ClientCredentialsConcurrencyTest {
                 os.write(bytes);
             }
         });
-        mockSsoServer.setExecutor(Executors.newFixedThreadPool(NUM_THREADS));
+        serverExecutor = Executors.newFixedThreadPool(NUM_THREADS);
+        mockSsoServer.setExecutor(serverExecutor);
         mockSsoServer.start();
 
         int port = mockSsoServer.getAddress().getPort();
@@ -56,9 +58,13 @@ class OAuth2ClientCredentialsConcurrencyTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws InterruptedException {
         if (mockSsoServer != null) {
             mockSsoServer.stop(0);
+        }
+        if (serverExecutor != null) {
+            serverExecutor.shutdownNow();
+            serverExecutor.awaitTermination(5, TimeUnit.SECONDS);
         }
     }
 
@@ -129,7 +135,8 @@ class OAuth2ClientCredentialsConcurrencyTest {
                 }));
             }
 
-            barrier.await(5, TimeUnit.SECONDS);
+            assertTrue(barrier.await(5, TimeUnit.SECONDS),
+                    "Not all threads reached the barrier within timeout");
             startGun.countDown();
 
             List<RefreshTokenResponse> results = new ArrayList<>();
