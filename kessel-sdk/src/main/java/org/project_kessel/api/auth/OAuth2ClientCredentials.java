@@ -13,6 +13,7 @@ import java.net.URI;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class OAuth2ClientCredentials {
@@ -23,6 +24,7 @@ public class OAuth2ClientCredentials {
     private final ClientConfigAuth auth;
     private volatile RefreshTokenResponse tokenCache;
     private final ReentrantLock refreshLock = new ReentrantLock();
+    private final AtomicLong generation = new AtomicLong(0);
 
     public OAuth2ClientCredentials(ClientConfigAuth auth) throws OAuth2Exception {
         try {
@@ -55,14 +57,16 @@ public class OAuth2ClientCredentials {
             return tokenCache;
         }
 
+        long snapshot = generation.get();
+
         refreshLock.lock();
         try {
-            // Double-check pattern - another thread might have refreshed while we waited
-            if (!forceRefresh && isCacheValid()) {
+            if (generation.get() != snapshot && isCacheValid()) {
                 return tokenCache;
             }
 
             tokenCache = refresh();
+            generation.incrementAndGet();
             return tokenCache;
         } finally {
             refreshLock.unlock();
