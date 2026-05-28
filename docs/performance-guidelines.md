@@ -8,20 +8,21 @@ This document covers concurrency patterns, resource lifecycle, and performance r
 
 ### Architecture
 
-`OAuth2ClientCredentials` implements a double-checked locking pattern for thread-safe token caching:
+`OAuth2ClientCredentials` implements generation-based locking for thread-safe token caching:
 
 - `tokenCache` is declared `volatile` to guarantee visibility across threads.
 - A `ReentrantLock` (`refreshLock`) serializes actual token refresh calls.
+- An `AtomicLong` (`generation`) increments on each successful refresh, enabling waiters to detect that another thread already refreshed.
 - `isCacheValid()` reads the volatile field without locking (fast path).
-- `getToken()` only acquires `refreshLock` when the cache is invalid, then re-checks validity inside the lock (double-check) to avoid redundant refreshes.
+- `getToken()` snapshots the generation counter before acquiring the lock. After acquiring, if the generation changed and the cache is valid, the caller reuses the token the winner fetched -- even for `forceRefresh=true` callers. This prevents the thundering herd problem where N concurrent callers flood SSO with redundant token requests.
 
 The 5-minute `EXPIRATION_WINDOW` causes proactive refresh before actual expiry, preventing auth failures under load.
 
 ### Rules
 
 - **R1**: Create one `OAuth2ClientCredentials` instance per logical service identity. Share it across all stubs and threads. The class is designed for concurrent access.
-- **R2**: Never call `getToken(true)` (force-refresh) in a hot path. Force-refresh bypasses the volatile fast path and always acquires the lock, serializing all callers.
-- **R3**: Do not wrap `getToken()` in external synchronization. The internal `ReentrantLock` already prevents stampede; external locks cause unnecessary contention.
+- **R2**: Avoid calling `getToken(true)` (force-refresh) in hot paths. Force-refresh bypasses the volatile fast path and always acquires the lock. However, concurrent force-refresh callers coalesce via the generation counter -- only one thread performs the SSO call per refresh cycle.
+- **R3**: Do not wrap `getToken()` in external synchronization. The internal `ReentrantLock` + generation counter already prevents stampede; external locks cause unnecessary contention.
 - **R4**: If token refresh fails, `OAuth2Exception` (a `RuntimeException`) propagates to the gRPC `MetadataApplier` as `UNAUTHENTICATED`. Callers should handle `StatusRuntimeException` with `Status.UNAUTHENTICATED` and implement retry logic at the application level.
 - **R5**: `RefreshTokenResponse` and `ClientConfigAuth` are Java records (immutable). They are inherently thread-safe and safe to cache or pass between threads.
 
@@ -107,7 +108,7 @@ The `oauth2-oidc-sdk` dependency is declared `<optional>true</optional>` in `pom
 
 | Component | Thread-safe? | Notes |
 |---|---|---|
-| `OAuth2ClientCredentials` | Yes | volatile + ReentrantLock double-check |
+| `OAuth2ClientCredentials` | Yes | volatile + ReentrantLock + AtomicLong generation counter |
 | `OAuth2CallCredentials` | Yes | Stateless; delegates to thread-safe `OAuth2ClientCredentials` |
 | `ClientConfigAuth` | Yes | Immutable record |
 | `RefreshTokenResponse` | Yes | Immutable record |

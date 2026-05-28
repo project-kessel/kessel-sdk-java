@@ -183,6 +183,7 @@ The repo tests the following categories -- follow the same coverage pattern:
 4. **Error propagation**: Verify that gRPC/HTTP errors are caught and re-thrown with descriptive messages.
 5. **Record/POJO accessors**: Verify getters return expected values, including `equals`/`hashCode` for records.
 6. **Edge cases for external dependencies**: When testing code that depends on optional libraries (Nimbus OAuth), use `Class.forName` checks or try/catch to skip gracefully.
+7. **Concurrent refresh coalescing**: `OAuth2ClientCredentialsConcurrencyTest` verifies the thundering herd fix. See the concurrency testing section below.
 
 ## Resource Cleanup
 
@@ -193,6 +194,25 @@ Pair<TestStub, ManagedChannel> result = builder.build();
 // assertions...
 result.getRight().shutdown();
 ```
+
+## Concurrency Testing (Thundering Herd)
+
+`OAuth2ClientCredentialsConcurrencyTest` verifies that concurrent `getToken()` callers coalesce into exactly one SSO request per refresh cycle. The test pattern uses:
+
+- **JDK `HttpServer`** as a mock SSO token endpoint (no external dependencies). The handler returns valid OAuth2 token JSON and adds a 50ms delay to widen the race window.
+- **`AtomicInteger`** to count how many times the mock SSO endpoint is hit.
+- **`CountDownLatch` barrier** so all 20 threads enter `getToken()` simultaneously.
+- **Reflection** to pre-seed the private `tokenCache` field with stale or valid tokens.
+
+Three scenarios are tested:
+
+| Test | Setup | Assertion |
+|---|---|---|
+| Stale token refresh | Token expiring in 60s (inside 5-min window) | Exactly 1 SSO call |
+| Cold start | No cached token | Exactly 1 SSO call |
+| Force refresh | Valid cached token + `getToken(true)` | Exactly 1 SSO call |
+
+When adding new concurrency tests, follow this same barrier + call-count pattern.
 
 ## Anti-Patterns to Avoid
 
