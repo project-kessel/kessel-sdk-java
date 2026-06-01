@@ -10,10 +10,43 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Provides helpers for listing workspaces that a subject has a particular
+ * relationship to. Continuation-token pagination is handled automatically --
+ * callers simply iterate the returned {@link Iterable}.
+ *
+ * <h3>Lazy iteration (constant memory)</h3>
+ * <pre>{@code
+ * Iterable<StreamedListObjectsResponse> workspaces =
+ *     ListWorkspaces.listWorkspaces(inventory, subject, "viewer");
+ *
+ * for (StreamedListObjectsResponse response : workspaces) {
+ *     System.out.println(response.getObject().getResourceId());
+ * }
+ * }</pre>
+ *
+ * <h3>Eager materialisation into a List</h3>
+ * <pre>{@code
+ * List<StreamedListObjectsResponse> all =
+ *     StreamSupport.stream(workspaces.spliterator(), false)
+ *                  .collect(Collectors.toList());
+ * }</pre>
+ */
 public class ListWorkspaces {
 
     private static final int DEFAULT_PAGE_LIMIT = 1000;
 
+    /**
+     * Lists all workspaces the given subject has the specified relation to.
+     *
+     * <p>Pagination is automatic. Each page is fetched lazily as the caller
+     * iterates the returned {@link Iterable}.
+     *
+     * @param inventory the blocking inventory service stub
+     * @param subject   the subject whose workspace access is being queried
+     * @param relation  the relationship type (e.g. "member", "admin", "viewer")
+     * @return a lazily-paginated iterable of responses
+     */
     public static Iterable<StreamedListObjectsResponse> listWorkspaces(
             KesselInventoryServiceBlockingStub inventory,
             SubjectReference subject,
@@ -21,6 +54,16 @@ public class ListWorkspaces {
         return listWorkspaces(inventory, subject, relation, null);
     }
 
+    /**
+     * Lists all workspaces the given subject has the specified relation to,
+     * optionally resuming from a previous continuation token.
+     *
+     * @param inventory          the blocking inventory service stub
+     * @param subject            the subject whose workspace access is being queried
+     * @param relation           the relationship type (e.g. "member", "admin", "viewer")
+     * @param continuationToken  optional token to resume from a previous position; may be {@code null}
+     * @return a lazily-paginated iterable of responses
+     */
     public static Iterable<StreamedListObjectsResponse> listWorkspaces(
             KesselInventoryServiceBlockingStub inventory,
             SubjectReference subject,
