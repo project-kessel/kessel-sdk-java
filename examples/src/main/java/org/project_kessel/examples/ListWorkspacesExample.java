@@ -3,9 +3,10 @@ package org.project_kessel.examples;
 import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
+import org.project_kessel.api.inventory.v1beta2.Consistency;
 import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
 import org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse;
-import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
 import org.project_kessel.api.rbac.v2.ListWorkspaces;
 import org.project_kessel.api.rbac.v2.Utils;
 import org.project_kessel.examples.util.EnvConfig;
@@ -32,10 +33,12 @@ public class ListWorkspacesExample {
         KesselInventoryServiceBlockingStub client = clientAndChannel.getLeft();
 
         try {
+            Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
             Iterable<StreamedListObjectsResponse> workspaces = ListWorkspaces.listWorkspaces(
                     client,
                     Utils.principalSubject("alice", "redhat"),
-                    "view_document");
+                    "view_document",
+                    consistency);
 
             // Iterate one-by-one (lazy, constant memory)
             System.out.println("Listing all workspaces:");

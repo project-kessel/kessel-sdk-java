@@ -89,11 +89,14 @@ The `ListWorkspaces.listWorkspaces()` helper automatically paginates through
 all workspaces a subject can access. Continuation tokens are handled internally.
 
 ```java
+import org.project_kessel.api.inventory.v1beta2.Consistency;
 import org.project_kessel.api.rbac.v2.ListWorkspaces;
 import org.project_kessel.api.rbac.v2.Utils;
 
+Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
+
 Iterable<StreamedListObjectsResponse> workspaces =
-    ListWorkspaces.listWorkspaces(client, Utils.principalSubject("alice", "redhat"), "viewer");
+    ListWorkspaces.listWorkspaces(client, Utils.principalSubject("alice", "redhat"), "viewer", consistency);
 
 // Lazy iteration (constant memory)
 for (StreamedListObjectsResponse response : workspaces) {
