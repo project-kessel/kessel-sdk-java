@@ -241,7 +241,7 @@ class ListWorkspacesTest {
                 .thenReturn(pageIterator)
                 .thenReturn(Collections.emptyIterator());
 
-        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member", consistency).forEach(response -> {
+        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member", null, consistency).forEach(response -> {
         });
 
         verify(mockInventoryClient, times(1)).streamedListObjects(requestCaptor.capture());
@@ -276,7 +276,7 @@ class ListWorkspacesTest {
                 .thenReturn(firstPage)
                 .thenReturn(secondPage);
 
-        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "viewer", consistency).forEach(response -> {
+        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "viewer", null, consistency).forEach(response -> {
         });
 
         verify(mockInventoryClient, times(2)).streamedListObjects(requestCaptor.capture());

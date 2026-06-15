@@ -96,7 +96,7 @@ import org.project_kessel.api.rbac.v2.Utils;
 Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
 
 Iterable<StreamedListObjectsResponse> workspaces =
-    ListWorkspaces.listWorkspaces(client, Utils.principalSubject("alice", "redhat"), "viewer", consistency);
+    ListWorkspaces.listWorkspaces(client, Utils.principalSubject("alice", "redhat"), "viewer", null, consistency);
 
 // Lazy iteration (constant memory)
 for (StreamedListObjectsResponse response : workspaces) {

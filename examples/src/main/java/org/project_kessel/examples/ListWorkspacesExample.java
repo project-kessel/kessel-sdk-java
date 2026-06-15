@@ -38,6 +38,7 @@ public class ListWorkspacesExample {
                     client,
                     Utils.principalSubject("alice", "redhat"),
                     "view_document",
+                    null,
                     consistency);
 
             // Iterate one-by-one (lazy, constant memory)

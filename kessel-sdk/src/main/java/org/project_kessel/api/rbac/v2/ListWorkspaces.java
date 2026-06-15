@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
  * Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
  *
  * Iterable<StreamedListObjectsResponse> workspaces =
- *     ListWorkspaces.listWorkspaces(inventory, subject, "viewer", consistency);
+ *     ListWorkspaces.listWorkspaces(inventory, subject, "viewer", null, consistency);
  *
  * for (StreamedListObjectsResponse response : workspaces) {
  *     System.out.println(response.getObject().getResourceId());
@@ -75,14 +75,18 @@ public class ListWorkspaces {
         return listWorkspaces(inventory, subject, relation, continuationToken, null);
     }
 
-    public static Iterable<StreamedListObjectsResponse> listWorkspaces(
-            KesselInventoryServiceBlockingStub inventory,
-            SubjectReference subject,
-            String relation,
-            Consistency consistency) {
-        return listWorkspaces(inventory, subject, relation, null, consistency);
-    }
-
+    /**
+     * Lists all workspaces the given subject has the specified relation to,
+     * optionally resuming from a previous continuation token and applying the
+     * provided consistency preferences to each paginated request.
+     *
+     * @param inventory         the blocking inventory service stub
+     * @param subject           the subject whose workspace access is being queried
+     * @param relation          the relationship type (e.g. "member", "admin", "viewer")
+     * @param continuationToken optional token to resume from a previous position; may be {@code null}
+     * @param consistency       consistency preferences to include with each request; may be {@code null}
+     * @return a lazily-paginated iterable of responses
+     */
     public static Iterable<StreamedListObjectsResponse> listWorkspaces(
             KesselInventoryServiceBlockingStub inventory,
             SubjectReference subject,
