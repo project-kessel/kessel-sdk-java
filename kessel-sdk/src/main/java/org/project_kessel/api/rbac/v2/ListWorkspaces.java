@@ -1,5 +1,6 @@
 package org.project_kessel.api.rbac.v2;
 
+import org.project_kessel.api.inventory.v1beta2.Consistency;
 import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
 import org.project_kessel.api.inventory.v1beta2.RequestPagination;
 import org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest;
@@ -17,8 +18,10 @@ import java.util.NoSuchElementException;
  *
  * <h3>Lazy iteration (constant memory)</h3>
  * <pre>{@code
+ * Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
+ *
  * Iterable<StreamedListObjectsResponse> workspaces =
- *     ListWorkspaces.listWorkspaces(inventory, subject, "viewer");
+ *     ListWorkspaces.listWorkspaces(inventory, subject, "viewer", null, consistency);
  *
  * for (StreamedListObjectsResponse response : workspaces) {
  *     System.out.println(response.getObject().getResourceId());
@@ -51,7 +54,7 @@ public class ListWorkspaces {
             KesselInventoryServiceBlockingStub inventory,
             SubjectReference subject,
             String relation) {
-        return listWorkspaces(inventory, subject, relation, null);
+        return listWorkspaces(inventory, subject, relation, null, null);
     }
 
     /**
@@ -69,13 +72,35 @@ public class ListWorkspaces {
             SubjectReference subject,
             String relation,
             String continuationToken) {
-        return () -> new WorkspaceListIterator(inventory, subject, relation, continuationToken);
+        return listWorkspaces(inventory, subject, relation, continuationToken, null);
+    }
+
+    /**
+     * Lists all workspaces the given subject has the specified relation to,
+     * optionally resuming from a previous continuation token and applying the
+     * provided consistency preferences to each paginated request.
+     *
+     * @param inventory         the blocking inventory service stub
+     * @param subject           the subject whose workspace access is being queried
+     * @param relation          the relationship type (e.g. "member", "admin", "viewer")
+     * @param continuationToken optional token to resume from a previous position; may be {@code null}
+     * @param consistency       consistency preferences to include with each request; may be {@code null}
+     * @return a lazily-paginated iterable of responses
+     */
+    public static Iterable<StreamedListObjectsResponse> listWorkspaces(
+            KesselInventoryServiceBlockingStub inventory,
+            SubjectReference subject,
+            String relation,
+            String continuationToken,
+            Consistency consistency) {
+        return () -> new WorkspaceListIterator(inventory, subject, relation, continuationToken, consistency);
     }
 
     private static class WorkspaceListIterator implements Iterator<StreamedListObjectsResponse> {
         private KesselInventoryServiceBlockingStub inventory;
         private SubjectReference subject;
         private String relation;
+        private Consistency consistency;
 
         private String continuationToken;
         private Iterator<StreamedListObjectsResponse> currentPageIterator;
@@ -85,11 +110,13 @@ public class ListWorkspaces {
                 KesselInventoryServiceBlockingStub inventory,
                 SubjectReference subject,
                 String relation,
-                String initialToken) {
+                String initialToken,
+                Consistency consistency) {
             this.inventory = inventory;
             this.subject = subject;
             this.relation = relation;
             this.continuationToken = initialToken;
+            this.consistency = consistency;
             this.currentPageIterator = Collections.emptyIterator();
         }
 
@@ -127,7 +154,7 @@ public class ListWorkspaces {
                 }
 
                 try {
-                    StreamedListObjectsRequest request = buildStreamedListObjectsRequest(subject, relation, continuationToken);
+                    StreamedListObjectsRequest request = buildStreamedListObjectsRequest(subject, relation, continuationToken, consistency);
                     currentPageIterator = inventory.streamedListObjects(request);
                     if (!currentPageIterator.hasNext()) {
                         return false;
@@ -140,7 +167,7 @@ public class ListWorkspaces {
     }
 
     private static StreamedListObjectsRequest buildStreamedListObjectsRequest(
-            SubjectReference subject, String relation, String continuationToken) {
+            SubjectReference subject, String relation, String continuationToken, Consistency consistency) {
 
         StreamedListObjectsRequest.Builder requestBuilder = StreamedListObjectsRequest.newBuilder()
                 .setObjectType(Utils.workspaceType())
@@ -155,6 +182,11 @@ public class ListWorkspaces {
         }
 
         requestBuilder.setPagination(paginationBuilder.build());
+
+        if (consistency != null) {
+            requestBuilder.setConsistency(consistency);
+        }
+
         return requestBuilder.build();
     }
 }

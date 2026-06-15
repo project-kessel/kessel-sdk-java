@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.project_kessel.api.inventory.v1beta2.Consistency;
 import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
 import org.project_kessel.api.inventory.v1beta2.ResponsePagination;
 import org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest;
@@ -230,6 +231,62 @@ class ListWorkspacesTest {
 
         assertEquals(0, workspaces.size());
         verify(mockInventoryClient, times(1)).streamedListObjects(any(StreamedListObjectsRequest.class));
+    }
+
+    @Test
+    void testConsistencyIsPassedToRequest() {
+        Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
+        Iterator<StreamedListObjectsResponse> pageIterator = List.of(responseWithToken("")).iterator();
+        when(mockInventoryClient.streamedListObjects(any(StreamedListObjectsRequest.class)))
+                .thenReturn(pageIterator)
+                .thenReturn(Collections.emptyIterator());
+
+        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member", null, consistency).forEach(response -> {
+        });
+
+        verify(mockInventoryClient, times(1)).streamedListObjects(requestCaptor.capture());
+        StreamedListObjectsRequest capturedRequest = requestCaptor.getAllValues().get(0);
+
+        assertTrue(capturedRequest.hasConsistency());
+        assertEquals(consistency, capturedRequest.getConsistency());
+    }
+
+    @Test
+    void testNullConsistencyDoesNotSetField() {
+        Iterator<StreamedListObjectsResponse> pageIterator = List.of(responseWithToken("")).iterator();
+        when(mockInventoryClient.streamedListObjects(any(StreamedListObjectsRequest.class)))
+                .thenReturn(pageIterator)
+                .thenReturn(Collections.emptyIterator());
+
+        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "member").forEach(response -> {
+        });
+
+        verify(mockInventoryClient, times(1)).streamedListObjects(requestCaptor.capture());
+        StreamedListObjectsRequest capturedRequest = requestCaptor.getAllValues().get(0);
+
+        assertFalse(capturedRequest.hasConsistency());
+    }
+
+    @Test
+    void testConsistencyIsPreservedAcrossPaginatedRequests() {
+        Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
+        Iterator<StreamedListObjectsResponse> firstPage = List.of(responseWithToken("next-page-token")).iterator();
+        Iterator<StreamedListObjectsResponse> secondPage = List.of(responseWithToken("")).iterator();
+        when(mockInventoryClient.streamedListObjects(any(StreamedListObjectsRequest.class)))
+                .thenReturn(firstPage)
+                .thenReturn(secondPage);
+
+        ListWorkspaces.listWorkspaces(mockInventoryClient, testSubject, "viewer", null, consistency).forEach(response -> {
+        });
+
+        verify(mockInventoryClient, times(2)).streamedListObjects(requestCaptor.capture());
+        List<StreamedListObjectsRequest> requests = requestCaptor.getAllValues();
+
+        assertEquals(2, requests.size());
+        assertTrue(requests.get(0).hasConsistency());
+        assertEquals(consistency, requests.get(0).getConsistency());
+        assertTrue(requests.get(1).hasConsistency());
+        assertEquals(consistency, requests.get(1).getConsistency());
     }
 
     private static StreamedListObjectsResponse responseWithToken(String token) {
