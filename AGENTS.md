@@ -120,6 +120,30 @@ Code that depends on optional libraries (currently only Nimbus) must call `Class
 - New hand-written classes need corresponding tests mirroring the source package path. Test class name: `<ClassName>Test`. Test visibility: package-private (no `public`).
 - Commits follow the `chore: ...` / imperative style seen in recent history.
 
+## Maintaining Examples
+
+When adding or changing public API surface, agents must create or update corresponding examples in the `examples/` module.
+
+### When to add or update examples
+
+- **New SDK method or service**: Add a new example demonstrating basic usage.
+- **Changed method signature or behavior**: Update any existing example that calls the affected API.
+- **New authentication or connection pattern**: Add an example showing the new pattern end-to-end.
+- **Deprecated API replaced**: Update examples to use the replacement; remove references to the deprecated path.
+
+### Conventions
+
+- **Directory**: `examples/src/main/java/org/project_kessel/examples/`. Utilities go in the `util` sub-package (e.g., `EnvConfig.java`).
+- **Naming**: PascalCase — `<Feature>Example.java` (e.g., `ReportResourceExample.java`, `CheckBulkExample.java`, `AsyncExample.java`).
+- **Runnable classes**: Each example must have a `public static void main(String[] args)` entry point. Add a corresponding Maven profile in `examples/pom.xml` using `exec-maven-plugin` so it can be run with `./mvnw -pl examples exec:java -P run-<profile-name>`.
+- **Environment variables for configuration**: Use the `EnvConfig` utility (`org.project_kessel.examples.util.EnvConfig`) to load variables from `.env` files or the environment. Call `EnvConfig.validateRequired(...)` at the top of `main()` for required variables (e.g., `KESSEL_ENDPOINT`). Never hardcode secrets or endpoints.
+- **ClientBuilder pattern**: Demonstrate the fluent builder — `new ClientBuilder(endpoint).insecure().build()` for blocking stubs or `.buildAsync()` for async stubs. Both return `Pair<Stub, ManagedChannel>`.
+- **Error handling**: Catch `StatusRuntimeException` specifically — never bare `catch (Exception e)`.
+- **Channel lifecycle**: Always shut down the `ManagedChannel` to avoid leaking threads and file descriptors. For blocking stubs, use a `try/finally` block with `channel.shutdown()` in `finally`. For async stubs (with `StreamObserver`), call `channel.shutdown()` in both `onCompleted()` and `onError()`.
+- **Print output**: Print results to stdout so users can see what the API returns.
+- **Not automated tests**: Examples require a live Kessel server and are not run in CI. Unit tests belong in `kessel-sdk/src/test/`.
+- **Compilable**: Examples are compiled as part of `./mvnw clean verify` (multi-module build) but are never published (`maven.deploy.skip=true`, `central.skip=true`).
+
 ## Common Pitfalls
 
 1. **Editing generated code.** Files under `v1beta1` and most of `v1beta2` are regenerated every 6 hours. Manual edits will be overwritten. Check for `@Generated` annotations.
