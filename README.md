@@ -28,7 +28,6 @@ kessel-sdk-java/              # Parent POM (kessel-sdk-parent)
         rbac/v2/              # RBAC utilities (workspaces, etc.)
     src/test/java/            # Tests (mirrors source structure)
   examples/                   # Runnable examples (not published)
-  docs/                       # Contributor guideline files
 ```
 
 See [AGENTS.md](AGENTS.md) for the full structure with generated-vs-hand-written code boundaries.
@@ -154,15 +153,12 @@ cd examples
 
 ## Documentation
 
-Detailed guidelines for contributors and AI agents are in the following files:
+For AI-assisted development context, see [AGENTS.md](AGENTS.md). Directory-local `GUIDELINES.md` files provide detailed conventions for specific areas of the codebase:
 
-- [AGENTS.md](AGENTS.md) -- Repository conventions, architecture, naming, and common pitfalls
-- [docs/api-contracts-guidelines.md](docs/api-contracts-guidelines.md) -- Protobuf contracts and code generation
-- [docs/security-guidelines.md](docs/security-guidelines.md) -- TLS, OAuth2, credential handling
-- [docs/integration-guidelines.md](docs/integration-guidelines.md) -- Client builder usage, streaming, RBAC helpers
-- [docs/testing-guidelines.md](docs/testing-guidelines.md) -- Test patterns and conventions
-- [docs/error-handling-guidelines.md](docs/error-handling-guidelines.md) -- Exception hierarchy and error flows
-- [docs/performance-guidelines.md](docs/performance-guidelines.md) -- Concurrency, channel lifecycle, resource cleanup
+- **[api/auth/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/auth/GUIDELINES.md)** -- OAuth2/OIDC token management
+- **[api/inventory/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/inventory/GUIDELINES.md)** -- AbstractClientBuilder, channel security
+- **[api/rbac/v2/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/rbac/v2/GUIDELINES.md)** -- RBAC utilities, pagination, REST helpers
+- **[examples/GUIDELINES.md](examples/src/main/java/org/project_kessel/examples/GUIDELINES.md)** -- Example conventions
 
 ## Release Instructions
 
