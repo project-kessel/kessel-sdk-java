@@ -1,17 +1,15 @@
 # AGENTS.md
 
-Onboarding guide for AI agents working in the `kessel-sdk-java` repository. This file covers cross-cutting conventions and architectural context. Domain-specific rules live in the guideline files indexed below.
+Onboarding guide for AI agents working in the `kessel-sdk-java` repository. This file covers cross-cutting conventions and architectural context. Domain-specific rules live in directory-local GUIDELINES.md files indexed below.
 
-## Docs Index
+## Guidelines Index
 
 | File | Scope |
 |------|-------|
-| [docs/api-contracts-guidelines.md](docs/api-contracts-guidelines.md) | Protobuf source of truth, code generation workflow, API versioning (v1/v1beta1/v1beta2), service contracts, request/response patterns, SDK client wrappers |
-| [docs/security-guidelines.md](docs/security-guidelines.md) | TLS defaults, insecure channel guards, OAuth2 client credentials flow, token caching thread safety, credential storage, Nimbus optional dependency model |
-| [docs/performance-guidelines.md](docs/performance-guidelines.md) | Token management concurrency, channel lifecycle and reuse, blocking vs async stubs, resource cleanup, thread-safety guarantees |
-| [docs/error-handling-guidelines.md](docs/error-handling-guidelines.md) | Exception hierarchy (OAuth2Exception, StatusRuntimeException, standard Java), error flow through OAuth/gRPC/HTTP layers, bulk response error handling, null validation conventions |
-| [docs/testing-guidelines.md](docs/testing-guidelines.md) | JUnit Jupiter + Mockito patterns, test file organization, naming conventions, mocking gRPC stubs and HttpClient, assertion style, anti-patterns |
-| [docs/integration-guidelines.md](docs/integration-guidelines.md) | ClientBuilder usage, authentication chain, streaming and pagination patterns, RBAC utility helpers, health checks, environment configuration |
+| [api/auth/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/auth/GUIDELINES.md) | OAuth2/OIDC token management, Nimbus dependency guards, credential records, token caching thread safety, auth error handling |
+| [api/inventory/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/inventory/GUIDELINES.md) | AbstractClientBuilder hierarchy, generated vs hand-written code boundary, channel security, Pair return convention, version targeting |
+| [api/rbac/v2/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/rbac/v2/GUIDELINES.md) | RBAC utility helpers (Utils, FetchWorkspace, ListWorkspaces, Workspace), pagination iterator, Jackson usage, REST error handling |
+| [examples/GUIDELINES.md](examples/src/main/java/org/project_kessel/examples/GUIDELINES.md) | Example conventions: naming, Maven profiles, EnvConfig, ClientBuilder usage, channel shutdown, error handling, import style |
 
 ## Repository Structure
 
@@ -32,7 +30,6 @@ kessel-sdk-java/                  # Parent POM (kessel-sdk-parent)
       build/buf/validate/         # GENERATED -- buf validation
     src/test/java/                # Mirrors src/main package structure
   examples/                       # Runnable examples (not published)
-  docs/                           # Guideline files (indexed above)
 ```
 
 ## Generated vs Hand-Written Code Boundary
@@ -113,6 +110,89 @@ Code that depends on optional libraries (currently only Nimbus) must call `Class
 - `v1` is health-check only (`GetLivez`, `GetReadyz`).
 - `v1beta1` is legacy. It has generated stubs but no hand-written `ClientBuilder` and should not be extended.
 
+## v1beta2 Service Contracts
+
+The unified `KesselInventoryService` exposes these RPCs:
+
+| RPC | Type | Purpose |
+|-----|------|---------|
+| `Check` | Unary | Authz check with explicit `SubjectReference` |
+| `CheckSelf` | Unary | Authz check -- subject derived from caller's auth context |
+| `CheckForUpdate` | Unary | Write-permission authz check |
+| `CheckBulk` / `CheckSelfBulk` / `CheckForUpdateBulk` | Unary | Batched variants with per-item error reporting |
+| `ReportResource` / `DeleteResource` | Unary | Resource lifecycle |
+| `StreamedListObjects` / `StreamedListSubjects` | Server streaming | Paginated listing with continuation tokens |
+
+No client-streaming or bidirectional-streaming RPCs exist.
+
+### Key Message Types
+
+- **`ResourceReference`**: `resource_type` + `resource_id` + optional `ReporterReference`.
+- **`SubjectReference`**: wraps a `ResourceReference` with an optional `relation`.
+- **`RepresentationType`**: `resource_type` + `reporter_type` -- used in streaming list requests.
+
+### Bulk Response Pattern
+
+Bulk responses contain `ResponsePair` entries. Each pair has a `oneof` of `item` (success) or `error` (`com.google.rpc.Status`). Always check both `hasItem()` and `hasError()` on every pair -- never assume all items succeed. A `StatusRuntimeException` can still be thrown for request-level failures (auth, network).
+
+### Consistency and Write Visibility
+
+- Read requests accept optional `Consistency`: `minimize_latency` (default), `at_least_as_fresh` (with token), or `at_least_as_acknowledged`.
+- `ReportResourceRequest.write_visibility`: `MINIMIZE_LATENCY` (fire-and-forget) or `IMMEDIATE` (acknowledged).
+
+### Streaming Pagination
+
+Paginated streaming uses `RequestPagination` with `limit` (uint32) and optional `continuation_token`. An empty continuation token signals the final page. See `ListWorkspaces.java` for the canonical pagination iterator pattern.
+
+### Enum Conventions
+
+- `CheckResponse.allowed`: `ALLOWED_TRUE` (1), `ALLOWED_FALSE` (2), `ALLOWED_UNSPECIFIED` (0). Compare against enum constants, never raw integers.
+- All enum zero values are `*_UNSPECIFIED`. Client code must handle `UNRECOGNIZED(-1)` for forward compatibility.
+- `buf.validate` annotations enforce required fields at the proto level (e.g., `object`, `relation`, `subject` in `CheckRequest`).
+
+## Error Handling
+
+Three exception categories:
+
+1. **`OAuth2Exception`** (unchecked) -- all OAuth2/OIDC failures. Wraps Nimbus exceptions, missing-dependency errors, and token refresh failures. In the gRPC path, surfaces as `Status.UNAUTHENTICATED` via `OAuth2CallCredentials`. See [auth/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/auth/GUIDELINES.md).
+2. **`StatusRuntimeException`** (gRPC, unchecked) -- all gRPC call failures. Catch this explicitly in application code. In async paths, it arrives via `StreamObserver.onError(Throwable)`.
+3. **Standard Java exceptions** -- `NullPointerException` via `Objects.requireNonNull` for null validation in records and builders; `IllegalStateException` for credential misconfiguration; `IOException` for HTTP failures in `FetchWorkspace`.
+
+Cross-cutting rules:
+- Never let raw Nimbus exceptions propagate -- always wrap in `OAuth2Exception`.
+- `com.google.rpc.Status` (protobuf message for bulk errors) is distinct from `io.grpc.Status` (gRPC enum). Do not confuse them.
+- `FetchWorkspace` is the only SDK surface using checked exceptions (`IOException`, `InterruptedException`).
+- Prefer `checkBulk()` (single RPC with multiple items) over parallel individual `check()` calls to reduce round-trips.
+
+## Testing Conventions
+
+- **Framework**: JUnit Jupiter + Mockito. Do not add AssertJ or Hamcrest.
+- **File organization**: mirror the source package path in `src/test/java`. Name: `<ClassName>Test`.
+- **Visibility**: test classes and methods are package-private (no `public` modifier).
+- **Structure**: `@ExtendWith(MockitoExtension.class)` when using `@Mock` fields. Use `@BeforeEach void setUp()` for shared init. No `@BeforeAll`, no `@InjectMocks`, no constructor injection.
+- **Naming**: `test<What>` in camelCase (e.g., `testConstructorWithNullTarget`, `testHandlesPagination`).
+- **Assertions**: `org.junit.jupiter.api.Assertions` static imports only. Use `assertThrows` for exception verification, `assertSame` for builder fluent-API identity checks, `assertTrue(e.getMessage().contains(...))` for error message content.
+- **Mock naming**: prefix mock fields with `mock` (e.g., `mockHttpClient`, `mockInventoryClient`).
+- **gRPC stub mocking**: mock the `BlockingStub` directly -- do not use `grpc-testing` `InProcessServer` for unit tests. For streaming responses, return `Iterator<ResponseType>` from `List.of(...).iterator()`.
+- **HttpClient mocking**: mock `HttpClient` and `HttpResponse` separately with `lenient()` in `@BeforeEach`. Use `@SuppressWarnings("unchecked")` for generic response mocking.
+- **Abstract class testing**: create concrete inner `static` test implementations within the test file (e.g., `TestClientBuilder`).
+- **Resource cleanup**: always shut down `ManagedChannel` in tests after calling `build()` or `buildAsync()`.
+- **Surefire exclusions**: generated packages (`v1`, `v1beta1`, select `v1beta2` patterns) are excluded. Hand-written tests in those paths will be silently skipped.
+
+Per-package testing details are in each package's GUIDELINES.md.
+
+## Thread Safety
+
+| Component | Thread-safe? | Notes |
+|-----------|-------------|-------|
+| `OAuth2ClientCredentials` | Yes | volatile + ReentrantLock + AtomicLong generation counter |
+| `OAuth2CallCredentials` | Yes | Stateless; delegates to thread-safe `OAuth2ClientCredentials` |
+| `ClientConfigAuth`, `RefreshTokenResponse`, `OIDCDiscoveryMetadata` | Yes | Immutable records |
+| `AbstractClientBuilder` | No | Mutable builder; build on one thread, then share the results |
+| `ManagedChannel`, blocking stubs, async stubs | Yes | gRPC channels and stubs are thread-safe and reusable |
+
+Reuse channels -- do not call `build()` per-request. A single `ManagedChannel` supports multiplexed HTTP/2 requests. One channel per target endpoint is sufficient for most applications.
+
 ## PR and Workflow Expectations
 
 - CI must pass (`./mvnw clean verify`) before merge.
@@ -133,23 +213,17 @@ When adding or changing public API surface, agents must create or update corresp
 
 ### Conventions
 
-- **Directory**: `examples/src/main/java/org/project_kessel/examples/`. Utilities go in the `util` sub-package (e.g., `EnvConfig.java`).
-- **Naming**: PascalCase — `<Feature>Example.java` (e.g., `ReportResourceExample.java`, `CheckBulkExample.java`, `AsyncExample.java`).
-- **Runnable classes**: Each example must have a `public static void main(String[] args)` entry point. Add a corresponding Maven profile in `examples/pom.xml` using `exec-maven-plugin` so it can be run with `./mvnw -pl examples exec:java -P run-<profile-name>`.
-- **Environment variables for configuration**: Use the `EnvConfig` utility (`org.project_kessel.examples.util.EnvConfig`) to load variables from `.env` files or the environment. Call `EnvConfig.validateRequired(...)` at the top of `main()` for required variables (e.g., `KESSEL_ENDPOINT`). Never hardcode secrets or endpoints.
-- **ClientBuilder pattern**: Demonstrate the fluent builder — `new ClientBuilder(endpoint).insecure().build()` for blocking stubs or `.buildAsync()` for async stubs. Both return `Pair<Stub, ManagedChannel>`.
-- **Error handling**: Catch `StatusRuntimeException` specifically — never bare `catch (Exception e)`.
-- **Channel lifecycle**: Always shut down the `ManagedChannel` to avoid leaking threads and file descriptors. For blocking stubs, use a `try/finally` block with `channel.shutdown()` in `finally`. For async stubs (with `StreamObserver`), call `channel.shutdown()` in both `onCompleted()` and `onError()`.
-- **Print output**: Print results to stdout so users can see what the API returns.
-- **Not automated tests**: Examples require a live Kessel server and are not run in CI. Unit tests belong in `kessel-sdk/src/test/`.
-- **Compilable**: Examples are compiled as part of `./mvnw clean verify` (multi-module build) but are never published (`maven.deploy.skip=true`, `central.skip=true`).
+See [examples/GUIDELINES.md](examples/src/main/java/org/project_kessel/examples/GUIDELINES.md) for naming, Maven profiles, environment configuration, ClientBuilder usage, channel shutdown, error handling, and import style.
 
 ## Common Pitfalls
 
 1. **Editing generated code.** Files under `v1beta1` and most of `v1beta2` are regenerated every 6 hours. Manual edits will be overwritten. Check for `@Generated` annotations.
-2. **Forgetting channel shutdown.** Every `build()`/`buildAsync()` call creates a new `ManagedChannel`. Failing to shut it down leaks threads and file descriptors.
+2. **Forgetting channel shutdown.** Every `build()`/`buildAsync()` call creates a new `ManagedChannel`. Failing to shut it down leaks threads and file descriptors. Use `channel.shutdown()` (graceful), not `channel.shutdownNow()`, unless cancelling in-flight RPCs.
 3. **Sending auth over insecure channels.** The builder throws `IllegalStateException` at build time if `CallCredentials` are combined with `InsecureChannelCredentials`. Do not try to bypass this.
 4. **Adding Nimbus as a required dependency.** It must stay `<optional>true</optional>`. Consumers who do not use OAuth should not be forced to pull it.
 5. **Placing tests in excluded packages.** Surefire excludes `v1`, `v1beta1`, and generated patterns in `v1beta2`. Hand-written tests in those paths will be silently skipped.
 6. **Using `com.google.rpc.Status` as `io.grpc.Status`.** Bulk response errors use the protobuf `com.google.rpc.Status` message, not the gRPC `io.grpc.Status` enum. They are distinct types.
 7. **Declaring dependency versions in child POMs.** All versions are properties in the parent POM. Duplicating them breaks centralized management.
+8. **Logging tokens or secrets.** If adding logging, redact access tokens and client secrets. Never log Bearer tokens or credential values.
+9. **Hardcoding credentials.** All credentials must come from environment variables or runtime configuration. Never commit secrets to source code, `.env`, or any tracked file.
+10. **Adding config files without updating `.gitignore`.** Any new file that could contain secrets must be gitignored. Review `.gitignore` before adding configuration files.
