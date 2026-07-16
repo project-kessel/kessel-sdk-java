@@ -3,6 +3,7 @@ package org.project_kessel.api.rbac.v2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.project_kessel.api.auth.AuthRequest;
@@ -200,5 +201,75 @@ class FetchWorkspaceTest {
                 () -> FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient));
 
         assertTrue(exception.getMessage().contains("unexpected number of root workspaces"));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void testFetchRootWorkspaceIncludesWithAncestryByDefault() throws Exception {
+        when(mockResponse.statusCode()).thenReturn(200);
+        when(mockResponse.body()).thenReturn(VALID_ROOT_WORKSPACE_JSON.getBytes());
+
+        FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient);
+
+        ArgumentCaptor<HttpRequest> requestCaptor = ArgumentCaptor.forClass(HttpRequest.class);
+        verify(mockHttpClient).send(requestCaptor.capture(), any(HttpResponse.BodyHandler.class));
+        String url = requestCaptor.getValue().uri().toString();
+        assertTrue(url.contains("with_ancestry=true"), "URL should include with_ancestry=true by default");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void testFetchDefaultWorkspaceIncludesWithAncestryByDefault() throws Exception {
+        when(mockResponse.statusCode()).thenReturn(200);
+        when(mockResponse.body()).thenReturn(VALID_DEFAULT_WORKSPACE_JSON.getBytes());
+
+        FetchWorkspace.fetchDefaultWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient);
+
+        ArgumentCaptor<HttpRequest> requestCaptor = ArgumentCaptor.forClass(HttpRequest.class);
+        verify(mockHttpClient).send(requestCaptor.capture(), any(HttpResponse.BodyHandler.class));
+        String url = requestCaptor.getValue().uri().toString();
+        assertTrue(url.contains("with_ancestry=true"), "URL should include with_ancestry=true by default");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void testFetchRootWorkspaceWithAncestryDisabled() throws Exception {
+        when(mockResponse.statusCode()).thenReturn(200);
+        when(mockResponse.body()).thenReturn(VALID_ROOT_WORKSPACE_JSON.getBytes());
+
+        FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient, false);
+
+        ArgumentCaptor<HttpRequest> requestCaptor = ArgumentCaptor.forClass(HttpRequest.class);
+        verify(mockHttpClient).send(requestCaptor.capture(), any(HttpResponse.BodyHandler.class));
+        String url = requestCaptor.getValue().uri().toString();
+        assertFalse(url.contains("with_ancestry"), "URL should not include with_ancestry when disabled");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void testFetchDefaultWorkspaceWithAncestryDisabled() throws Exception {
+        when(mockResponse.statusCode()).thenReturn(200);
+        when(mockResponse.body()).thenReturn(VALID_DEFAULT_WORKSPACE_JSON.getBytes());
+
+        FetchWorkspace.fetchDefaultWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient, false);
+
+        ArgumentCaptor<HttpRequest> requestCaptor = ArgumentCaptor.forClass(HttpRequest.class);
+        verify(mockHttpClient).send(requestCaptor.capture(), any(HttpResponse.BodyHandler.class));
+        String url = requestCaptor.getValue().uri().toString();
+        assertFalse(url.contains("with_ancestry"), "URL should not include with_ancestry when disabled");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void testFetchRootWorkspaceWithAncestryExplicitlyEnabled() throws Exception {
+        when(mockResponse.statusCode()).thenReturn(200);
+        when(mockResponse.body()).thenReturn(VALID_ROOT_WORKSPACE_JSON.getBytes());
+
+        FetchWorkspace.fetchRootWorkspace(BASE_ENDPOINT, ORG_ID, mockAuth, mockHttpClient, true);
+
+        ArgumentCaptor<HttpRequest> requestCaptor = ArgumentCaptor.forClass(HttpRequest.class);
+        verify(mockHttpClient).send(requestCaptor.capture(), any(HttpResponse.BodyHandler.class));
+        String url = requestCaptor.getValue().uri().toString();
+        assertTrue(url.contains("with_ancestry=true"), "URL should include with_ancestry=true when explicitly enabled");
     }
 }
