@@ -29,7 +29,12 @@ public class FetchWorkspace {
 
     public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
             HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
-        return fetchWorkspace(rbacBaseEndpoint, orgId, "root", auth, httpClient);
+        return fetchRootWorkspace(rbacBaseEndpoint, orgId, auth, httpClient, true);
+    }
+
+    public static Workspace fetchRootWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
+            HttpClient httpClient, boolean withAncestry) throws IOException, InterruptedException, OAuth2Exception {
+        return fetchWorkspace(rbacBaseEndpoint, orgId, "root", auth, httpClient, withAncestry);
     }
 
     public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId)
@@ -44,11 +49,16 @@ public class FetchWorkspace {
 
     public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
             HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
-        return fetchWorkspace(rbacBaseEndpoint, orgId, "default", auth, httpClient);
+        return fetchDefaultWorkspace(rbacBaseEndpoint, orgId, auth, httpClient, true);
+    }
+
+    public static Workspace fetchDefaultWorkspace(String rbacBaseEndpoint, String orgId, AuthRequest auth,
+            HttpClient httpClient, boolean withAncestry) throws IOException, InterruptedException, OAuth2Exception {
+        return fetchWorkspace(rbacBaseEndpoint, orgId, "default", auth, httpClient, withAncestry);
     }
 
     private static Workspace fetchWorkspace(String rbacBaseEndpoint, String orgId, String type, AuthRequest auth,
-            HttpClient httpClient) throws IOException, InterruptedException, OAuth2Exception {
+            HttpClient httpClient, boolean withAncestry) throws IOException, InterruptedException, OAuth2Exception {
         if (httpClient == null) {
             httpClient = HttpClient.newHttpClient();
         }
@@ -57,6 +67,9 @@ public class FetchWorkspace {
             rbacBaseEndpoint = rbacBaseEndpoint.substring(0, rbacBaseEndpoint.length() - 1);
         }
         String url = rbacBaseEndpoint + WORKSPACE_ENDPOINT + "?type=" + type;
+        if (withAncestry) {
+            url += "&with_ancestry=true";
+        }
 
         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                 .uri(URI.create(url))
