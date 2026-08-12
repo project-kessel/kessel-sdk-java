@@ -1,6 +1,5 @@
 package org.project_kessel.api.inventory;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.*;
 import io.grpc.stub.AbstractAsyncStub;
 import io.grpc.stub.AbstractStub;
@@ -67,14 +66,14 @@ public abstract class AbstractClientBuilder<BT extends AbstractStub<BT>, AT exte
         return this;
     }
 
-    public Pair<BT, ManagedChannel> build() {
+    public ClientBuildResult<BT> build() {
         ManagedChannel channel = this.buildChannel();
-        return Pair.of(this.newStub(channel), channel);
+        return new ClientBuildResult<>(this.newStub(channel), channel);
     }
 
-    public Pair<AT, ManagedChannel> buildAsync() {
+    public ClientBuildResult<AT> buildAsync() {
         ManagedChannel channel = this.buildChannel();
-        return Pair.of(this.newAsyncStub(channel), channel);
+        return new ClientBuildResult<>(this.newAsyncStub(channel), channel);
     }
 
     private ManagedChannel buildChannel() {

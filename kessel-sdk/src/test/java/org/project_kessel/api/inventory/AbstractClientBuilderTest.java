@@ -1,6 +1,5 @@
 package org.project_kessel.api.inventory;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.*;
 import io.grpc.stub.AbstractAsyncStub;
 import io.grpc.stub.AbstractStub;
@@ -138,29 +137,29 @@ class AbstractClientBuilderTest {
     @Test
     void testBuildCreatesStub() {
         builder.insecure();
-        Pair<TestStub, ManagedChannel> result = builder.build();
+        ClientBuildResult<TestStub> result = builder.build();
 
-        assertNotNull(result.getLeft());
-        assertNotNull(result.getRight());
-        assertTrue(result.getLeft() instanceof TestStub);
-        assertTrue(result.getRight() instanceof ManagedChannel);
+        assertNotNull(result.stub());
+        assertNotNull(result.channel());
+        assertTrue(result.stub() instanceof TestStub);
+        assertTrue(result.channel() instanceof ManagedChannel);
 
         // Clean up
-        result.getRight().shutdown();
+        result.channel().shutdown();
     }
 
     @Test
     void testBuildAsyncCreatesAsyncStub() {
         builder.insecure();
-        Pair<TestAsyncStub, ManagedChannel> result = builder.buildAsync();
+        ClientBuildResult<TestAsyncStub> result = builder.buildAsync();
 
-        assertNotNull(result.getLeft());
-        assertNotNull(result.getRight());
-        assertTrue(result.getLeft() instanceof TestAsyncStub);
-        assertTrue(result.getRight() instanceof ManagedChannel);
+        assertNotNull(result.stub());
+        assertNotNull(result.channel());
+        assertTrue(result.stub() instanceof TestAsyncStub);
+        assertTrue(result.channel() instanceof ManagedChannel);
 
         // Clean up
-        result.getRight().shutdown();
+        result.channel().shutdown();
     }
 
     @Test
