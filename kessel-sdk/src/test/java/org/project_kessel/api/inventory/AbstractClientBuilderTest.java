@@ -138,28 +138,28 @@ class AbstractClientBuilderTest {
     void testBuildCreatesStub() {
         builder.insecure();
         ClientBuildResult<TestStub> result = builder.build();
-
-        assertNotNull(result.stub());
-        assertNotNull(result.channel());
-        assertTrue(result.stub() instanceof TestStub);
-        assertTrue(result.channel() instanceof ManagedChannel);
-
-        // Clean up
-        result.channel().shutdown();
+        try {
+            assertNotNull(result.stub());
+            assertNotNull(result.channel());
+            assertTrue(result.stub() instanceof TestStub);
+            assertTrue(result.channel() instanceof ManagedChannel);
+        } finally {
+            result.channel().shutdown();
+        }
     }
 
     @Test
     void testBuildAsyncCreatesAsyncStub() {
         builder.insecure();
         ClientBuildResult<TestAsyncStub> result = builder.buildAsync();
-
-        assertNotNull(result.stub());
-        assertNotNull(result.channel());
-        assertTrue(result.stub() instanceof TestAsyncStub);
-        assertTrue(result.channel() instanceof ManagedChannel);
-
-        // Clean up
-        result.channel().shutdown();
+        try {
+            assertNotNull(result.stub());
+            assertNotNull(result.channel());
+            assertTrue(result.stub() instanceof TestAsyncStub);
+            assertTrue(result.channel() instanceof ManagedChannel);
+        } finally {
+            result.channel().shutdown();
+        }
     }
 
     @Test

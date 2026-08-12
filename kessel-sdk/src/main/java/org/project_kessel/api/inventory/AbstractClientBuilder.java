@@ -68,12 +68,22 @@ public abstract class AbstractClientBuilder<BT extends AbstractStub<BT>, AT exte
 
     public ClientBuildResult<BT> build() {
         ManagedChannel channel = this.buildChannel();
-        return new ClientBuildResult<>(this.newStub(channel), channel);
+        try {
+            return new ClientBuildResult<>(this.newStub(channel), channel);
+        } catch (Exception e) {
+            channel.shutdownNow();
+            throw e;
+        }
     }
 
     public ClientBuildResult<AT> buildAsync() {
         ManagedChannel channel = this.buildChannel();
-        return new ClientBuildResult<>(this.newAsyncStub(channel), channel);
+        try {
+            return new ClientBuildResult<>(this.newAsyncStub(channel), channel);
+        } catch (Exception e) {
+            channel.shutdownNow();
+            throw e;
+        }
     }
 
     private ManagedChannel buildChannel() {
