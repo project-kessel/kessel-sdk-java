@@ -12,4 +12,9 @@ public record ClientConfigAuth(
         Objects.requireNonNull(clientSecret, "clientSecret must not be null");
         Objects.requireNonNull(tokenEndpoint, "tokenEndpoint must not be null");
     }
+
+    @Override
+    public String toString() {
+        return "ClientConfigAuth[clientId=" + clientId + ", clientSecret=***, tokenEndpoint=" + tokenEndpoint + "]";
+    }
 }
