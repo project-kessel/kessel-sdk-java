@@ -12,4 +12,9 @@ public record RefreshTokenResponse(
         Objects.requireNonNull(accessToken, "accessToken must not be null");
         Objects.requireNonNull(expiresAt, "expiresAt must not be null");
     }
+
+    @Override
+    public String toString() {
+        return "RefreshTokenResponse[accessToken=***, expiresAt=" + expiresAt + "]";
+    }
 }
