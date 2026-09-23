@@ -1,5 +1,11 @@
 package org.project_kessel.examples;
 
+/**
+ * WARNING: This example uses .insecure() for local development only.
+ * DO NOT USE IN PRODUCTION. This disables TLS encryption and certificate validation.
+ * For production, configure proper TLS credentials with certificate verification.
+ */
+
 import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.stub.StreamObserver;
