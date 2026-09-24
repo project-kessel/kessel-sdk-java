@@ -200,21 +200,6 @@
             </build>
         </profile>
         <profile>
-            <id>run-retry</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.6.3</version>
-                        <configuration>
-                            <mainClass>org.project_kessel.examples.RetryExample</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>run-check-bulk</id>
             <build>
                 <plugins>
