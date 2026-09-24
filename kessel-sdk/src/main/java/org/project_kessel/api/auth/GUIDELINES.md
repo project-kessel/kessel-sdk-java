@@ -16,6 +16,7 @@ All files in this package are **hand-written** (not generated). They form the SD
 | `OIDCDiscovery` | Static utility to resolve token endpoint from OIDC issuer URL |
 | `OIDCDiscoveryMetadata` | Immutable record wrapping the discovered `tokenEndpoint` |
 | `OAuth2Exception` | Single custom unchecked exception for all auth failures |
+| `RetryOptions` | Immutable record configuring bounded retry for token endpoint requests |
 
 ## Nimbus Dependency Guards
 
@@ -39,6 +40,18 @@ All files in this package are **hand-written** (not generated). They form the SD
 - `isCacheValid()` uses a 5-minute `EXPIRATION_WINDOW` before actual expiry. Do not reduce this window.
 - If `expires_in` is missing or zero from the OAuth response, it defaults to 1 hour (`DEFAULT_EXPIRE_IN_SECONDS`). Do not remove this fallback.
 - `getToken(boolean forceRefresh)` with `forceRefresh=true` still coalesces via the generation counter. Do not add force-refresh to automatic retry paths without rate-limiting.
+
+## Token Endpoint Retry
+
+- `OAuth2ClientCredentials` accepts an optional `RetryOptions` parameter in its two-argument constructor. When omitted (or `null`), no retry is performed — backward-compatible with the original single-attempt behavior.
+- Retry applies **only** to the token endpoint HTTP request, not to OIDC discovery or arbitrary API calls.
+- Retryable failures: `IOException` (connection refused, reset, timeout) and HTTP status codes 429, 500–599.
+- Non-retryable failures: HTTP 400/401/403 and other client errors, `ParseException`, missing access token. These are returned immediately.
+- Backoff: bounded exponential with configurable jitter. Delay formula: `cap = min(maxDelay, baseDelay * 2^retryIndex)`. With `"full"` jitter: `random(0, cap)`. With `"none"`: `cap`.
+- Defaults via `RetryOptions.defaults()`: 3 retries, 0.5s base delay, 2.0s max delay, full jitter. Capped at 0.5, 1, and 2 seconds.
+- Set `maxRetries` to 0 to explicitly disable retries.
+- Retry runs **inside** the `refreshLock` — concurrent callers coalesce into one retry cycle, preserving thundering herd prevention.
+- `InterruptedException` during retry sleep is converted to `OAuth2Exception` and re-interrupts the current thread.
 
 ## Error Handling
 
