@@ -4,6 +4,7 @@ import com.nimbusds.oauth2.sdk.*;
 import com.nimbusds.oauth2.sdk.auth.ClientAuthentication;
 import com.nimbusds.oauth2.sdk.auth.ClientSecretPost;
 import com.nimbusds.oauth2.sdk.auth.Secret;
+import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 import com.nimbusds.oauth2.sdk.id.ClientID;
 import com.nimbusds.oauth2.sdk.token.AccessToken;
@@ -21,6 +22,8 @@ public class OAuth2ClientCredentials {
 
     private static final Duration EXPIRATION_WINDOW = Duration.ofMinutes(5);
     private static final long DEFAULT_EXPIRE_IN_SECONDS = Duration.ofHours(1).toSeconds();
+    private static final int HTTP_CONNECT_TIMEOUT_MS = 10_000;
+    private static final int HTTP_READ_TIMEOUT_MS = 30_000;
 
     private final ClientConfigAuth auth;
     private final RetryOptions retryOptions;
@@ -93,7 +96,10 @@ public class OAuth2ClientCredentials {
                 ClientCredentialsGrant grant = new ClientCredentialsGrant();
                 TokenRequest request = new TokenRequest(tokenEndpoint, clientAuth, grant, null);
 
-                HTTPResponse httpResponse = request.toHTTPRequest().send();
+                HTTPRequest httpRequest = request.toHTTPRequest();
+                httpRequest.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
+                httpRequest.setReadTimeout(HTTP_READ_TIMEOUT_MS);
+                HTTPResponse httpResponse = httpRequest.send();
 
                 // Check HTTP status for retryable errors before Nimbus parses
                 // the response — Nimbus converts non-standard status codes into
