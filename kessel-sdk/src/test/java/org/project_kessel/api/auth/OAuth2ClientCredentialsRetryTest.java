@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +27,7 @@ class OAuth2ClientCredentialsRetryTest {
 
     // Tiny delays for fast tests
     private static final RetryOptions FAST_RETRY = new RetryOptions(3, 0.01, 0.02, "none");
+    private static final RetryOptions NO_RETRY = new RetryOptions(0, 0.5, 2.0, "full");
 
     private HttpServer httpServer;
     private ExecutorService serverExecutor;
@@ -54,6 +56,29 @@ class OAuth2ClientCredentialsRetryTest {
 
         assertEquals("test-token", token.accessToken());
         assertEquals(1, requestCount.get());
+    }
+
+    @Test
+    void testDefaultConstructorRetriesOnTransientError() throws Exception {
+        // One-arg constructor uses RetryOptions.defaults() (3 retries).
+        // Server returns 503 on first request, 200 on second.
+        AtomicInteger requestCount = new AtomicInteger(0);
+        int port = startMockServer(exchange -> {
+            int count = requestCount.incrementAndGet();
+            if (count == 1) {
+                sendResponse(exchange, 503, "Service Unavailable");
+            } else {
+                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
+            }
+        });
+
+        var config = new ClientConfigAuth("test-client", "test-secret",
+            "http://localhost:" + port + "/token");
+        var creds = new OAuth2ClientCredentials(config);
+
+        RefreshTokenResponse token = creds.getToken();
+        assertEquals("test-token", token.accessToken());
+        assertEquals(2, requestCount.get());
     }
 
     @Test
@@ -193,17 +218,60 @@ class OAuth2ClientCredentialsRetryTest {
     }
 
     @Test
-    void testRetryOnConnectionClosedBeforeHeaders() throws Exception {
-        // Acceptance criteria: demonstrate recovery across the actual HTTP/OAuth
-        // library boundary when the token endpoint closes before sending
-        // response headers.  The fixture accounts for transport-level POST
-        // replay by looping on accept() instead of counting socket connections
-        // as SDK attempts.
-        AtomicInteger connectionCount = new AtomicInteger(0);
+    void testNoRetryWhenMaxRetriesZero() throws Exception {
+        AtomicInteger requestCount = new AtomicInteger(0);
+        int port = startMockServer(exchange -> {
+            int count = requestCount.incrementAndGet();
+            if (count == 1) {
+                sendResponse(exchange, 503, "Service Unavailable");
+            } else {
+                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
+            }
+        });
+
+        var creds = createCredentials(port, NO_RETRY);
+
+        assertThrows(OAuth2Exception.class, () -> creds.getToken());
+        assertEquals(1, requestCount.get());
+    }
+
+    @Test
+    void testMultipleRetriesThenSuccess() throws Exception {
+        AtomicInteger requestCount = new AtomicInteger(0);
+        int port = startMockServer(exchange -> {
+            int count = requestCount.incrementAndGet();
+            if (count <= 3) {
+                sendResponse(exchange, 503, "Service Unavailable");
+            } else {
+                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
+            }
+        });
+
+        var creds = createCredentials(port, FAST_RETRY);
+        RefreshTokenResponse token = creds.getToken();
+
+        assertEquals("test-token", token.accessToken());
+        assertEquals(4, requestCount.get()); // 3 failures + 1 success on last attempt
+    }
+
+    // -- SDK-level recovery proof (paired tests) --
+    //
+    // Both tests use the same raw-socket fixture: drop the first 3 TCP
+    // connections, then respond with a valid token on all subsequent ones.
+    // Dropping 3 connections exceeds what HttpURLConnection transport-level
+    // replay can recover (at most 1 replay per SDK attempt), so recovery
+    // requires SDK-level retry.
+
+    @Test
+    void testConnectionCloseRecoveryRequiresSdkRetry() throws Exception {
+        // Retries enabled (3). SDK retries across multiple connection
+        // failures until it reaches a connection that responds.
         AtomicReference<Throwable> serverError = new AtomicReference<>();
+        int dropCount = 3;
 
         ServerSocket serverSocket = new ServerSocket(0);
         int port = serverSocket.getLocalPort();
+        AtomicInteger connectionCount = new AtomicInteger(0);
 
         Thread serverThread = new Thread(() -> {
             try {
@@ -211,11 +279,9 @@ class OAuth2ClientCredentialsRetryTest {
                     Socket conn = serverSocket.accept();
                     try {
                         int count = connectionCount.incrementAndGet();
-                        if (count == 1) {
-                            // First connection: close before sending any response
+                        if (count <= dropCount) {
                             conn.close();
                         } else {
-                            // All subsequent: respond with valid token
                             handleRawTokenRequest(conn);
                             conn.close();
                         }
@@ -239,8 +305,6 @@ class OAuth2ClientCredentialsRetryTest {
 
             RefreshTokenResponse token = creds.getToken();
             assertEquals("test-token", token.accessToken());
-            assertTrue(connectionCount.get() >= 2,
-                "Expected at least 2 connections, got " + connectionCount.get());
         } finally {
             serverSocket.close();
             serverThread.join(5000);
@@ -252,20 +316,31 @@ class OAuth2ClientCredentialsRetryTest {
     }
 
     @Test
-    void testConnectionCloseFailsWithoutRetry() throws Exception {
-        // Negative control: the same connection-close fixture, but without
-        // retry options.  Proves that recovery requires SDK-level retries,
-        // not just transport-level replay.
+    void testConnectionCloseWithoutSdkRetryFails() throws Exception {
+        // Same fixture as above (drop first 3, respond on 4+), but retries
+        // disabled. A single SDK attempt plus at most one transport-level
+        // replay cannot get past 3 dropped connections, so the request fails.
         AtomicReference<Throwable> serverError = new AtomicReference<>();
+        int dropCount = 3;
 
         ServerSocket serverSocket = new ServerSocket(0);
         int port = serverSocket.getLocalPort();
+        AtomicInteger connectionCount = new AtomicInteger(0);
 
         Thread serverThread = new Thread(() -> {
             try {
                 while (!serverSocket.isClosed()) {
-                    try (Socket conn = serverSocket.accept()) {
-                        // Drop all connections — close without response
+                    Socket conn = serverSocket.accept();
+                    try {
+                        int count = connectionCount.incrementAndGet();
+                        if (count <= dropCount) {
+                            conn.close();
+                        } else {
+                            handleRawTokenRequest(conn);
+                            conn.close();
+                        }
+                    } catch (IOException e) {
+                        try { conn.close(); } catch (IOException ignored) {}
                     }
                 }
             } catch (IOException e) {
@@ -280,8 +355,7 @@ class OAuth2ClientCredentialsRetryTest {
         try {
             var config = new ClientConfigAuth("test-client", "test-secret",
                 "http://localhost:" + port + "/token");
-            // No retry options — single attempt
-            var creds = new OAuth2ClientCredentials(config);
+            var creds = new OAuth2ClientCredentials(config, NO_RETRY);
 
             OAuth2Exception ex = assertThrows(OAuth2Exception.class, () -> creds.getToken());
             assertTrue(ex.getCause() instanceof IOException,
@@ -297,62 +371,119 @@ class OAuth2ClientCredentialsRetryTest {
     }
 
     @Test
-    void testNoRetryWithoutRetryOptions() throws Exception {
-        AtomicInteger requestCount = new AtomicInteger(0);
-        int port = startMockServer(exchange -> {
-            int count = requestCount.incrementAndGet();
-            if (count == 1) {
-                sendResponse(exchange, 503, "Service Unavailable");
-            } else {
-                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
+    void testIoExceptionRetryExhaustion() throws Exception {
+        // All connections dropped. SDK exhausts retries and surfaces IOException.
+        AtomicReference<Throwable> serverError = new AtomicReference<>();
+
+        ServerSocket serverSocket = new ServerSocket(0);
+        int port = serverSocket.getLocalPort();
+
+        Thread serverThread = new Thread(() -> {
+            try {
+                while (!serverSocket.isClosed()) {
+                    try (Socket conn = serverSocket.accept()) {
+                        // Drop — close immediately, no response
+                    }
+                }
+            } catch (IOException e) {
+                if (!serverSocket.isClosed()) {
+                    serverError.set(e);
+                }
             }
         });
+        serverThread.setDaemon(true);
+        serverThread.start();
 
-        // No retry options — original single-attempt behavior
-        var config = new ClientConfigAuth("test-client", "test-secret",
-            "http://localhost:" + port + "/token");
-        var creds = new OAuth2ClientCredentials(config);
+        try {
+            var config = new ClientConfigAuth("test-client", "test-secret",
+                "http://localhost:" + port + "/token");
+            var creds = new OAuth2ClientCredentials(config, FAST_RETRY);
 
-        assertThrows(OAuth2Exception.class, () -> creds.getToken());
-        assertEquals(1, requestCount.get());
+            OAuth2Exception ex = assertThrows(OAuth2Exception.class, () -> creds.getToken());
+            assertTrue(ex.getCause() instanceof IOException);
+            assertTrue(ex.getMessage().contains("after 4 attempts"));
+        } finally {
+            serverSocket.close();
+            serverThread.join(5000);
+        }
+
+        assertFalse(serverThread.isAlive(), "Server thread should have stopped");
+        assertNull(serverError.get(),
+            () -> "Server thread error: " + serverError.get());
     }
 
-    @Test
-    void testNoRetryWhenMaxRetriesZero() throws Exception {
-        AtomicInteger requestCount = new AtomicInteger(0);
-        int port = startMockServer(exchange -> {
-            int count = requestCount.incrementAndGet();
-            if (count == 1) {
-                sendResponse(exchange, 503, "Service Unavailable");
-            } else {
-                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
-            }
-        });
-
-        var retry = new RetryOptions(0, 0.5, 2.0, "full");
-        var creds = createCredentials(port, retry);
-
-        assertThrows(OAuth2Exception.class, () -> creds.getToken());
-        assertEquals(1, requestCount.get());
-    }
+    // -- HTTP timeout tests --
 
     @Test
-    void testMultipleRetriesThenSuccess() throws Exception {
-        AtomicInteger requestCount = new AtomicInteger(0);
-        int port = startMockServer(exchange -> {
-            int count = requestCount.incrementAndGet();
-            if (count <= 3) {
-                sendResponse(exchange, 503, "Service Unavailable");
-            } else {
-                sendResponse(exchange, 200, TOKEN_RESPONSE_BODY);
+    void testReadTimeoutTriggersRetryAndFailure() throws Exception {
+        // Server accepts connections but never sends a response, causing
+        // a read timeout.  Uses the package-private constructor with a
+        // short timeout (200 ms) so the test completes quickly.
+        // Verifies that SocketTimeoutException is treated as IOException
+        // and triggers retry, eventually exhausting all attempts.
+        AtomicReference<Throwable> serverError = new AtomicReference<>();
+        AtomicInteger connectionCount = new AtomicInteger(0);
+
+        ServerSocket serverSocket = new ServerSocket(0);
+        int port = serverSocket.getLocalPort();
+
+        Thread serverThread = new Thread(() -> {
+            try {
+                while (!serverSocket.isClosed()) {
+                    Socket conn = serverSocket.accept();
+                    try {
+                        connectionCount.incrementAndGet();
+                        // Read request headers but never respond
+                        conn.setSoTimeout(2000);
+                        InputStream in = conn.getInputStream();
+                        StringBuilder headers = new StringBuilder();
+                        int b;
+                        try {
+                            while ((b = in.read()) != -1) {
+                                headers.append((char) b);
+                                if (headers.toString().endsWith("\r\n\r\n")) break;
+                            }
+                        } catch (SocketTimeoutException ignored) {
+                            // Client may time out before sending full request
+                        }
+                        // Intentionally never send a response — client times out
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ignored) {
+                    } catch (IOException e) {
+                        // Client disconnected after timeout — expected
+                    } finally {
+                        try { conn.close(); } catch (IOException ignored) {}
+                    }
+                }
+            } catch (IOException e) {
+                if (!serverSocket.isClosed()) {
+                    serverError.set(e);
+                }
             }
         });
+        serverThread.setDaemon(true);
+        serverThread.start();
 
-        var creds = createCredentials(port, FAST_RETRY);
-        RefreshTokenResponse token = creds.getToken();
+        try {
+            var config = new ClientConfigAuth("test-client", "test-secret",
+                "http://localhost:" + port + "/token");
+            // Short timeouts: 200 ms connect, 200 ms read
+            var retry = new RetryOptions(2, 0.01, 0.02, "none");
+            var creds = new OAuth2ClientCredentials(config, retry, 200, 200);
 
-        assertEquals("test-token", token.accessToken());
-        assertEquals(4, requestCount.get()); // 3 failures + 1 success on last attempt
+            OAuth2Exception ex = assertThrows(OAuth2Exception.class, () -> creds.getToken());
+            assertTrue(ex.getCause() instanceof IOException,
+                "Expected IOException cause, got " + ex.getCause());
+            assertTrue(ex.getMessage().contains("after 3 attempts"));
+        } finally {
+            serverSocket.close();
+            serverThread.join(5000);
+        }
+
+        assertNull(serverError.get(),
+            () -> "Server thread error: " + serverError.get());
+        assertTrue(connectionCount.get() >= 3,
+            "Expected at least 3 connections (1 + 2 retries), got " + connectionCount.get());
     }
 
     @Test
@@ -383,14 +514,6 @@ class OAuth2ClientCredentialsRetryTest {
             assertTrue(delay >= 0, "Delay should be >= 0, got " + delay);
             assertTrue(delay < 500, "Delay should be < 500ms for attempt 0, got " + delay);
         }
-    }
-
-    @Test
-    void testRetryDelayWithoutRetryOptions() {
-        var config = new ClientConfigAuth("test", "test", "https://example.com/token");
-        var creds = new OAuth2ClientCredentials(config);
-
-        assertEquals(0, creds.retryDelayMs(0));
     }
 
     @Test
@@ -436,111 +559,6 @@ class OAuth2ClientCredentialsRetryTest {
         RefreshTokenResponse token2 = creds.getToken();
         assertEquals("test-token", token2.accessToken());
         assertEquals(1, requestCount.get());
-    }
-
-    @Test
-    void testIoExceptionRetryThenSuccess() throws Exception {
-        // Verify IOException retry path with multiple connection failures
-        // followed by recovery.  The fixture drops the first two connections
-        // then responds on all subsequent ones.  It loops on accept() so
-        // transport-level POST replays do not exhaust the fixture.
-        AtomicInteger connectionCount = new AtomicInteger(0);
-        AtomicReference<Throwable> serverError = new AtomicReference<>();
-
-        ServerSocket serverSocket = new ServerSocket(0);
-        int port = serverSocket.getLocalPort();
-
-        Thread serverThread = new Thread(() -> {
-            try {
-                while (!serverSocket.isClosed()) {
-                    Socket conn = serverSocket.accept();
-                    try {
-                        int count = connectionCount.incrementAndGet();
-                        if (count <= 2) {
-                            conn.close(); // Drop — no response
-                        } else {
-                            handleRawTokenRequest(conn);
-                            conn.close();
-                        }
-                    } catch (IOException e) {
-                        try { conn.close(); } catch (IOException ignored) {}
-                    }
-                }
-            } catch (IOException e) {
-                if (!serverSocket.isClosed()) {
-                    serverError.set(e);
-                }
-            }
-        });
-        serverThread.setDaemon(true);
-        serverThread.start();
-
-        try {
-            var config = new ClientConfigAuth("test-client", "test-secret",
-                "http://localhost:" + port + "/token");
-            var creds = new OAuth2ClientCredentials(config, FAST_RETRY);
-
-            RefreshTokenResponse token = creds.getToken();
-            assertEquals("test-token", token.accessToken());
-        } finally {
-            serverSocket.close();
-            serverThread.join(5000);
-        }
-
-        assertFalse(serverThread.isAlive(), "Server thread should have stopped");
-        assertNull(serverError.get(),
-            () -> "Server thread error: " + serverError.get());
-        assertTrue(connectionCount.get() >= 3,
-            "Expected at least 3 connections, got " + connectionCount.get());
-    }
-
-    @Test
-    void testIoExceptionRetryExhaustion() throws Exception {
-        // All connection attempts fail.  The fixture loops on accept() so
-        // transport-level POST replays are handled and the listening socket
-        // is closed deterministically after the assertion.
-        AtomicInteger connectionCount = new AtomicInteger(0);
-        AtomicReference<Throwable> serverError = new AtomicReference<>();
-
-        ServerSocket serverSocket = new ServerSocket(0);
-        int port = serverSocket.getLocalPort();
-
-        Thread serverThread = new Thread(() -> {
-            try {
-                while (!serverSocket.isClosed()) {
-                    try (Socket conn = serverSocket.accept()) {
-                        connectionCount.incrementAndGet();
-                        // Drop — close immediately, no response
-                    }
-                }
-            } catch (IOException e) {
-                if (!serverSocket.isClosed()) {
-                    serverError.set(e);
-                }
-            }
-        });
-        serverThread.setDaemon(true);
-        serverThread.start();
-
-        try {
-            var config = new ClientConfigAuth("test-client", "test-secret",
-                "http://localhost:" + port + "/token");
-            var creds = new OAuth2ClientCredentials(config, FAST_RETRY);
-
-            OAuth2Exception ex = assertThrows(OAuth2Exception.class, () -> creds.getToken());
-            assertTrue(ex.getCause() instanceof IOException);
-            assertTrue(ex.getMessage().contains("after 4 attempts"));
-        } finally {
-            serverSocket.close();
-            serverThread.join(5000);
-        }
-
-        assertFalse(serverThread.isAlive(), "Server thread should have stopped");
-        assertNull(serverError.get(),
-            () -> "Server thread error: " + serverError.get());
-        // Transport-level replay may cause more connections than SDK attempts
-        assertTrue(connectionCount.get() >= 4,
-            "Expected at least 4 connections, got " + connectionCount.get());
     }
 
     // -- Helpers --

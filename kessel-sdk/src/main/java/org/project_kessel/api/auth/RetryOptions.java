@@ -24,8 +24,14 @@ public record RetryOptions(
         if (maxRetries < 0) {
             throw new IllegalArgumentException("maxRetries must be >= 0");
         }
+        if (Double.isNaN(baseDelay) || Double.isInfinite(baseDelay)) {
+            throw new IllegalArgumentException("baseDelay must be a finite number");
+        }
         if (baseDelay <= 0) {
             throw new IllegalArgumentException("baseDelay must be > 0");
+        }
+        if (Double.isNaN(maxDelay) || Double.isInfinite(maxDelay)) {
+            throw new IllegalArgumentException("maxDelay must be a finite number");
         }
         if (maxDelay <= 0) {
             throw new IllegalArgumentException("maxDelay must be > 0");

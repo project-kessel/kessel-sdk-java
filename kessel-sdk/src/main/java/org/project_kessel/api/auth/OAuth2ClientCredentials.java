@@ -27,21 +27,31 @@ public class OAuth2ClientCredentials {
 
     private final ClientConfigAuth auth;
     private final RetryOptions retryOptions;
+    private final int connectTimeoutMs;
+    private final int readTimeoutMs;
     private volatile RefreshTokenResponse tokenCache;
     private final ReentrantLock refreshLock = new ReentrantLock();
     private final AtomicLong generation = new AtomicLong(0);
 
     public OAuth2ClientCredentials(ClientConfigAuth auth) throws OAuth2Exception {
-        this(auth, null);
+        this(auth, RetryOptions.defaults());
     }
 
     public OAuth2ClientCredentials(ClientConfigAuth auth, RetryOptions retryOptions) throws OAuth2Exception {
+        this(auth, retryOptions, HTTP_CONNECT_TIMEOUT_MS, HTTP_READ_TIMEOUT_MS);
+    }
+
+    // Package-private: allows tests to use short timeouts without waiting 10–30 s.
+    OAuth2ClientCredentials(ClientConfigAuth auth, RetryOptions retryOptions,
+                            int connectTimeoutMs, int readTimeoutMs) throws OAuth2Exception {
         try {
             // Check if Nimbus OAuth library is available
             Class.forName("com.nimbusds.oauth2.sdk.TokenRequest");
             Objects.requireNonNull(auth, "auth must not be null");
             this.auth = auth;
             this.retryOptions = retryOptions;
+            this.connectTimeoutMs = connectTimeoutMs;
+            this.readTimeoutMs = readTimeoutMs;
         } catch (ClassNotFoundException e) {
             throw new OAuth2Exception(
                 "OAuth functionality requires Nimbus OAuth library. " +
@@ -97,8 +107,8 @@ public class OAuth2ClientCredentials {
                 TokenRequest request = new TokenRequest(tokenEndpoint, clientAuth, grant, null);
 
                 HTTPRequest httpRequest = request.toHTTPRequest();
-                httpRequest.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
-                httpRequest.setReadTimeout(HTTP_READ_TIMEOUT_MS);
+                httpRequest.setConnectTimeout(connectTimeoutMs);
+                httpRequest.setReadTimeout(readTimeoutMs);
                 HTTPResponse httpResponse = httpRequest.send();
 
                 // Check HTTP status for retryable errors before Nimbus parses

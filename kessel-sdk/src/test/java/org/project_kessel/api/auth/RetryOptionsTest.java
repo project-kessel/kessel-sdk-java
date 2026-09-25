@@ -49,6 +49,24 @@ class RetryOptionsTest {
     }
 
     @Test
+    void testNaNBaseDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, Double.NaN, 2.0, "full"));
+    }
+
+    @Test
+    void testInfinityBaseDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, Double.POSITIVE_INFINITY, 2.0, "full"));
+    }
+
+    @Test
+    void testNegativeInfinityBaseDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, Double.NEGATIVE_INFINITY, 2.0, "full"));
+    }
+
+    @Test
     void testZeroMaxDelayThrows() {
         assertThrows(IllegalArgumentException.class,
             () -> new RetryOptions(3, 0.5, 0, "full"));
@@ -58,6 +76,24 @@ class RetryOptionsTest {
     void testNegativeMaxDelayThrows() {
         assertThrows(IllegalArgumentException.class,
             () -> new RetryOptions(3, 0.5, -1.0, "full"));
+    }
+
+    @Test
+    void testNaNMaxDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, 0.5, Double.NaN, "full"));
+    }
+
+    @Test
+    void testInfinityMaxDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, 0.5, Double.POSITIVE_INFINITY, "full"));
+    }
+
+    @Test
+    void testNegativeInfinityMaxDelayThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> new RetryOptions(3, 0.5, Double.NEGATIVE_INFINITY, "full"));
     }
 
     @Test

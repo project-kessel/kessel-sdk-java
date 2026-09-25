@@ -7,7 +7,6 @@ import org.project_kessel.api.auth.ClientConfigAuth;
 import org.project_kessel.api.auth.OAuth2ClientCredentials;
 import org.project_kessel.api.auth.OIDCDiscovery;
 import org.project_kessel.api.auth.OIDCDiscoveryMetadata;
-import org.project_kessel.api.auth.RetryOptions;
 import org.project_kessel.api.inventory.v1beta2.ResourceReference;
 import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
 import org.project_kessel.api.inventory.v1beta2.CheckRequest;
@@ -41,11 +40,12 @@ public class AuthExample {
                 clientSecret,
                 discovery.tokenEndpoint()
         );
-        // Enable retry for transient token endpoint failures.
-        // Defaults: 3 retries, full-jitter exponential backoff capped at 2 seconds.
+        // The one-argument constructor enables retry by default:
+        // 3 retries, full-jitter exponential backoff capped at 2 seconds.
         // Retries connection errors, HTTP 429, and HTTP 5xx.
         // Non-retryable errors (400, 401, 403) fail immediately.
-        RetryOptions retry = RetryOptions.defaults();
+        // HTTP timeouts: 10 s connect, 30 s read (per attempt).
+        OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig);
 
         // Or customize retry behavior:
         // RetryOptions retry = new RetryOptions(
@@ -54,11 +54,11 @@ public class AuthExample {
         //     10.0,   // maxDelay (seconds)
         //     "full"  // jitter: "full" or "none"
         // );
+        // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, retry);
 
-        // Or disable retries by omitting RetryOptions:
-        // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig);
-
-        OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, retry);
+        // Or disable retries explicitly:
+        // RetryOptions noRetry = new RetryOptions(0, 0.5, 2.0, "full");
+        // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, noRetry);
 
         Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .oauth2ClientAuthenticated(oauthClient)
