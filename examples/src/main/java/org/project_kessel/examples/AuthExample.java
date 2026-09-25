@@ -40,7 +40,25 @@ public class AuthExample {
                 clientSecret,
                 discovery.tokenEndpoint()
         );
+        // The one-argument constructor enables retry by default:
+        // 3 retries, full-jitter exponential backoff capped at 2 seconds.
+        // Retries connection errors, HTTP 429, and HTTP 5xx.
+        // Non-retryable errors (400, 401, 403) fail immediately.
+        // HTTP timeouts: 10 s connect, 30 s read (per attempt).
         OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig);
+
+        // Or customize retry behavior:
+        // RetryOptions retry = new RetryOptions(
+        //     5,      // maxRetries
+        //     0.5,    // baseDelay (seconds)
+        //     10.0,   // maxDelay (seconds)
+        //     "full"  // jitter: "full" or "none"
+        // );
+        // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, retry);
+
+        // Or disable retries explicitly:
+        // RetryOptions noRetry = new RetryOptions(0, 0.5, 2.0, "full");
+        // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, noRetry);
 
         Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .oauth2ClientAuthenticated(oauthClient)
