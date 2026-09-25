@@ -416,44 +416,48 @@ class OAuth2ClientCredentialsRetryTest {
 
     @Test
     void testReadTimeoutTriggersRetryAndFailure() throws Exception {
-        // Server accepts connections but never sends a response, causing
-        // a read timeout.  Uses the package-private constructor with a
-        // short timeout (200 ms) so the test completes quickly.
-        // Verifies that SocketTimeoutException is treated as IOException
-        // and triggers retry, eventually exhausting all attempts.
+        // Server accepts connections concurrently but never sends a
+        // response, causing a read timeout on each attempt.  Each
+        // accepted connection is handled in its own thread so the
+        // accept loop stays responsive while earlier connections sleep.
+        // Uses the package-private constructor with a short timeout
+        // (200 ms) so the test completes quickly.
         AtomicReference<Throwable> serverError = new AtomicReference<>();
         AtomicInteger connectionCount = new AtomicInteger(0);
 
         ServerSocket serverSocket = new ServerSocket(0);
         int port = serverSocket.getLocalPort();
+        ExecutorService workers = Executors.newCachedThreadPool();
 
         Thread serverThread = new Thread(() -> {
             try {
                 while (!serverSocket.isClosed()) {
                     Socket conn = serverSocket.accept();
-                    try {
-                        connectionCount.incrementAndGet();
-                        // Read request headers but never respond
-                        conn.setSoTimeout(2000);
-                        InputStream in = conn.getInputStream();
-                        StringBuilder headers = new StringBuilder();
-                        int b;
+                    connectionCount.incrementAndGet();
+                    workers.submit(() -> {
                         try {
-                            while ((b = in.read()) != -1) {
-                                headers.append((char) b);
-                                if (headers.toString().endsWith("\r\n\r\n")) break;
+                            // Read request headers but never respond
+                            conn.setSoTimeout(2000);
+                            InputStream in = conn.getInputStream();
+                            StringBuilder headers = new StringBuilder();
+                            int b;
+                            try {
+                                while ((b = in.read()) != -1) {
+                                    headers.append((char) b);
+                                    if (headers.toString().endsWith("\r\n\r\n")) break;
+                                }
+                            } catch (SocketTimeoutException ignored) {
+                                // Client may time out before sending full request
                             }
-                        } catch (SocketTimeoutException ignored) {
-                            // Client may time out before sending full request
+                            // Intentionally never send a response — client times out
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ignored) {
+                        } catch (IOException e) {
+                            // Client disconnected after timeout — expected
+                        } finally {
+                            try { conn.close(); } catch (IOException ignored) {}
                         }
-                        // Intentionally never send a response — client times out
-                        Thread.sleep(5000);
-                    } catch (InterruptedException ignored) {
-                    } catch (IOException e) {
-                        // Client disconnected after timeout — expected
-                    } finally {
-                        try { conn.close(); } catch (IOException ignored) {}
-                    }
+                    });
                 }
             } catch (IOException e) {
                 if (!serverSocket.isClosed()) {
@@ -472,16 +476,21 @@ class OAuth2ClientCredentialsRetryTest {
             var creds = new OAuth2ClientCredentials(config, retry, 200, 200);
 
             OAuth2Exception ex = assertThrows(OAuth2Exception.class, () -> creds.getToken());
-            assertTrue(ex.getCause() instanceof IOException,
-                "Expected IOException cause, got " + ex.getCause());
+            // Verify failure is actually a read timeout (SocketTimeoutException)
+            assertTrue(ex.getCause() instanceof SocketTimeoutException,
+                "Expected SocketTimeoutException cause (read timeout), got " + ex.getCause());
             assertTrue(ex.getMessage().contains("after 3 attempts"));
         } finally {
             serverSocket.close();
+            workers.shutdownNow();
+            workers.awaitTermination(5, TimeUnit.SECONDS);
             serverThread.join(5000);
         }
 
+        assertFalse(serverThread.isAlive(), "Server thread should have stopped");
         assertNull(serverError.get(),
             () -> "Server thread error: " + serverError.get());
+        // Each retry attempt must reach the server as a new TCP connection
         assertTrue(connectionCount.get() >= 3,
             "Expected at least 3 connections (1 + 2 retries), got " + connectionCount.get());
     }
