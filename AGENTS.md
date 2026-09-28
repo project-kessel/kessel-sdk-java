@@ -7,7 +7,7 @@ Onboarding guide for AI agents working in the `kessel-sdk-java` repository. This
 | File | Scope |
 |------|-------|
 | [api/auth/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/auth/GUIDELINES.md) | OAuth2/OIDC token management, Nimbus dependency guards, credential records, token caching thread safety, auth error handling |
-| [api/inventory/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/inventory/GUIDELINES.md) | AbstractClientBuilder hierarchy, generated vs hand-written code boundary, channel security, Pair return convention, version targeting |
+| [api/inventory/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/inventory/GUIDELINES.md) | AbstractClientBuilder hierarchy, generated vs hand-written code boundary, channel security, ClientBuildResult return convention, version targeting |
 | [api/rbac/v2/GUIDELINES.md](kessel-sdk/src/main/java/org/project_kessel/api/rbac/v2/GUIDELINES.md) | RBAC utility helpers (Utils, FetchWorkspace, ListWorkspaces, Workspace), pagination iterator, Jackson usage, REST error handling |
 | [examples/GUIDELINES.md](examples/src/main/java/org/project_kessel/examples/GUIDELINES.md) | Example conventions: naming, Maven profiles, EnvConfig, ClientBuilder usage, channel shutdown, error handling, import style |
 
@@ -89,7 +89,7 @@ A GitHub Actions workflow (`buf-generate.yml`) regenerates stubs every 6 hours a
 - All dependency versions are centralized as properties in the **parent POM** (`grpc.version`, `protobuf.version`, `nimbus-oauth.version`, `jackson.version`). Never declare versions in child POMs.
 - **Nimbus OAuth SDK** (`com.nimbusds:oauth2-oidc-sdk`) is `<optional>true</optional>` in `kessel-sdk/pom.xml`. Any code using Nimbus must include a `Class.forName()` runtime guard.
 - **gRPC transport** (`grpc-netty-shaded`) is test-scope only in the SDK. The SDK is transport-agnostic. Examples use `grpc-okhttp`.
-- **`com.nimbusds.jose.util.Pair`** is used throughout the SDK (not Apache Commons or a custom Pair). This comes from the Nimbus JOSE dependency which is transitively available. `build()` and `buildAsync()` return `Pair<Stub, ManagedChannel>`.
+- **`ClientBuildResult<T>`** is the SDK-owned record used by `build()` and `buildAsync()` — holds `stub()` and `channel()`. Located in `org.project_kessel.api.inventory`. Replaces the former `com.nimbusds.jose.util.Pair` usage so the Nimbus dependency can stay truly optional.
 - **Jackson** (`jackson-databind`) is a runtime dependency for the RBAC REST helpers (`FetchWorkspace`, `Workspace`).
 - When bumping gRPC or Protobuf versions, always regenerate stubs via `buf generate` and run `./mvnw clean verify`.
 
@@ -101,8 +101,8 @@ A GitHub Actions workflow (`buf-generate.yml`) regenerates stubs every 6 hours a
 ### Optional Dependency Guard
 Code that depends on optional libraries (currently only Nimbus) must call `Class.forName()` in the constructor or entry point and throw a descriptive exception naming the required Maven artifact. This pattern exists in `OAuth2ClientCredentials` and `OIDCDiscovery`.
 
-### Pair Return Convention
-`build()` returns `Pair<BlockingStub, ManagedChannel>` and `buildAsync()` returns `Pair<AsyncStub, ManagedChannel>`. The caller is responsible for shutting down the channel. Every example demonstrates `channel.shutdown()` in a `finally` block (blocking) or in both `onCompleted()`/`onError()` (async).
+### ClientBuildResult Return Convention
+`build()` returns `ClientBuildResult<BlockingStub>` and `buildAsync()` returns `ClientBuildResult<AsyncStub>`. Access the stub via `stub()` and the channel via `channel()`. The caller is responsible for shutting down the channel. Every example demonstrates `channel.shutdown()` in a `finally` block (blocking) or in both `onCompleted()`/`onError()` (async).
 
 ## Version Targeting
 

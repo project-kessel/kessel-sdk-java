@@ -1,8 +1,8 @@
 package org.project_kessel.examples;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+import org.project_kessel.api.inventory.ClientBuildResult;
 import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
 import org.project_kessel.api.inventory.v1beta2.Consistency;
 import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
@@ -26,11 +26,11 @@ public class ListWorkspacesExample {
         // Load configuration from environment/.env file
         String kesselEndpoint = EnvConfig.get("KESSEL_ENDPOINT");
 
-        Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
+        ClientBuildResult<KesselInventoryServiceBlockingStub> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .insecure()
                 .build();
 
-        KesselInventoryServiceBlockingStub client = clientAndChannel.getLeft();
+        KesselInventoryServiceBlockingStub client = clientAndChannel.stub();
 
         try {
             Consistency consistency = Consistency.newBuilder().setMinimizeLatency(true).build();
@@ -56,7 +56,7 @@ public class ListWorkspacesExample {
             System.err.println("gRPC error occurred while listing workspaces:");
             statusException.printStackTrace();
         } finally {
-            clientAndChannel.getRight().shutdown();
+            clientAndChannel.channel().shutdown();
         }
     }
 }

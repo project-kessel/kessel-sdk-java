@@ -38,10 +38,10 @@ This is the most important rule in this package.
 - `validateCredentials()` throws `IllegalStateException` if `CallCredentials` are combined with insecure channel credentials. Never remove or weaken this guard.
 - `isChannelCredentialsSecure()` recursively checks `CompositeChannelCredentials` and `ChoiceChannelCredentials`. If gRPC introduces new credential types, update this method.
 
-## Pair Return Convention
+## ClientBuildResult Return Convention
 
-- `build()` returns `Pair<BlockingStub, ManagedChannel>` using `com.nimbusds.jose.util.Pair` (not Apache Commons).
-- `buildAsync()` returns `Pair<AsyncStub, ManagedChannel>`.
+- `build()` returns `ClientBuildResult<BlockingStub>` — an SDK-owned record with `stub()` and `channel()` accessors.
+- `buildAsync()` returns `ClientBuildResult<AsyncStub>`.
 - The caller owns the `ManagedChannel` and must shut it down. Every example demonstrates `channel.shutdown()` in a `finally` block (blocking) or in both `onCompleted()`/`onError()` (async).
 - Each `build()`/`buildAsync()` call creates a new `ManagedChannel`. Do not call `build()` per-request -- reuse the channel.
 

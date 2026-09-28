@@ -1,8 +1,8 @@
 package org.project_kessel.examples;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+import org.project_kessel.api.inventory.ClientBuildResult;
 import org.project_kessel.api.inventory.v1beta2.*;
 import org.project_kessel.api.rbac.v2.Utils;
 import org.project_kessel.examples.util.EnvConfig;
@@ -19,10 +19,10 @@ public class CheckBulkExample {
         // Load configuration from environment/.env file
         String kesselEndpoint = EnvConfig.get("KESSEL_ENDPOINT");
 
-        Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
+        ClientBuildResult<KesselInventoryServiceBlockingStub> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .insecure()
                 .build();
-        KesselInventoryServiceBlockingStub client = clientAndChannel.getLeft();
+        KesselInventoryServiceBlockingStub client = clientAndChannel.stub();
 
         try {
             // Item 1: Check if bob can view widgets in workspace_123
@@ -88,7 +88,7 @@ public class CheckBulkExample {
             System.out.println("gRPC error occurred during CheckBulk:");
             statusException.printStackTrace();
         } finally {
-            clientAndChannel.getRight().shutdown();
+            clientAndChannel.channel().shutdown();
         }
     }
 }
