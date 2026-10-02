@@ -138,7 +138,6 @@ Run examples:
 ./mvnw clean install
 cd examples
 ../mvnw compile exec:java -Prun-auth
-../mvnw compile exec:java -Prun-keepalive
 ```
 
 ## Development
