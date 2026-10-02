@@ -1,5 +1,7 @@
 # Kessel SDK for Java
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/project-kessel/kessel-sdk-java/badge)](https://securityscorecards.dev/viewer/?uri=github.com/project-kessel/kessel-sdk-java)
+
 A Java client SDK for [Project Kessel](https://github.com/project-kessel) services. It provides a fluent builder API over gRPC-generated stubs, with optional OAuth 2.0 Client Credentials authentication, automatic token caching, and RBAC utility helpers.
 
 ## Table of Contents
