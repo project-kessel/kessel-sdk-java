@@ -7,6 +7,7 @@ A Java client SDK for [Project Kessel](https://github.com/project-kessel) servic
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Authentication](#authentication)
+- [gRPC Keepalive (Java)](#grpc-keepalive-java)
 - [Examples](#examples)
 - [Development](#development)
 - [Prerequisites](#prerequisites)
@@ -82,6 +83,37 @@ If you use the SDK's built-in OAuth 2.0 Client Credentials support, add the Nimb
 
 The SDK supports OAuth 2.0 Client Credentials flow for authentication with automatic token caching and refresh.
 
+## gRPC Keepalive (Java)
+
+The inventory client builders expose independent options for the gRPC channel's client-side keepalive interval, timeout, and whether pings may be sent without active calls. Given an endpoint from your application configuration, configure the channel as follows:
+
+```java
+import com.nimbusds.jose.util.Pair;
+import io.grpc.ManagedChannel;
+import java.time.Duration;
+import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
+import org.project_kessel.api.inventory.v1beta2.KesselInventoryServiceGrpc.KesselInventoryServiceBlockingStub;
+
+Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel =
+    new ClientBuilder(kesselEndpoint)
+        .keepaliveInterval(Duration.ofSeconds(60))
+        .keepaliveTimeout(Duration.ofSeconds(15))
+        .keepalivePermitWithoutCalls(false)
+        .build();
+
+try {
+    // Use clientAndChannel.getLeft() for inventory RPCs.
+} finally {
+    clientAndChannel.getRight().shutdown();
+}
+```
+
+By default, the interval is 45 seconds, the timeout is 10 seconds, and keepalive without calls is permitted. The `Duration` values must be non-null, positive, and convertible to nanoseconds without overflow. gRPC Java may clamp intervals below 10 seconds and timeouts below 10 milliseconds to its minimums. Calling only one setter leaves the other settings unchanged; omitting a setter keeps its default.
+
+Without these setters, both `.build()` and `.buildAsync()` use the same 45-second interval, 10-second timeout, and `true` permit-without-calls defaults.
+
+These options configure local gRPC keepalive behavior only. They do not guarantee that a load balancer's idle timer is reset, enable retries, or run health checks. The server/gateway policy must be compatible with the selected keepalive interval; compatibility with the 45-second default remains unverified (RHCLOUD-51673).
+
 ## Listing Workspaces
 
 The `ListWorkspaces.listWorkspaces()` helper automatically paginates through
@@ -117,12 +149,14 @@ Check out the [examples directory](./examples) for working code samples:
 - **Auth examples**: OAuth2 Client Credentials flow with token management
 - **Builder examples**: Fluent client builder patterns
 - **gRPC examples**: Direct gRPC client usage
+- **Keepalive example**: Override channel keepalive settings (`./mvnw -pl examples exec:java -P run-keepalive`)
 
 Run examples:
 ```bash
 ./mvnw clean install
 cd examples
 ../mvnw compile exec:java -Prun-auth
+../mvnw compile exec:java -Prun-keepalive
 ```
 
 ## Development

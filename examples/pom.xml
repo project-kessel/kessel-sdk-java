@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.project-kessel</groupId>
         <artifactId>kessel-sdk-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.11.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>kessel-sdk-examples</artifactId>
@@ -59,6 +59,21 @@
                         <version>3.6.3</version>
                         <configuration>
                             <mainClass>org.project_kessel.examples.AuthExample</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>run-keepalive</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.6.3</version>
+                        <configuration>
+                            <mainClass>org.project_kessel.examples.KeepaliveExample</mainClass>
                         </configuration>
                     </plugin>
                 </plugins>
