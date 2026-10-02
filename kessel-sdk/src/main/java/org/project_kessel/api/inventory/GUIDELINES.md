@@ -38,6 +38,13 @@ This is the most important rule in this package.
 - `validateCredentials()` throws `IllegalStateException` if `CallCredentials` are combined with insecure channel credentials. Never remove or weaken this guard.
 - `isChannelCredentialsSecure()` recursively checks `CompositeChannelCredentials` and `ChoiceChannelCredentials`. If gRPC introduces new credential types, update this method.
 
+## Client Keepalive
+
+- `AbstractClientBuilder` configures channel keepalive with defaults of 45 seconds for the interval, 10 seconds for the timeout, and `true` for permitting pings without active calls.
+- The independent `keepaliveInterval(Duration)`, `keepaliveTimeout(Duration)`, and `keepalivePermitWithoutCalls(boolean)` setters preserve values for options they do not change; later calls replace only the selected option.
+- Duration values must be non-null, positive, and convertible to nanoseconds without overflow. gRPC Java may clamp the interval to a 10-second minimum and the timeout to a 10-millisecond minimum.
+- These client options do not guarantee load-balancer idle-timer resets, retries, or health checks. A server/gateway policy compatible with the selected interval (including the 45-second default) is a prerequisite and remains unverified under RHCLOUD-51673.
+
 ## Pair Return Convention
 
 - `build()` returns `Pair<BlockingStub, ManagedChannel>` using `com.nimbusds.jose.util.Pair` (not Apache Commons).
