@@ -7,6 +7,7 @@ A Java client SDK for [Project Kessel](https://github.com/project-kessel) servic
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Authentication](#authentication)
+- [gRPC Keepalive (Java)](#grpc-keepalive-java)
 - [Examples](#examples)
 - [Development](#development)
 - [Prerequisites](#prerequisites)
@@ -82,6 +83,20 @@ If you use the SDK's built-in OAuth 2.0 Client Credentials support, add the Nimb
 
 The SDK supports OAuth 2.0 Client Credentials flow for authentication with automatic token caching and refresh.
 
+## gRPC Keepalive (Java)
+
+Both `.build()` and `.buildAsync()` default to a 45-second keepalive interval, a 10-second timeout, and `true` for permitting pings without active calls. Override settings independently as needed:
+
+```java
+builder.keepaliveInterval(Duration.ofSeconds(60))
+    .keepaliveTimeout(Duration.ofSeconds(15))
+    .keepalivePermitWithoutCalls(false);
+```
+
+Each setter changes only its own option; repeated calls replace that option, and `false` explicitly disables pings without active calls. Durations must be non-null, positive, and convertible to nanoseconds without overflow. gRPC Java may clamp intervals below 10 seconds and timeouts below 10 milliseconds.
+
+These options configure client keepalive only; they do not guarantee load-balancer idle resets, retries, or health checks. Server/gateway compatibility with the selected interval, including the 45-second default, remains unverified (RHCLOUD-51673).
+
 ## Listing Workspaces
 
 The `ListWorkspaces.listWorkspaces()` helper automatically paginates through
@@ -115,7 +130,7 @@ See [`examples/`](./examples) for complete working examples.
 Check out the [examples directory](./examples) for working code samples:
 
 - **Auth examples**: OAuth2 Client Credentials flow with token management
-- **Builder examples**: Fluent client builder patterns
+- **Builder examples**: Fluent client builder patterns, including keepalive configuration
 - **gRPC examples**: Direct gRPC client usage
 
 Run examples:
