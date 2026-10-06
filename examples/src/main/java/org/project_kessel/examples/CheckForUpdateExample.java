@@ -6,9 +6,9 @@ package org.project_kessel.examples;
  * For production, configure proper TLS credentials with certificate verification.
  */
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+import org.project_kessel.api.inventory.ClientBuildResult;
 import org.project_kessel.api.inventory.v1beta2.*;
 import org.project_kessel.examples.util.EnvConfig;
 
@@ -25,10 +25,10 @@ public class CheckForUpdateExample {
         // Load configuration from environment/.env file
         String kesselEndpoint = EnvConfig.get("KESSEL_ENDPOINT");
 
-        Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
+        ClientBuildResult<KesselInventoryServiceBlockingStub> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .insecure()
                 .build();
-        KesselInventoryServiceBlockingStub client = clientAndChannel.getLeft();
+        KesselInventoryServiceBlockingStub client = clientAndChannel.stub();
 
         try {
             CheckForUpdateRequest checkRequest = CheckForUpdateRequest
@@ -64,7 +64,7 @@ public class CheckForUpdateExample {
             System.out.println("gRPC error occurred during Check for update:");
             statusException.printStackTrace();
         } finally {
-            clientAndChannel.getRight().shutdown();
+            clientAndChannel.channel().shutdown();
         }
     }
 }
