@@ -48,66 +48,83 @@ public final class InventoryService {
       "ort_resource_response.proto\0326kessel/inve" +
       "ntory/v1beta2/delete_resource_request.pr" +
       "oto\0327kessel/inventory/v1beta2/delete_res" +
-      "ource_response.proto\032<kessel/inventory/v" +
-      "1beta2/streamed_list_objects_request.pro" +
-      "to\032=kessel/inventory/v1beta2/streamed_li" +
-      "st_objects_response.proto\032=kessel/invent" +
-      "ory/v1beta2/streamed_list_subjects_reque" +
-      "st.proto\032>kessel/inventory/v1beta2/strea" +
-      "med_list_subjects_response.proto\0321kessel" +
-      "/inventory/v1beta2/check_bulk_request.pr" +
-      "oto\0322kessel/inventory/v1beta2/check_bulk" +
-      "_response.proto\0321kessel/inventory/v1beta" +
-      "2/check_self_request.proto\0322kessel/inven" +
-      "tory/v1beta2/check_self_response.proto\0326" +
-      "kessel/inventory/v1beta2/check_self_bulk" +
-      "_request.proto\0327kessel/inventory/v1beta2" +
-      "/check_self_bulk_response.proto\032<kessel/" +
-      "inventory/v1beta2/check_for_update_bulk_" +
-      "request.proto\032=kessel/inventory/v1beta2/" +
-      "check_for_update_bulk_response.proto2\206\014\n" +
-      "\026KesselInventoryService\022~\n\005Check\022&.kesse" +
-      "l.inventory.v1beta2.CheckRequest\032\'.kesse" +
-      "l.inventory.v1beta2.CheckResponse\"$\202\323\344\223\002" +
-      "\036\"\031/api/kessel/v1beta2/check:\001*\022\216\001\n\tChec" +
-      "kSelf\022*.kessel.inventory.v1beta2.CheckSe" +
-      "lfRequest\032+.kessel.inventory.v1beta2.Che" +
-      "ckSelfResponse\"(\202\323\344\223\002\"\"\035/api/kessel/v1be" +
-      "ta2/checkself:\001*\022\242\001\n\016CheckForUpdate\022/.ke" +
-      "ssel.inventory.v1beta2.CheckForUpdateReq" +
-      "uest\0320.kessel.inventory.v1beta2.CheckFor" +
-      "UpdateResponse\"-\202\323\344\223\002\'\"\"/api/kessel/v1be" +
-      "ta2/checkforupdate:\001*\022\262\001\n\022CheckForUpdate" +
-      "Bulk\0223.kessel.inventory.v1beta2.CheckFor" +
-      "UpdateBulkRequest\0324.kessel.inventory.v1b" +
-      "eta2.CheckForUpdateBulkResponse\"1\202\323\344\223\002+\"" +
-      "&/api/kessel/v1beta2/checkforupdatebulk:" +
-      "\001*\022\216\001\n\tCheckBulk\022*.kessel.inventory.v1be" +
-      "ta2.CheckBulkRequest\032+.kessel.inventory." +
-      "v1beta2.CheckBulkResponse\"(\202\323\344\223\002\"\"\035/api/" +
-      "kessel/v1beta2/checkbulk:\001*\022\236\001\n\rCheckSel" +
-      "fBulk\022..kessel.inventory.v1beta2.CheckSe" +
-      "lfBulkRequest\032/.kessel.inventory.v1beta2" +
-      ".CheckSelfBulkResponse\",\202\323\344\223\002&\"!/api/kes" +
-      "sel/v1beta2/checkselfbulk:\001*\022\235\001\n\016ReportR" +
-      "esource\022/.kessel.inventory.v1beta2.Repor" +
-      "tResourceRequest\0320.kessel.inventory.v1be" +
-      "ta2.ReportResourceResponse\"(\202\323\344\223\002\"\"\035/api" +
-      "/kessel/v1beta2/resources:\001*\022\235\001\n\016DeleteR" +
-      "esource\022/.kessel.inventory.v1beta2.Delet" +
-      "eResourceRequest\0320.kessel.inventory.v1be" +
-      "ta2.DeleteResourceResponse\"(\202\323\344\223\002\"*\035/api" +
-      "/kessel/v1beta2/resources:\001*\022\204\001\n\023Streame" +
-      "dListObjects\0224.kessel.inventory.v1beta2." +
-      "StreamedListObjectsRequest\0325.kessel.inve" +
-      "ntory.v1beta2.StreamedListObjectsRespons" +
-      "e0\001\022\207\001\n\024StreamedListSubjects\0225.kessel.in" +
-      "ventory.v1beta2.StreamedListSubjectsRequ" +
-      "est\0326.kessel.inventory.v1beta2.StreamedL" +
-      "istSubjectsResponse0\001Br\n(org.project_kes" +
-      "sel.api.inventory.v1beta2P\001ZDgithub.com/" +
-      "project-kessel/inventory-api/api/kessel/" +
-      "inventory/v1beta2b\006proto3"
+      "ource_response.proto\032Akessel/inventory/v" +
+      "1beta2/add_resource_relationships_reques" +
+      "t.proto\032Bkessel/inventory/v1beta2/add_re" +
+      "source_relationships_response.proto\032Dkes" +
+      "sel/inventory/v1beta2/remove_resource_re" +
+      "lationships_request.proto\032Ekessel/invent" +
+      "ory/v1beta2/remove_resource_relationship" +
+      "s_response.proto\032<kessel/inventory/v1bet" +
+      "a2/streamed_list_objects_request.proto\032=" +
+      "kessel/inventory/v1beta2/streamed_list_o" +
+      "bjects_response.proto\032=kessel/inventory/" +
+      "v1beta2/streamed_list_subjects_request.p" +
+      "roto\032>kessel/inventory/v1beta2/streamed_" +
+      "list_subjects_response.proto\0321kessel/inv" +
+      "entory/v1beta2/check_bulk_request.proto\032" +
+      "2kessel/inventory/v1beta2/check_bulk_res" +
+      "ponse.proto\0321kessel/inventory/v1beta2/ch" +
+      "eck_self_request.proto\0322kessel/inventory" +
+      "/v1beta2/check_self_response.proto\0326kess" +
+      "el/inventory/v1beta2/check_self_bulk_req" +
+      "uest.proto\0327kessel/inventory/v1beta2/che" +
+      "ck_self_bulk_response.proto\032<kessel/inve" +
+      "ntory/v1beta2/check_for_update_bulk_requ" +
+      "est.proto\032=kessel/inventory/v1beta2/chec" +
+      "k_for_update_bulk_response.proto2\247\017\n\026Kes" +
+      "selInventoryService\022~\n\005Check\022&.kessel.in" +
+      "ventory.v1beta2.CheckRequest\032\'.kessel.in" +
+      "ventory.v1beta2.CheckResponse\"$\202\323\344\223\002\036\"\031/" +
+      "api/kessel/v1beta2/check:\001*\022\216\001\n\tCheckSel" +
+      "f\022*.kessel.inventory.v1beta2.CheckSelfRe" +
+      "quest\032+.kessel.inventory.v1beta2.CheckSe" +
+      "lfResponse\"(\202\323\344\223\002\"\"\035/api/kessel/v1beta2/" +
+      "checkself:\001*\022\242\001\n\016CheckForUpdate\022/.kessel" +
+      ".inventory.v1beta2.CheckForUpdateRequest" +
+      "\0320.kessel.inventory.v1beta2.CheckForUpda" +
+      "teResponse\"-\202\323\344\223\002\'\"\"/api/kessel/v1beta2/" +
+      "checkforupdate:\001*\022\262\001\n\022CheckForUpdateBulk" +
+      "\0223.kessel.inventory.v1beta2.CheckForUpda" +
+      "teBulkRequest\0324.kessel.inventory.v1beta2" +
+      ".CheckForUpdateBulkResponse\"1\202\323\344\223\002+\"&/ap" +
+      "i/kessel/v1beta2/checkforupdatebulk:\001*\022\216" +
+      "\001\n\tCheckBulk\022*.kessel.inventory.v1beta2." +
+      "CheckBulkRequest\032+.kessel.inventory.v1be" +
+      "ta2.CheckBulkResponse\"(\202\323\344\223\002\"\"\035/api/kess" +
+      "el/v1beta2/checkbulk:\001*\022\236\001\n\rCheckSelfBul" +
+      "k\022..kessel.inventory.v1beta2.CheckSelfBu" +
+      "lkRequest\032/.kessel.inventory.v1beta2.Che" +
+      "ckSelfBulkResponse\",\202\323\344\223\002&\"!/api/kessel/" +
+      "v1beta2/checkselfbulk:\001*\022\235\001\n\016ReportResou" +
+      "rce\022/.kessel.inventory.v1beta2.ReportRes" +
+      "ourceRequest\0320.kessel.inventory.v1beta2." +
+      "ReportResourceResponse\"(\202\323\344\223\002\"\"\035/api/kes" +
+      "sel/v1beta2/resources:\001*\022\235\001\n\016DeleteResou" +
+      "rce\022/.kessel.inventory.v1beta2.DeleteRes" +
+      "ourceRequest\0320.kessel.inventory.v1beta2." +
+      "DeleteResourceResponse\"(\202\323\344\223\002\"*\035/api/kes" +
+      "sel/v1beta2/resources:\001*\022\311\001\n\030AddResource" +
+      "Relationships\0229.kessel.inventory.v1beta2" +
+      ".AddResourceRelationshipsRequest\032:.kesse" +
+      "l.inventory.v1beta2.AddResourceRelations" +
+      "hipsResponse\"6\202\323\344\223\0020\"+/api/kessel/v1beta" +
+      "2/resources/relationships:\001*\022\322\001\n\033RemoveR" +
+      "esourceRelationships\022<.kessel.inventory." +
+      "v1beta2.RemoveResourceRelationshipsReque" +
+      "st\032=.kessel.inventory.v1beta2.RemoveReso" +
+      "urceRelationshipsResponse\"6\202\323\344\223\0020*+/api/" +
+      "kessel/v1beta2/resources/relationships:\001" +
+      "*\022\204\001\n\023StreamedListObjects\0224.kessel.inven" +
+      "tory.v1beta2.StreamedListObjectsRequest\032" +
+      "5.kessel.inventory.v1beta2.StreamedListO" +
+      "bjectsResponse0\001\022\207\001\n\024StreamedListSubject" +
+      "s\0225.kessel.inventory.v1beta2.StreamedLis" +
+      "tSubjectsRequest\0326.kessel.inventory.v1be" +
+      "ta2.StreamedListSubjectsResponse0\001Br\n(or" +
+      "g.project_kessel.api.inventory.v1beta2P\001" +
+      "ZDgithub.com/project-kessel/inventory-ap" +
+      "i/api/kessel/inventory/v1beta2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -121,6 +138,10 @@ public final class InventoryService {
           org.project_kessel.api.inventory.v1beta2.ReportResourceResponseOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.DeleteResourceRequestOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.DeleteResourceResponseOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequestOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponseOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequestOuterClass.getDescriptor(),
+          org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponseOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequestOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponseOuterClass.getDescriptor(),
           org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequestOuterClass.getDescriptor(),
@@ -144,6 +165,10 @@ public final class InventoryService {
     org.project_kessel.api.inventory.v1beta2.ReportResourceResponseOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.DeleteResourceRequestOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.DeleteResourceResponseOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequestOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponseOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequestOuterClass.getDescriptor();
+    org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponseOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequestOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponseOuterClass.getDescriptor();
     org.project_kessel.api.inventory.v1beta2.StreamedListSubjectsRequestOuterClass.getDescriptor();

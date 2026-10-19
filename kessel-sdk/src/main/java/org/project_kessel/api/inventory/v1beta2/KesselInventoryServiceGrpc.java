@@ -264,6 +264,68 @@ public final class KesselInventoryServiceGrpc {
     return getDeleteResourceMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest,
+      org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> getAddResourceRelationshipsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "AddResourceRelationships",
+      requestType = org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest,
+      org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> getAddResourceRelationshipsMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest, org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> getAddResourceRelationshipsMethod;
+    if ((getAddResourceRelationshipsMethod = KesselInventoryServiceGrpc.getAddResourceRelationshipsMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getAddResourceRelationshipsMethod = KesselInventoryServiceGrpc.getAddResourceRelationshipsMethod) == null) {
+          KesselInventoryServiceGrpc.getAddResourceRelationshipsMethod = getAddResourceRelationshipsMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest, org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AddResourceRelationships"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("AddResourceRelationships"))
+              .build();
+        }
+      }
+    }
+    return getAddResourceRelationshipsMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest,
+      org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> getRemoveResourceRelationshipsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RemoveResourceRelationships",
+      requestType = org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest.class,
+      responseType = org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest,
+      org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> getRemoveResourceRelationshipsMethod() {
+    io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest, org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> getRemoveResourceRelationshipsMethod;
+    if ((getRemoveResourceRelationshipsMethod = KesselInventoryServiceGrpc.getRemoveResourceRelationshipsMethod) == null) {
+      synchronized (KesselInventoryServiceGrpc.class) {
+        if ((getRemoveResourceRelationshipsMethod = KesselInventoryServiceGrpc.getRemoveResourceRelationshipsMethod) == null) {
+          KesselInventoryServiceGrpc.getRemoveResourceRelationshipsMethod = getRemoveResourceRelationshipsMethod =
+              io.grpc.MethodDescriptor.<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest, org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveResourceRelationships"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new KesselInventoryServiceMethodDescriptorSupplier("RemoveResourceRelationships"))
+              .build();
+        }
+      }
+    }
+    return getRemoveResourceRelationshipsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest,
       org.project_kessel.api.inventory.v1beta2.StreamedListObjectsResponse> getStreamedListObjectsMethod;
 
@@ -537,6 +599,54 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Adds one or more relationships to an existing *Resource*.
+     * If the *Resource* does not yet exist for this *Reporter*, it is created with
+     * the provided relationship fields as its initial representation. All other
+     * relationships already reported for that *Resource* are unaffected.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only touches the specific
+     * relationship fields and values named in the request. Attribute fields,
+     * other relationship fields, and metadata are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships added through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires newly added relationships to be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    default void addResourceRelationships(org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddResourceRelationshipsMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Removes one or more specific relationships from an existing *Resource*.
+     * All other relationships for the *Resource* are unaffected. If the *Resource*
+     * does not exist, this operation returns `NOT_FOUND` — matching the behaviour
+     * of `DeleteResource`.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only removes the specific
+     * relationship values named in the request. Attribute fields and other
+     * relationship fields are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships removed through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires removed relationships to no longer be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    default void removeResourceRelationships(org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveResourceRelationshipsMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * Streams a list of objects where the given subject has the specified relation.
      * This relationship query answers the question:
      * "Which objects of type *X* does subject *Y* have the *Z* relation to?"
@@ -755,6 +865,56 @@ public final class KesselInventoryServiceGrpc {
 
     /**
      * <pre>
+     * Adds one or more relationships to an existing *Resource*.
+     * If the *Resource* does not yet exist for this *Reporter*, it is created with
+     * the provided relationship fields as its initial representation. All other
+     * relationships already reported for that *Resource* are unaffected.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only touches the specific
+     * relationship fields and values named in the request. Attribute fields,
+     * other relationship fields, and metadata are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships added through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires newly added relationships to be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public void addResourceRelationships(org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getAddResourceRelationshipsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Removes one or more specific relationships from an existing *Resource*.
+     * All other relationships for the *Resource* are unaffected. If the *Resource*
+     * does not exist, this operation returns `NOT_FOUND` — matching the behaviour
+     * of `DeleteResource`.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only removes the specific
+     * relationship values named in the request. Attribute fields and other
+     * relationship fields are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships removed through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires removed relationships to no longer be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public void removeResourceRelationships(org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest request,
+        io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRemoveResourceRelationshipsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Streams a list of objects where the given subject has the specified relation.
      * This relationship query answers the question:
      * "Which objects of type *X* does subject *Y* have the *Z* relation to?"
@@ -948,6 +1108,54 @@ public final class KesselInventoryServiceGrpc {
     public org.project_kessel.api.inventory.v1beta2.DeleteResourceResponse deleteResource(org.project_kessel.api.inventory.v1beta2.DeleteResourceRequest request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDeleteResourceMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Adds one or more relationships to an existing *Resource*.
+     * If the *Resource* does not yet exist for this *Reporter*, it is created with
+     * the provided relationship fields as its initial representation. All other
+     * relationships already reported for that *Resource* are unaffected.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only touches the specific
+     * relationship fields and values named in the request. Attribute fields,
+     * other relationship fields, and metadata are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships added through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires newly added relationships to be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse addResourceRelationships(org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getAddResourceRelationshipsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Removes one or more specific relationships from an existing *Resource*.
+     * All other relationships for the *Resource* are unaffected. If the *Resource*
+     * does not exist, this operation returns `NOT_FOUND` — matching the behaviour
+     * of `DeleteResource`.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only removes the specific
+     * relationship values named in the request. Attribute fields and other
+     * relationship fields are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships removed through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires removed relationships to no longer be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse removeResourceRelationships(org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getRemoveResourceRelationshipsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1147,6 +1355,54 @@ public final class KesselInventoryServiceGrpc {
     public org.project_kessel.api.inventory.v1beta2.DeleteResourceResponse deleteResource(org.project_kessel.api.inventory.v1beta2.DeleteResourceRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteResourceMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Adds one or more relationships to an existing *Resource*.
+     * If the *Resource* does not yet exist for this *Reporter*, it is created with
+     * the provided relationship fields as its initial representation. All other
+     * relationships already reported for that *Resource* are unaffected.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only touches the specific
+     * relationship fields and values named in the request. Attribute fields,
+     * other relationship fields, and metadata are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships added through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires newly added relationships to be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse addResourceRelationships(org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getAddResourceRelationshipsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Removes one or more specific relationships from an existing *Resource*.
+     * All other relationships for the *Resource* are unaffected. If the *Resource*
+     * does not exist, this operation returns `NOT_FOUND` — matching the behaviour
+     * of `DeleteResource`.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only removes the specific
+     * relationship values named in the request. Attribute fields and other
+     * relationship fields are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships removed through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires removed relationships to no longer be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse removeResourceRelationships(org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRemoveResourceRelationshipsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1353,6 +1609,56 @@ public final class KesselInventoryServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteResourceMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Adds one or more relationships to an existing *Resource*.
+     * If the *Resource* does not yet exist for this *Reporter*, it is created with
+     * the provided relationship fields as its initial representation. All other
+     * relationships already reported for that *Resource* are unaffected.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only touches the specific
+     * relationship fields and values named in the request. Attribute fields,
+     * other relationship fields, and metadata are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships added through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires newly added relationships to be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse> addResourceRelationships(
+        org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getAddResourceRelationshipsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Removes one or more specific relationships from an existing *Resource*.
+     * All other relationships for the *Resource* are unaffected. If the *Resource*
+     * does not exist, this operation returns `NOT_FOUND` — matching the behaviour
+     * of `DeleteResource`.
+     * Unlike `ReportResource`, which asserts the complete state of a *Resource*,
+     * this operation is a targeted mutation: it only removes the specific
+     * relationship values named in the request. Attribute fields and other
+     * relationship fields are left exactly as they were.
+     * Only relationship-typed fields from the *Resource's* schema are accepted;
+     * attribute fields are rejected.
+     * The relationships removed through this API are used to determine relationship
+     * check outcomes via the Check and CheckForUpdate APIs.
+     * This API does **not** guarantee immediate read-your-writes consistency by default.
+     * If a reporter requires removed relationships to no longer be visible in subsequent
+     * checks (e.g., `Check`), the request must explicitly set `write_visibility = IMMEDIATE`.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse> removeResourceRelationships(
+        org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRemoveResourceRelationshipsMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CHECK = 0;
@@ -1363,8 +1669,10 @@ public final class KesselInventoryServiceGrpc {
   private static final int METHODID_CHECK_SELF_BULK = 5;
   private static final int METHODID_REPORT_RESOURCE = 6;
   private static final int METHODID_DELETE_RESOURCE = 7;
-  private static final int METHODID_STREAMED_LIST_OBJECTS = 8;
-  private static final int METHODID_STREAMED_LIST_SUBJECTS = 9;
+  private static final int METHODID_ADD_RESOURCE_RELATIONSHIPS = 8;
+  private static final int METHODID_REMOVE_RESOURCE_RELATIONSHIPS = 9;
+  private static final int METHODID_STREAMED_LIST_OBJECTS = 10;
+  private static final int METHODID_STREAMED_LIST_SUBJECTS = 11;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1414,6 +1722,14 @@ public final class KesselInventoryServiceGrpc {
         case METHODID_DELETE_RESOURCE:
           serviceImpl.deleteResource((org.project_kessel.api.inventory.v1beta2.DeleteResourceRequest) request,
               (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.DeleteResourceResponse>) responseObserver);
+          break;
+        case METHODID_ADD_RESOURCE_RELATIONSHIPS:
+          serviceImpl.addResourceRelationships((org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse>) responseObserver);
+          break;
+        case METHODID_REMOVE_RESOURCE_RELATIONSHIPS:
+          serviceImpl.removeResourceRelationships((org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest) request,
+              (io.grpc.stub.StreamObserver<org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse>) responseObserver);
           break;
         case METHODID_STREAMED_LIST_OBJECTS:
           serviceImpl.streamedListObjects((org.project_kessel.api.inventory.v1beta2.StreamedListObjectsRequest) request,
@@ -1498,6 +1814,20 @@ public final class KesselInventoryServiceGrpc {
               org.project_kessel.api.inventory.v1beta2.DeleteResourceResponse>(
                 service, METHODID_DELETE_RESOURCE)))
         .addMethod(
+          getAddResourceRelationshipsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsRequest,
+              org.project_kessel.api.inventory.v1beta2.AddResourceRelationshipsResponse>(
+                service, METHODID_ADD_RESOURCE_RELATIONSHIPS)))
+        .addMethod(
+          getRemoveResourceRelationshipsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsRequest,
+              org.project_kessel.api.inventory.v1beta2.RemoveResourceRelationshipsResponse>(
+                service, METHODID_REMOVE_RESOURCE_RELATIONSHIPS)))
+        .addMethod(
           getStreamedListObjectsMethod(),
           io.grpc.stub.ServerCalls.asyncServerStreamingCall(
             new MethodHandlers<
@@ -1567,6 +1897,8 @@ public final class KesselInventoryServiceGrpc {
               .addMethod(getCheckSelfBulkMethod())
               .addMethod(getReportResourceMethod())
               .addMethod(getDeleteResourceMethod())
+              .addMethod(getAddResourceRelationshipsMethod())
+              .addMethod(getRemoveResourceRelationshipsMethod())
               .addMethod(getStreamedListObjectsMethod())
               .addMethod(getStreamedListSubjectsMethod())
               .build();
