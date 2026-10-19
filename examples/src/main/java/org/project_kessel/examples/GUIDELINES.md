@@ -34,8 +34,8 @@ Rules for the `examples` module -- runnable code samples demonstrating SDK usage
 ## ClientBuilder Pattern
 
 - Demonstrate the fluent builder: `new ClientBuilder(endpoint).insecure().build()` for blocking stubs.
-- Use `.buildAsync()` for async stubs -- both return `Pair<Stub, ManagedChannel>`.
-- `Pair` is `com.nimbusds.jose.util.Pair`. Access stub with `getLeft()`, channel with `getRight()`.
+- Use `.buildAsync()` for async stubs -- both return `ClientBuildResult<Stub>`.
+- `ClientBuildResult` is `org.project_kessel.api.inventory.ClientBuildResult`. Access stub with `stub()`, channel with `channel()`.
 - For authenticated examples, show the full OIDC discovery chain: `OIDCDiscovery` -> `ClientConfigAuth` -> `OAuth2ClientCredentials` -> `ClientBuilder.oauth2ClientAuthenticated(...)`.
 
 ## Channel Shutdown (Critical)

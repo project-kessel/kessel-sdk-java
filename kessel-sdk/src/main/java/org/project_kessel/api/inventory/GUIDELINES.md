@@ -45,10 +45,10 @@ This is the most important rule in this package.
 - Duration values must be non-null, positive, and convertible to nanoseconds without overflow. gRPC Java may clamp the interval to a 10-second minimum and the timeout to a 10-millisecond minimum.
 - These client options do not guarantee load-balancer idle-timer resets, retries, or health checks. A server/gateway policy compatible with the selected interval (including the 45-second default) is a prerequisite and remains unverified under RHCLOUD-51673.
 
-## Pair Return Convention
+## ClientBuildResult Return Convention
 
-- `build()` returns `Pair<BlockingStub, ManagedChannel>` using `com.nimbusds.jose.util.Pair` (not Apache Commons).
-- `buildAsync()` returns `Pair<AsyncStub, ManagedChannel>`.
+- `build()` returns `ClientBuildResult<BlockingStub>` — an SDK-owned record with `stub()` and `channel()` accessors.
+- `buildAsync()` returns `ClientBuildResult<AsyncStub>`.
 - The caller owns the `ManagedChannel` and must shut it down. Every example demonstrates `channel.shutdown()` in a `finally` block (blocking) or in both `onCompleted()`/`onError()` (async).
 - Each `build()`/`buildAsync()` call creates a new `ManagedChannel`. Do not call `build()` per-request -- reuse the channel.
 

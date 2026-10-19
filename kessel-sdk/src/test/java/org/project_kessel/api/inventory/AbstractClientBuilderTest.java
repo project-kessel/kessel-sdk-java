@@ -1,6 +1,5 @@
 package org.project_kessel.api.inventory;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.*;
 import io.grpc.stub.AbstractAsyncStub;
 import io.grpc.stub.AbstractStub;
@@ -147,30 +146,30 @@ class AbstractClientBuilderTest {
     @Test
     void testBuildCreatesStub() {
         builder.insecure();
-        Pair<TestStub, ManagedChannel> result = builder.build();
+        ClientBuildResult<TestStub> result = builder.build();
 
         try {
-            assertNotNull(result.getLeft());
-            assertNotNull(result.getRight());
-            assertTrue(result.getLeft() instanceof TestStub);
-            assertTrue(result.getRight() instanceof ManagedChannel);
+            assertNotNull(result.stub());
+            assertNotNull(result.channel());
+            assertTrue(result.stub() instanceof TestStub);
+            assertTrue(result.channel() instanceof ManagedChannel);
         } finally {
-            closeChannel(result.getRight());
+            closeChannel(result.channel());
         }
     }
 
     @Test
     void testBuildAsyncCreatesAsyncStub() {
         builder.insecure();
-        Pair<TestAsyncStub, ManagedChannel> result = builder.buildAsync();
+        ClientBuildResult<TestAsyncStub> result = builder.buildAsync();
 
         try {
-            assertNotNull(result.getLeft());
-            assertNotNull(result.getRight());
-            assertTrue(result.getLeft() instanceof TestAsyncStub);
-            assertTrue(result.getRight() instanceof ManagedChannel);
+            assertNotNull(result.stub());
+            assertNotNull(result.channel());
+            assertTrue(result.stub() instanceof TestAsyncStub);
+            assertTrue(result.channel() instanceof ManagedChannel);
         } finally {
-            closeChannel(result.getRight());
+            closeChannel(result.channel());
         }
     }
 
@@ -187,14 +186,14 @@ class AbstractClientBuilderTest {
         AtomicReference<ChannelCredentials> channelCredentials = new AtomicReference<>();
 
         try (MockedStatic<Grpc> grpcMock = interceptChannelBuilder(channelBuilderSpy, channelCredentials)) {
-            Pair<TestStub, ManagedChannel> result = builder.build();
+            ClientBuildResult<TestStub> result = builder.build();
             try {
-                assertNotNull(result.getLeft());
+                assertNotNull(result.stub());
                 assertInstanceOf(TlsChannelCredentials.class, channelCredentials.get());
                 verifyKeepaliveSettings(channelBuilderSpy.get(), Duration.ofSeconds(45), Duration.ofSeconds(10), true);
                 verifyChannelBuilderTarget(grpcMock);
             } finally {
-                closeChannel(result.getRight());
+                closeChannel(result.channel());
             }
         }
     }
@@ -213,14 +212,14 @@ class AbstractClientBuilderTest {
                 .keepalivePermitWithoutCalls(false);
 
         try (MockedStatic<Grpc> grpcMock = interceptChannelBuilder(channelBuilderSpy, channelCredentials)) {
-            Pair<TestStub, ManagedChannel> result = builder.build();
+            ClientBuildResult<TestStub> result = builder.build();
             try {
-                assertNotNull(result.getLeft());
+                assertNotNull(result.stub());
                 assertInstanceOf(InsecureChannelCredentials.class, channelCredentials.get());
                 verifyKeepaliveSettings(channelBuilderSpy.get(), Duration.ofSeconds(75), Duration.ofSeconds(15), false);
                 verifyChannelBuilderTarget(grpcMock);
             } finally {
-                closeChannel(result.getRight());
+                closeChannel(result.channel());
             }
         }
     }
@@ -233,9 +232,9 @@ class AbstractClientBuilderTest {
         builder.authenticated(callCredentials).keepaliveTimeout(Duration.ofSeconds(20));
 
         try (MockedStatic<Grpc> grpcMock = interceptChannelBuilder(channelBuilderSpy, channelCredentials)) {
-            Pair<TestAsyncStub, ManagedChannel> result = builder.buildAsync();
+            ClientBuildResult<TestAsyncStub> result = builder.buildAsync();
             try {
-                assertNotNull(result.getLeft());
+                assertNotNull(result.stub());
                 CompositeChannelCredentials compositeCredentials = assertInstanceOf(
                         CompositeChannelCredentials.class, channelCredentials.get());
                 assertInstanceOf(TlsChannelCredentials.class, compositeCredentials.getChannelCredentials());
@@ -243,7 +242,7 @@ class AbstractClientBuilderTest {
                 verifyKeepaliveSettings(channelBuilderSpy.get(), Duration.ofSeconds(45), Duration.ofSeconds(20), true);
                 verifyChannelBuilderTarget(grpcMock);
             } finally {
-                closeChannel(result.getRight());
+                closeChannel(result.channel());
             }
         }
     }
@@ -266,12 +265,12 @@ class AbstractClientBuilderTest {
         AtomicReference<ManagedChannelBuilder<?>> channelBuilderSpy = new AtomicReference<>();
         AtomicReference<ChannelCredentials> channelCredentials = new AtomicReference<>();
         try (MockedStatic<Grpc> grpcMock = interceptChannelBuilder(channelBuilderSpy, channelCredentials)) {
-            Pair<TestStub, ManagedChannel> result = builder.build();
+            ClientBuildResult<TestStub> result = builder.build();
             try {
                 verifyKeepaliveSettings(channelBuilderSpy.get(), Duration.ofSeconds(75), Duration.ofSeconds(20), true);
                 verifyChannelBuilderTarget(grpcMock);
             } finally {
-                closeChannel(result.getRight());
+                closeChannel(result.channel());
             }
         }
     }
