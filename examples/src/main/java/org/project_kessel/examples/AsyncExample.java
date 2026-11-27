@@ -6,9 +6,9 @@ package org.project_kessel.examples;
  * For production, configure proper TLS credentials with certificate verification.
  */
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.stub.StreamObserver;
+import org.project_kessel.api.inventory.ClientBuildResult;
 import org.project_kessel.api.inventory.v1beta2.*;
 import org.project_kessel.examples.util.EnvConfig;
 
@@ -25,10 +25,10 @@ public class AsyncExample {
         // Load configuration from environment/.env file
         String kesselEndpoint = EnvConfig.get("KESSEL_ENDPOINT");
 
-        Pair<KesselInventoryServiceStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
+        ClientBuildResult<KesselInventoryServiceStub> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .insecure()
                 .buildAsync();
-        KesselInventoryServiceStub client = clientAndChannel.getLeft();
+        KesselInventoryServiceStub client = clientAndChannel.stub();
 
         CheckRequest checkRequest = CheckRequest
                 .newBuilder()
@@ -67,12 +67,12 @@ public class AsyncExample {
             public void onError(Throwable throwable) {
                 System.out.println("gRPC error occurred during Check:");
                 throwable.printStackTrace();
-                clientAndChannel.getRight().shutdown();
+                clientAndChannel.channel().shutdown();
             }
 
             @Override
             public void onCompleted() {
-                clientAndChannel.getRight().shutdown();
+                clientAndChannel.channel().shutdown();
             }
         });
     }

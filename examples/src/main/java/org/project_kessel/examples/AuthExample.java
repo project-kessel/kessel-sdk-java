@@ -1,12 +1,12 @@
 package org.project_kessel.examples;
 
-import com.nimbusds.jose.util.Pair;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import org.project_kessel.api.auth.ClientConfigAuth;
 import org.project_kessel.api.auth.OAuth2ClientCredentials;
 import org.project_kessel.api.auth.OIDCDiscovery;
 import org.project_kessel.api.auth.OIDCDiscoveryMetadata;
+import org.project_kessel.api.inventory.ClientBuildResult;
 import org.project_kessel.api.inventory.v1beta2.ResourceReference;
 import org.project_kessel.api.inventory.v1beta2.ClientBuilder;
 import org.project_kessel.api.inventory.v1beta2.CheckRequest;
@@ -60,10 +60,10 @@ public class AuthExample {
         // RetryOptions noRetry = new RetryOptions(0, 0.5, 2.0, "full");
         // OAuth2ClientCredentials oauthClient = new OAuth2ClientCredentials(authConfig, noRetry);
 
-        Pair<KesselInventoryServiceBlockingStub, ManagedChannel> clientAndChannel = new ClientBuilder(kesselEndpoint)
+        ClientBuildResult<KesselInventoryServiceBlockingStub> clientAndChannel = new ClientBuilder(kesselEndpoint)
                 .oauth2ClientAuthenticated(oauthClient)
                 .build();
-        KesselInventoryServiceBlockingStub client = clientAndChannel.getLeft();
+        KesselInventoryServiceBlockingStub client = clientAndChannel.stub();
 
         try {
             CheckRequest checkRequest = CheckRequest
@@ -99,7 +99,7 @@ public class AuthExample {
             System.out.println("gRPC error occurred during Check:");
             statusException.printStackTrace();
         } finally {
-            clientAndChannel.getRight().shutdown();
+            clientAndChannel.channel().shutdown();
         }
     }
 }
